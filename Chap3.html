@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coexistencia Grandes Carnívoros - Cap 3: Lecciones Aprendidas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-section { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151; font-size: 0.875rem; }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #84cc16; }
+        input[type="number"], select { padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem; }
+        button, .styled-button-link { background-color: #a3e635; color: #3f6212; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.2s; display: inline-block; text-align: center; border: none; }
+        button:hover, .styled-button-link:hover { background-color: #84cc16; }
+        h1 { color: #111827; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700;}
+        h2 { color: #111827; font-size: 1.5rem; line-height: 2rem; font-weight: 700;}
+        h3 { color: #365314; font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; border-bottom: 2px solid #a3e635; padding-bottom: 0.35rem; margin-top: 2rem; margin-bottom: 1rem; background-color: #f0fdf4; padding: 0.5rem 1rem; border-radius: 0.375rem 0.375rem 0 0; display: inline-block; }
+        p, li { color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+        strong { color: #1F2937; font-weight: 600; }
+        blockquote { border-left: 6px solid #a3e635; padding: 1rem 1.5rem; margin: 2rem 0; font-style: italic; color: #374151; background-color: #ffffff; border-radius: 0 0.5rem 0.5rem 0; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+        .section-bg-light { background-color: #f7fee7; }
+        .section-bg-white { background-color: #FFFFFF; }
+        .instructional-text { font-size: 0.875rem; color: #4B5563; margin-top: 0.5rem; }
+        hr.styled { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(163, 230, 53, 0), rgba(163, 230, 53, 0.75), rgba(163, 230, 53, 0)); margin: 3rem 0; }
+        .interactive-block { margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; border: 1px solid #d9f99d; border-radius: 0.5rem; background-color: #ffffff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        footer ul { list-style: none; padding-left: 0; }
+        footer li { margin-bottom: 0.75rem; }
+        footer a { color: #4d7c0f; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .header-subtitle { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; margin-top: 0.25rem; }
+        .header-attribution { font-size: 0.875rem; line-height: 1.25rem; margin-top: 1rem; opacity: 0.9; }
+        .footer-attribution { margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.25rem; color: #6b7280; text-align: center; }
+        details { background-color: #ffffff; border: 1px solid #d9f99d; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow: hidden; }
+        details summary { padding: 1rem 1.5rem; cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #365314; list-style: none; display: flex; justify-content: space-between; align-items: center; background-color: #f0fdf4; border-bottom: 1px solid #d9f99d;}
+        details summary::-webkit-details-marker { display: none; }
+        details summary::marker { display: none; }
+        details summary::after { content: '+'; font-size: 1.5rem; color: #a3e635; transition: transform 0.2s; font-weight: bold; }
+        details[open] summary { border-bottom: 1px solid #d9f99d; }
+        details[open] summary::after { content: '−'; }
+        details div.content { padding: 1.5rem; background-color: #ffffff; }
+        .slider-label-container { display: flex; justify-content: space-between; font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
+        .output-box { margin-top: 1rem; padding: 0.75rem; background-color: #ecfdf5; border: 1px solid #d1fae5; border-radius: 0.375rem; font-size: 0.875rem; color: #065f46; text-align: center; font-weight: 500; min-height: 40px; }
+        .progress-bar-container { height: 1rem; background-color: #e5e7eb; border-radius: 0.375rem; overflow: hidden; border: 1px solid #d1d5db; margin-top: 0.5rem; }
+        .progress-bar-fill { height: 100%; background-color: #84cc16; transition: width 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <header class="bg-gradient-to-r from-lime-600 to-green-600 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 text-center md:text-left">
+            <h1>Comprender y Gestionar la Coexistencia</h1>
+            <p class="header-subtitle">Entre la Gente y los Grandes Carnívoros</p>
+            <p class="header-attribution">Basado en el libro de Isaac Goldstein & Robert Márquez (2025)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="capitulo3" class="mb-12 p-6 rounded-lg shadow-lg section-bg-white dynamic-content">
+            <h2 class="text-lime-700 border-b-2 border-lime-200 pb-2 mb-6">Capítulo 3: Lecciones aprendidas en la gestión de la coexistencia entre la gente y los grandes carnívoros</h2>
+
+            <h3>INTRODUCCIÓN</h3>
+            <p>Existe mucha experiencia en cuanto a la gestión de la coexistencia entre los grandes carnívoros y la gente (Hodgson et al., 2020), y se han publicado una gran cantidad de trabajos sobre la gestión de las interacciones negativas entre ambos (por ejemplo, Wilson, 2016; De Bortoli et al., 2019; Hodgson et al., 2020; IUCN, 2023). En el marco del Plan de Fortalecimiento de Capacidades Institucionales y Capacitación en el Tema de Gestión de Vida Silvestre Amazónica de los Países de la CAN, Goldstein (2011) publicó los «Lineamientos técnicos y estrategias para el manejo de conflictos entre la fauna y actividades agropecuarias en los países de la CAN». Un aspecto importante de dicho trabajo fue la elaboración de un listado de lecciones aprendidas y recomendaciones de manejo de la coexistencia. En conversaciones con distintos gestores de la biodiversidad y la coexistencia con grandes mamíferos, nos hemos dado cuenta de que dicho listado y las recomendaciones asociadas han sido de gran ayuda para el desarrollo de muchos trabajos de gestión.</p>
+            <p>Recientemente, la IUCN (2023) publicó las Directrices sobre los conflictos y la coexistencia entre la fauna silvestre y la gente (Guidelines on Human-Wildlife Conflict and Coexistence) con el objetivo de proveer las bases y principios de buenas prácticas para el manejo de la coexistencia con la fauna silvestre, presentando cinco principios básicos:</p>
+             <ol class="list-roman list-inside mb-4 pl-4 space-y-1">
+                 <li>no hacer daño</li>
+                 <li>entender la problemática y el contexto</li>
+                 <li>trabajar juntos</li>
+                 <li>integrar ciencia y política</li>
+                 <li>permitir vías sustentables</li>
+             </ol>
+            <p>Para poner en práctica estos cinco principios en el manejo de la coexistencia, la IUCN (2023) propone diez preguntas básicas que deben tenerse en consideración en la planificación y ejecución de las intervenciones de manejo:</p>
+             <ol class="list-decimal list-inside mb-4 pl-4 space-y-1">
+                 <li>¿Se ha identificado el nivel de conflicto?</li>
+                 <li>¿Se están considerando la ética, las consecuencias y el rol de los distintos actores?</li>
+                 <li>¿Se están considerando los factores ecológicos y de uso del suelo?</li>
+                 <li>¿Se ha comprendido el contexto social, cultural, histórico y político subyacente?</li>
+                 <li>¿Se ha planificado el proyecto/intervención junto a las partes interesadas?</li>
+                 <li>¿Se beneficia la iniciativa de los equipos multidisciplinarios de distintos sectores?</li>
+                 <li>¿Se basan la planificación y las medidas en información científica?</li>
+                 <li>¿Se han incorporado aspectos pertinentes a la gobernanza y la política?</li>
+                 <li>¿Se basan las intervenciones en los mejores conocimientos disponibles de distintas fuentes?</li>
+                 <li>¿Existe una estrategia para salir de la dependencia financiera o técnica?</li>
+             </ol>
+            <p>Creemos que, como parte de este trabajo y antes de comenzar a explicar la gestión de la coexistencia, sería de gran ayuda disponer de un listado de lecciones aprendidas y recomendaciones relacionados con el manejo de la coexistencia que tome en cuenta tanto los avances en el tema durante los últimos años, como los principios y las preguntas para las buenas prácticas desarrollados por el Grupo de Especialistas en el Conflicto y la Coexistencia entre la gente y la Fauna Silvestre (IUCN, 2023).</p>
+            <p>Tenemos claro que, al igual que con el listado original, este listado se mejorará e incluso se cambiará a medida que nuestro conocimiento y aproximación al tema cambien en el futuro. A continuación, presentaremos el listado de las lecciones aprendidas y las recomendaciones relacionadas con el manejo de la coexistencia.</p>
+
+            <hr class="styled">
+
+             <div class="space-y-4">
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 1:</summary>
+                     <div class="content">
+                         <p><strong>Donde hay coocurrencia entre la gente y los grandes carnívoros, siempre existe el riesgo de interacciones negativas entre estos, así como de conflicto entre los distintos actores y los grupos de interés sobre el manejo de estas interacciones, por lo que las intervenciones para gestionar la coexistencia tienen que ser recurrentes a través del tiempo y adecuarse a los cambios de contexto y necesidades de gestión.</strong></p>
+                         <p>Esta lección aprendida se vincula con una de las tres características del conflicto enunciadas en el documento del HWCCTF (IUCN, 2023), que indica que «los conflictos entre la fauna silvestre y la gente involucran interacciones directas y recurrentes entre la fauna silvestre y la gente».</p>
+                         <p>Nuestro objetivo es la conservación de poblaciones viables de grandes carnívoros. Dados los grandes requerimientos de áreas de los carnívoros y la extensa distribución de las personas o sus actividades, usualmente, tendremos áreas de coocurrencia entre las personas y los grandes carnívoros (por ejemplo, en los límites de las áreas protegidas), donde las interacciones son más comunes (Goldstein et al., 2006; Goldstein, 2011). Estas interacciones también pueden ser comunes en áreas donde la expansión de la frontera agrícola está colonizando espacios silvestres o donde las poblaciones de grandes carnívoros se están recuperando y expandiendo su rango de distribución (Blanco et al., 1992; Quigley & Crawshaw, 1992; Kaczensky, 1999; Treves & Karanth, 2003; Treves, 2007).</p>
+                         <p>En las áreas de coexistencia, puede haber periodos sin interacciones negativas o con pocas interacciones hasta que un cambio en el contexto conlleve al inicio, reaparición o el aumento de dichas interacciones. Por otro lado, los daños a la propiedad o a las personas son, a menudo, causados por pocos individuos que presentan comportamientos atípicos en comparación con el resto de la población. Individuos que, de un momento a otro, por oportunidad o por aprendizaje, utilizan productos de origen antrópico (Linnell et al., 2001). En ausencia de individuos con estas características, las personas pueden vivir periodos sin interacciones, incluso cuando la especie de carnívoro está presente.</p>
+                         <p>En todo caso, si no hay un manejo recurrente con acciones preventivas adecuadas para evitar posibles interacciones negativas dada la presencia de los grandes carnívoros, la gente y sus actividades serán vulnerables a los carnívoros, lo que conlleva un alto riesgo de sufrir pérdidas. Las intervenciones reactivas no previenen los daños y las personas se sentirán amenazadas por la sola presencia de la especie, lo cual genera una actitud negativa de las personas no solo hacia el carnívoro, sino también hacia las organizaciones que buscan su conservación (Wilson, 2016).</p>
+                         <p>Por otro lado, las intervenciones de manejo recurrentes y a largo plazo no solo pueden disminuir el riesgo y aumentar la tolerancia, sino que pueden llevar a que la coexistencia con carnívoros resulte en interacciones positivas y beneficios adicionales. Por ejemplo, en diversas áreas con presencia de carnívoros, se han desarrollado estrategias recurrentes que prevén los daños y, así, disminuyen las pérdidas, al tiempo que se han generado mercados verdes que usan la imagen de la especie y su conservación como una herramienta para aumentar el valor de los productos para un público interesado en la conservación (Boronyak et al., 2022). En otros lugares, los pobladores locales están trabajando en emprendimientos turísticos asociados a la presencia de carnívoros (Hoogesteijn & Hoogesteijn, 2010). Estas actividades aumentan la resiliencia de las personas a la presencia del carnívoro y, por ende, la tolerancia hacia estos (Treves et al., 2006; Macdonald et al., 2010).</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 2:</summary>
+                     <div class="content">
+                         <p><strong>Las interacciones entre los grandes carnívoros y la gente están por lo general focalizadas en el espacio y el tiempo. Pocas localidades tienen interacciones negativas en un momento dado y pocos individuos son los causantes de las interacciones negativas. La identificación de localidades y los individuos involucrados es muy importante para poder manejar las interacciones negativas de manera eficiente.</strong></p>
+                         <p>Como se mencionó anteriormente, en el contexto actual se generan numerosos tipos de paisajes de coexistencia en los que las interacciones entre la fauna y la gente fluctúan en el tiempo. Por lo general, las interacciones negativas entre la gente y la fauna no ocurren de manera aleatoria (Soulsbury & White, 2019), sino que son consecuencia de un sistema socio-ecológico complejo que es impactado por la ecología y el comportamiento de las especies, la conducta humana, los cambios estacionales y el tipo de prácticas agropecuarias, así como por la disponibilidad de recursos (Nyhus, 2016).</p>
+                         <p>Aunque las interacciones negativas pueden estar localizadas en un área pequeña y afectar a pocos individuos, los efectos de estas interacciones pueden tener graves consecuencias para las personas afectadas (Muhly et al., 2004). Por otro lado, los daños ocasionados pueden repercutir negativamente en la tolerancia hacia la presencia de grandes carnívoros en un área geográfica mucho más amplia y extenderse más allá del sitio específico de la interacción negativa. Esta dinámica impacta significativamente en la supervivencia de los individuos y en la sostenibilidad de las poblaciones de grandes carnívoros. Por tanto, es crucial intentar estimar la probabilidad de que ocurran interacciones negativas (sitios con alta amenaza y vulnerabilidad) para priorizar las áreas de manejo.</p>
+                         <p>Se han empleado diversos tipos de modelos para estimar la probabilidad de que ocurran interacciones negativas y seleccionar las intervenciones de manejo para prevenir y mitigar los daños. Además, muchos de estos modelos facilitan la identificación de los factores que afectan la probabilidad de interacción, lo que brinda información crucial a los tomadores de decisiones sobre qué aspectos del contexto local deben gestionarse para disminuir dicha probabilidad.</p>
+
+                         <div class="interactive-block">
+                             <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador: Focalización de Interacciones</h4>
+                             <p class="instructional-text text-center mb-4">Ajusta los sliders para ver cómo la agrupación espacial y temporal de incidentes sugiere diferentes enfoques de manejo.</p>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                 <div>
+                                     <label for="spatial-cluster-slider">Agrupación Espacial de Incidentes:</label>
+                                     <input type="range" id="spatial-cluster-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja (Disperso)</span><span>Alta (Hotspots)</span></div>
+                                 </div>
+                                 <div>
+                                     <label for="temporal-cluster-slider">Agrupación Temporal de Incidentes:</label>
+                                     <input type="range" id="temporal-cluster-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja (Constante)</span><span>Alta (Estacional)</span></div>
+                                 </div>
+                             </div>
+                             <div id="localization-output" class="output-box">Ajusta los sliders para ver la sugerencia de manejo.</div>
+                         </div>
+
+                         <p>La identificación de las áreas con mayor probabilidad de presentar interacciones negativas entre los grandes carnívoros y las personas se convierte en un pilar estratégico para las organizaciones gubernamentales. Esto se debe a que proporciona la capacidad de asignar recursos de manera eficiente en localidades y sitios que presentan un mayor riesgo de enfrentar desafíos relacionados con la coexistencia entre humanos y fauna silvestre. Además, la determinación de las características de estas localidades y sitios permite establecer el objetivo de manejo para cada una de ellas.</p>
+                         <p>En localidades y sitios donde hay presencia de grandes carnívoros, pero no hay interacciones negativas y daños, es importante reducir la vulnerabilidad de la gente de manera que se evite cualquier interacción negativa en el futuro, aumentar el valor que la especie tiene para las personas y aumentar el acuerdo entre las personas sobre el manejo de la presencia de la especie. En localidades con presencia de la especie y donde se presentan interacciones negativas y daños, el manejo tiene que centrarse en la mitigación de los daños causados, así como en la reducción de la vulnerabilidad de las personas que sufrieron los daños de manera que se eviten daños futuros.</p>
+                         <p>Este enfoque basado en la identificación de áreas de riesgo no solo optimiza el uso de recursos limitados, sino que también contribuye a mejorar la aceptación y la colaboración de las comunidades locales. Al abordar de manera específica las áreas con mayores probabilidades de conflictos, se fomenta una gestión más eficaz y sostenible de la coexistencia entre grandes carnívoros y las personas, con lo que se mitigan los posibles impactos negativos en la biodiversidad y la calidad de vida de las comunidades afectadas. En última instancia, este enfoque permite avanzar hacia un equilibrio más armonioso entre la conservación de la fauna silvestre y las necesidades y preocupaciones de las personas.</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 3:</summary>
+                     <div class="content">
+                         <p><strong>Dada la naturaleza compleja y dinámica de cada paisaje, localidad y sitio, así como los diferentes contextos políticos y culturales, las características de las interacciones entre los grandes carnívoros y la gente son específicas para cada unidad de manejo. Por ello, la estandarización de estrategias e intervenciones en el manejo de la coexistencia no es posible. Cada paisaje, localidad y sitio podría requerir estrategias e intervenciones únicas que podrían cambiar en el tiempo.</strong></p>
+                         <p>Esta lección aprendida, ya mencionada en el documento de la CAN sobre el manejo de conflictos (Goldstein, 2011), es una de las consideraciones clave señaladas por el HWCCTF (IUCN, 2023), que indica que «las intervenciones para el manejo de conflictos no son transferibles de un caso a otro». Además, esta lección aprendida va de la mano de varias de las preguntas básicas para ser consideradas en la planificación y ejecución de intervenciones de manejo mencionadas en las Directrices sobre los Conflictos y la Coexistencia entre la Fauna Silvestre y la Gente (IUCN, 2023), a saber: ¿Se están considerando los factores ecológicos y de uso del suelo?; ¿Se ha comprendido el contexto social, cultural, histórico y político subyacente?; ¿Se han incorporado los aspectos pertinentes a la gobernanza y la política?.</p>
+                         <p>No existen soluciones universales para el manejo de la coexistencia. Cada paisaje, localidad y sitio tienen sus propias características (Lorand et al., 2022) y, en consecuencia, también las intervenciones para gestionar la coexistencia son específicas para cada sitio e individuo. El diagnóstico y monitoreo de la frecuencia, extensión e intensidad de las interacciones, junto con la evaluación del conocimiento, actitudes y valores de la población, son importantes para determinar las estrategias e intervenciones adecuadas para la gestión.</p>
+
+                         <div class="interactive-block">
+                             <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador: Contexto e Intervenciones</h4>
+                             <p class="instructional-text text-center mb-4">Ajusta los sliders para ver cómo diferentes factores contextuales pueden sugerir distintos tipos de intervenciones (conceptual).</p>
+                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                 <div>
+                                     <label for="context-capacity-slider">Capacidad Comunitaria:</label>
+                                     <input type="range" id="context-capacity-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                                 </div>
+                                 <div>
+                                     <label for="context-ecology-slider">Sensibilidad Ecológica:</label>
+                                     <input type="range" id="context-ecology-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                                 </div>
+                                  <div>
+                                     <label for="context-policy-slider">Apoyo Político/Legal:</label>
+                                     <input type="range" id="context-policy-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Bajo</span><span>Alto</span></div>
+                                 </div>
+                             </div>
+                             <div id="context-output" class="output-box">Ajusta los sliders para ver la sugerencia de intervención.</div>
+                         </div>
+
+                         <p>Por lo general, en cada paisaje de coexistencia y, dentro de él, en cada localidad, y sitio (predio o unidad de manejo), hay diversos factores que impactan los atributos que afectan la coexistencia, por lo que una sola estrategia y tipo de intervención no suele resolver todas las amenazas (Treves, 2007). Generalmente, para poder gestionar de manera eficiente y efectiva la coexistencia, se requiere de un conjunto de intervenciones centradas en los factores que impactan el hábitat, la seguridad, el valor y el acuerdo en una localidad (Goldstein & Márquez, 2014). Así, un manejo adecuado puede requerir conocimientos en múltiples disciplinas y prácticas, entre las que se incluyen la ecología, agronomía, sociología, psicología, economía, leyes o antropología, así como muchas otras ramas afines.</p>
+                         <p>La selección de las intervenciones también debe adecuarse a las capacidades de las personas (Goldstein & Márquez, 2014). Así, además de centrarse en la selección de intervenciones adecuadas para modificar el estado de los diferentes componentes del hábitat, seguridad, valor y acuerdo, es necesario que dichas intervenciones se seleccionen teniendo en cuenta las características y fortalezas de los pobladores. Por ejemplo, aunque una finca tenga todas las características paisajísticas, logísticas y financieras deseadas para trabajar con ecoturismo, también se requiere que las personas que viven allí y que gestionen la actividad tengan las capacidades requeridas para tener éxito en este tipo de iniciativa.</p>
+                         <p>En las localidades donde exista más de una especie de carnívoro, la identificación de la especie o especies responsables de las interacciones negativas es muy importante para la selección de estrategias efectivas para el manejo del riesgo. Sin embargo, dado que el contexto puede cambiar y una especie que no interactuaba negativamente puede empezar a hacerlo, se recomienda también realizar intervenciones adicionales que permitan prever potenciales daños por las otras especies presentes.</p>
+                         <p>El manejo de la coexistencia requiere un diagnóstico detallado del problema de manera que se eviten intervenciones pobremente informadas que profundicen los conflictos ya existentes o generen nuevos conflictos (IUCN, 2023). Este diagnóstico debe realizarse de forma periódica, pues cada paisaje, localidad y sitio podría requerir el cambio de estrategias e intervenciones en el tiempo (Hodgson et al., 2020).</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 4:</summary>
+                     <div class="content">
+                         <p><strong>La coexistencia es impactada por factores sociales o políticos que podrían no tener nada que ver con la presencia y conservación de los grandes carnívoros, pero que, sin embargo, tienen un impacto en la dinámica de la coexistencia.</strong></p>
+                         <p>Como señala el documento de Directrices sobre los Conflictos y la Coexistencia entre la Fauna Silvestre y la Gente (IUCN, 2023), «en muchos casos, los conflictos entre la fauna silvestre y la gente están apuntalados por los conflictos sociales entre la gente, no relacionados con la gestión de la fauna silvestre».</p>
+                         <p>Las relaciones entre la gente y la vida silvestre se ven impactadas por una amplia gama de factores psicológicos, sociales y políticos, incluidas las diversas experiencias culturales y emocionales, así como la economía y la gobernanza (Decker et al., 2012; Clark et al., 2014). A su vez, las interacciones entre la gente y la fauna silvestre también pueden generar conflictos entre distintos grupos de gente (Treves & Karanth, 2003; Madden, 2004; Dickman et al., 2011; Pooley et al., 2017). En el pasado, dado que las interacciones entre los grandes carnívoros y la gente se entendían como problemas ecológicos, la aproximación al manejo de la coexistencia estaba basada en el «paradigma del conflicto». Es decir, se basaba en la reducción de los impactos negativos de las interacciones entre la gente y los carnívoros. Así, usualmente, profesionales con poco conocimiento o experiencia en el manejo de la dimensión humana de la coexistencia eran los que estudiaban y gestionaban estas interacciones. Por ejemplo, pocos biólogos de la conservación tienen el entrenamiento necesario para evaluar y manejar adecuadamente los factores sociales asociados a un problema de conservación (Dickman, 2010).</p>
+                         <p>En la actualidad, la evaluación y manejo de la dimensión social se considera clave para la gestión efectiva de la coexistencia entre las personas y la fauna (por ejemplo, Hazzah et al., 2014; Goldstein & Márquez, 2014). Se entiende que, para facilitar la coexistencia, se requiere la identificación y el manejo de los factores sociales que impactan la tolerancia, pues un inadecuado conocimiento del sistema y un diagnóstico erróneo pueden exacerbar las interacciones negativas entre la gente y la fauna (Dickman, 2010; Redpath et al., 2013; Madden & McQuinn, 2014; Pooley et al., 2017; Hodgson et al., 2018). Como consecuencia, en la actualidad, el manejo de la coexistencia entre la fauna y la gente promueve el trabajo en equipo con profesionales de otras áreas del conocimiento, lo cual incluye antropólogos, psicólogos y economistas (Dickman, 2010).</p>
+                         <p>La actitud y tolerancia hacia las especies puede verse afectada negativamente por factores sociales y políticos como la inequidad y el desbalance de poder, la falta de confianza en las organizaciones e instituciones, la vulnerabilidad y debilidad social, y la presencia de creencias negativas hacia las especies u otros grupos de interés que son afectados o afectan a la coexistencia (Dickman, 2010; Madden & McQuinn, 2014; Baynham-Herd et al., 2018; Rieder et al., 2021). Por ejemplo, la aversión y resentimiento hacia las organizaciones gubernamentales y no gubernamentales, o la percepción de inequidad del trato de estas organizaciones o de las «élites urbanas» que protegen a las especies silvestres, hace que los pobladores locales se sientan más vulnerables a cualquier daño que se produzca (Skogen et al., 2008). Cuando las comunidades perciben que son ellas, y no las instituciones u organizaciones que protegen a la fauna, las que deben asumir el costo de la conservación de especies como los carnívoros, o incluso cuando los pobladores locales sienten que las instituciones no han dado solución a otros problemas sociales no relacionados con los carnívoros, la actitud negativa hacia estos grupos se traduce en una menor tolerancia hacia la especie silvestre si estas mismas organizaciones están encargadas de proteger a las especies (Goldstein & Márquez, 2014).</p>
+                         <p>Otros factores que influyen en la percepción del riesgo de daño son los valores culturales, las creencias, las historias e ideologías o el temor intrínseco a ciertas especies (Dickman, 2010). Por ejemplo, los pastores budistas de Nepal poseen una remarcable aceptación a los daños producidos por el leopardo de las nieves (Li et al., 2014).</p>
+                         <p>La mitigación de los daños ocasionados por las interacciones negativas puede ser más difícil en regiones donde los niveles educativos son más bajos o existan oficios o actividades específicas propias de la cultura local (como el pastoreo o la caza) que predisponen a las comunidades a no tolerar la coexistencia entre la gente y los carnívoros. Por otro lado, las mujeres y los hombres utilizan e interactúan con el entorno silvestre de formas distintas y afrontan los problemas de manera diferente. Por ejemplo, las mujeres de Uttarakhand (India) experimentaron una disminución desproporcionada de la seguridad alimentaria, cambios en la carga de trabajo, disminución del bienestar físico y psicológico y dificultades económicas debido al saqueo de cultivos por elefantes (Kumar et al., 2017).</p>
+                         <p>La gestión de la dimensión humana requiere la colaboración y experticia de profesionales de las ciencias sociales (Hodgson et al., 2020), lo que permite la evaluación y manejo de los componentes sociales que puedan afectar a la coexistencia de las personas y la fauna (Hazzah et al., 2009; Goldstein & Márquez, 2014). Disciplinas como la ecología política y la psicología sirven para identificar las causas estructurales que determinan las actitudes y comportamientos, tales como la inequidad o las dinámicas de poder.</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 5:</summary>
+                     <div class="content">
+                         <p><strong>La coexistencia opera a través de distintas escalas geográficas (paisaje, localidades y sitios) y poblacionales (población, deme, individuo) (Hull et al., 2023). Las intervenciones para manejar los factores que afectan la coexistencia se deben ajustar a la escala que se necesita impactar.</strong></p>
+                         <p>Esta lección aprendida se vincula con una de las consideraciones clave para el manejo del conflicto mencionadas por el HWCCTF (IUCN, 2023), que señala que «las soluciones a largo plazo tienen que incorporar patrones tanto ecológicos y económicos, como físicos a escala de paisaje». Este enfoque también refleja la característica multiescalar del modelo de coexistencia planteado en este trabajo.</p>
+                         <p>Nuestro interés en la coexistencia entre los grandes carnívoros y la gente tiene como objetivo último la conservación de poblaciones viables de grandes carnívoros. Dado el tamaño del área de vida de un individuo de carnívoro grande y el gran número de individuos que requiere una población viable, el área requerida para la conservación de una población viable de grandes carnívoros está en el orden de los miles de kilómetros cuadrados de área silvestre. Dentro de esos paisajes, tendremos localidades que serán más o menos importantes en relación con el mantenimiento de la integridad de las áreas silvestres y su vulnerabilidad dado el uso actual de la tierra. En cada una de las localidades, tendremos predios con diferentes grados de amenaza y vulnerabilidad dado su uso de la tierra y actividad productiva.</p>
+                         <p>Hay distintos procesos a diferentes escalas que van a impactar el sistema. Así, por ejemplo, a escala de paisaje, procesos como la migración humana, las políticas nacionales o el mercado de bienes impactan la coexistencia (Yang et al., 2022). El diagnóstico, la toma de decisiones y el manejo de la coexistencia deben abarcar y adecuarse a las distintas escalas presentes en un sistema socio-ecológico de coexistencia; cada paso debe realizarse ajustado a la escala que tenga mayor relevancia (Goldstein & Márquez, 2014).</p>
+                         <div class="interactive-block-alt my-6">
+                             <h4 class="text-lg font-semibold mb-4 text-center text-lime-700">Revisión: Escalas de Análisis</h4>
+                             <p class="instructional-text text-center mb-4">Pasa el cursor sobre cada nivel para recordar ejemplos de factores relevantes en cada escala.</p>
+                             <div class="scale-diagram-container">
+                                 <div class="scale-box scale-paisaje">
+                                     Paisaje
+                                     <span class="tooltip-text">Población viable, conectividad, políticas nacionales/regionales, mercados, tendencias demográficas generales.</span>
+                                 </div>
+                                 <div class="scale-box scale-localidad">
+                                     Localidad
+                                     <span class="tooltip-text">Grupos sociales (demes), uso del suelo predominante, normas comunitarias, gobernanza local, infraestructura, recursos compartidos.</span>
+                                 </div>
+                                 <div class="scale-box scale-sitio">
+                                     Sitio
+                                     <span class="tooltip-text">Individuos (humanos y carnívoros), predios/fincas, hogar, interacciones directas, vulnerabilidad específica, decisiones de manejo individuales.</span>
+                                 </div>
+                             </div>
+                         </div>
+                         <p>El primer paso, que aborda el diagnóstico general de la coexistencia entre la fauna y la gente, debe realizarse a escala de paisaje, ya que el paisaje es la escala que contiene la población que se desea conservar. El trabajo a escala de paisaje permite determinar si la población del carnívoro tiene el tamaño considerado como adecuado para ser viable a largo plazo. Además, el trabajo a escala de paisaje permite hacer la priorización de localidades donde la especie silvestre como la gente o sus actividades puedan estar en contacto (paisaje de coexistencia). A esta escala, deben identificarse tanto las comunidades locales como las diversas organizaciones gubernamentales y no gubernamentales que tienen injerencia en el paisaje de conservación y de coexistencia. Como, por ejemplo, los ministerios encargados del medioambiente y del desarrollo agrícola y agropecuario, las autoridades ambientales regionales, los gobiernos regionales (por ejemplo, gobernaciones y alcaldías) e, incluso, las fundaciones empresariales y empresas que tienen impacto en el paisaje.</p>
+                         <p>Dentro del paisaje de coexistencia, el diagnóstico de los demás componentes y factores que forman parte del modelo conceptual para la coexistencia se estima tanto a escala de localidad como a escala de sitio o predio. La localidad se define como una parte del paisaje que tiene un manejo o características físicas y sociales muy homogéneas. Por otro lado, los sitios dentro de las localidades son unidades espaciales donde tenemos un grupo familiar o una unidad básica social o institucional. La escala de sitio puede variar desde la finca en las áreas campesinas hasta el sector cuando más de una familia toma decisiones sobre un mismo sitio, como en áreas de comunidades indígenas o afrodescendientes. Los análisis se realizan tanto a escala de localidad como de sitio o predio. Así, la toma de decisiones y el manejo, que se lleva a cabo a escala de sitio o predio, toma también en cuenta las posibles consecuencias de esas decisiones para cada localidad.</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 6:</summary>
+                     <div class="content">
+                         <p><strong>La cooperación y la gobernanza ha sido identificadas como factores determinantes en la gestión de la coexistencia (Berkes, 2021; Hodgson et al., 2020). Al ser la coexistencia el resultado de un complejo sistema socio-ecológico que opera a distintas escalas espaciales, su gestión requiere, en la mayoría de los casos, la cooperación entre distintos actores y partes interesadas en y entre todas las escalas.</strong></p>
+                         <p>La coexistencia requiere la participación inclusiva y diversa de todos los grupos e individuos definidos como actores y partes interesadas. Para lograr o mantener la coexistencia, debe diseñarse y aplicarse un plan bien estructurado con una combinación de intervenciones a corto, medio y largo plazo llevadas a cabo simultáneamente o de forma gradual, y estas deben abarcar tanto el contexto ecológico como el social (Gross et al., 2022) a escala tanto de sitio como de localidad y paisaje.</p>
+                         <p>Tanto a escala de localidad como de sitio, es muy importante determinar las organizaciones gubernamentales o no gubernamentales que pueden tener injerencia en la coexistencia entre la fauna y las personas. En muchas localidades existirán, por ejemplo, organizaciones locales de productores u organizaciones encargadas del manejo de unidades geográficas ambientales como la cuenca hidrográfica. Estas organizaciones, generalmente, ya cuentan con un sistema de gobernanza en la zona, por lo cual es más fácil fortalecer dichos sistemas para trabajar en otros temas relacionados, por ejemplo, con la coexistencia. Existen diferentes instituciones y organizaciones que, dependiendo del contexto, serán muy importantes para el trabajo en las áreas. Por ejemplo, en muchas localidades, son muy importantes las comunidades educativas, que son aquellas conformadas por los estudiantes, los padres y representantes, los profesores y aquellas personas que inciden o son afectados por las escuelas. En otras localidades, son de gran importancia las iglesias o congregaciones, conformadas por el padre, pastor o guía y todos aquellos pobladores locales que colaboran o asisten a ellas. Trabajar con organizaciones de base que están presentes y son reconocidas en la zona puede facilitar el trabajo en la localidad. Es importante resaltar que la toma de decisiones en un sitio se realiza con la familia o grupo de personas que tienen el poder de toma de decisión, mediante mecanismos que maximicen la equidad e inclusión.</p>
+                         <p>Cuando la población local está involucrada en la toma de decisiones y el manejo de la coexistencia con los grandes carnívoros, los resultados tanto para la gente como para los grandes carnívoros son mejores (Dickman & Hazzah, 2016; Young et al., 2016). La gobernanza colaborativa (cogestión, iniciativas comunitarias, esquemas voluntarios de certificación, etc.) es una estrategia importante para el manejo de la coexistencia y debería tomarse en cuenta en la implementación de intervenciones de manejo de la coexistencia. Las comunidades locales y los individuos deben participar en los debates y la toma de decisiones sobre las políticas e intervenciones que podrían afectarles (De Bortoli et al., 2019). La gobernanza colaborativa da transparencia a la toma de decisiones y facilita su entendimiento y apropiación por los afectados, lo que incrementa la confianza y favorece el diálogo y la relación positiva entre los distintos actores. Las intervenciones preventivas y recurrentes en un marco de cogestión son particularmente efectivas para reducir la frecuencia e intensidad de las interacciones negativas (Treves et al., 2006). Además, muchas de las acciones que reducen la vulnerabilidad están relacionadas con un manejo más tecnificado e intensivo de las actividades productivas, lo cual aumenta la producción y calidad de los productos, y puede a su vez mejorar los ingresos de la gente. Así, si las personas desarrollan acciones recurrentes de manejo que reduzcan la vulnerabilidad, no solo prevendrán y mitigarán los daños, sino que también podrán mejorar la productividad de las fincas y, en consecuencia, su bienestar.</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 7:</summary>
+                     <div class="content">
+                         <p><strong>Las intervenciones de gestión del riesgo deben tener en cuenta y equilibrar las intervenciones centradas en la vulnerabilidad de las personas ante la presencia e interacciones con los grandes carnívoros, así como la vulnerabilidad de los carnívoros ante la presencia y las interacciones con las personas.</strong></p>
+                         <p>La gestión de la fauna silvestre en el marco del manejo de las interacciones con la gente ha tenido enfoques muy distintos a lo largo del tiempo. Inicialmente, un primer enfoque del manejo de las interacciones entre grandes carnívoros y las personas se basó en el control de las poblaciones de carnívoros para evitar los daños (Mech, 1996), lo cual tuvo como consecuencia la extinción local de muchas especies y la extinción total de algunas poblaciones y subespecies. A partir de la aparición del movimiento de conservación a escala mundial, el estudio y manejo de las interacciones entre fauna silvestre y las personas ha estado dominado por profesionales de las ciencias biológicas (por ejemplo, biólogos, zoólogos y veterinarios) con una visión sesgada hacia la conservación de las poblaciones de grandes carnívoros (Hodgson et al., 2020). Este sesgo ha tenido como resultado, en muchas ocasiones, estrategias e intervenciones que se centran en la conservación de las especies animales sin tomar en cuenta el contexto sociopolítico y la situación de la gente que coocurre con los grandes carnívoros. Esto genera malestar entre la gente que percibe que los animales son más importantes que ellos, generando o incrementando el rechazo de los pobladores locales hacia los carnívoros y hacia las organizaciones e instituciones que quieren su conservación.</p>
+                         <p>Los conflictos entre las personas por la coexistencia con los grandes carnívoros (por ejemplo, entre los pobladores locales y los miembros de organizaciones de conservación de la naturaleza) tienen como origen la discrepancia sobre cómo gestionar la presencia e interacciones con los carnívoros. Como en todo conflicto, para que una acción sea sostenible en el tiempo, debe basarse en soluciones en las que todos ganen. Cualquier intervención donde alguna de las partes sea o se sienta perjudicada no será sostenible en el tiempo. Así, cualquier estrategia de resolución de conflictos por la coexistencia con grandes carnívoros debe conciliar tanto el mantenimiento de las poblaciones de grandes carnívoros como la protección de la vida y bienes de la gente.</p>
+                         <p>El objetivo final del manejo de la coexistencia es la conservación de poblaciones viables de grandes carnívoros, y que estas no impacten negativamente a la gente con la que coocurren y coexisten. Es así como el manejo de la coexistencia no solo requiere determinar dónde queremos que ocurra coexistencia, el manejo también requiere determinar dónde no queremos la presencia de grandes carnívoros dado el costo que esto significaría para el bienestar de la gente, o dónde no queremos la presencia de la gente o sus actividades dado el costo para los carnívoros. De esta manera, podemos facilitar el manejo en áreas donde requerimos la coexistencia, mientras mantenemos los paisajes de conservación de los carnívoros e impactamos lo menos posible su distribución.</p>
+                         <p>Idealmente, la coexistencia entre los grandes carnívoros y la gente requiere que los beneficios para las personas superen o al menos igualen el costo de coexistir con ellos (Pettigrew et al., 2012). El manejo adecuado de la coexistencia enfatiza la generación de beneficios para la gente derivados de la presencia de carnívoros de manera de compensar los costes tangibles e intangibles de la coexistencia con los grandes carnívoros (Gross et al., 2022). De esta manera, cuando los pobladores locales ven en el carnívoro un valor que repercute en un aumento de su calidad de vida, están más dispuestos a tolerar la presencia de estas especies e incluso participan activamente en su conservación (Hoogesteijn & Hoogesteijn, 2010).</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 8:</summary>
+                     <div class="content">
+                         <p><strong>Si los daños a la gente causados por los grandes carnívoros son muy grandes o recurrentes, la compensación por daños podría tener un costo muy alto y no sería una estrategia sostenible a largo plazo. Para que la compensación sea una estrategia sostenible, los daños deben ser pocos, no importantes y no recurrentes, lo que implica la reducción de la vulnerabilidad de las actividades humanas a la presencia de los carnívoros.</strong></p>
+                         <p>La compensación de daños es una herramienta ampliamente usada para mitigar los daños causados por las especies silvestres (Schwerdtner y Gruber, 2007; Dickman et al., 2011; Tveraa et al., 2014; Ravenelle y Nyhus, 2017). Las compensaciones pueden hacerse después de que se presenten daños o antes de que sucedan, mediante pagos basados en la expectativa de las pérdidas (Dickman et al., 2011). Las compensaciones se usan para disminuir el efecto de las pérdidas sobre las personas, pero no previenen las interacciones negativas (Treves et al., 2009; Gross et al., 2022).</p>
+
+                         <div class="interactive-block">
+                             <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador: Sostenibilidad de la Compensación</h4>
+                             <p class="instructional-text text-center mb-4">Ajusta los sliders para ver cómo el nivel de daño y el esfuerzo de prevención afectan conceptualmente la sostenibilidad de un programa de compensación.</p>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                 <div>
+                                     <label for="comp-damage-slider">Frecuencia/Severidad del Daño:</label>
+                                     <input type="range" id="comp-damage-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                                 </div>
+                                 <div>
+                                     <label for="comp-prevention-slider">Nivel de Medidas Preventivas Usadas:</label>
+                                     <input type="range" id="comp-prevention-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Bajo</span><span>Alto</span></div>
+                                 </div>
+                             </div>
+                             <label class="text-sm font-medium text-center block mb-1">Sostenibilidad Conceptual de la Compensación:</label>
+                             <div class="progress-bar-container mx-auto max-w-md">
+                                 <div id="compensation-sustainability-bar" class="progress-bar-fill" style="width: 50%;"></div>
+                             </div>
+                             <div class="flex justify-between text-xs mt-1 max-w-md mx-auto"><span>Baja</span><span>Alta</span></div>
+                             <div id="compensation-output" class="output-box">Sostenibilidad: Media</div>
+                         </div>
+
+                         <p>La efectividad de la compensación por daños ha sido muy debatida, sobre todo por el alto costo que representa. Si los daños en una localidad son importantes y recurrentes, la compensación es insostenible a medio y largo plazo dado su alto costo. Las instituciones a cargo de las compensaciones se pueden ver sobrepasadas por el volumen y monto de las reclamaciones de compensación, y no cumplir con las expectativas que ellas mismas crearon. Esta situación pone en riesgo las relaciones con los actores, y con ello, impacta las attitudes tanto hacia las instituciones como hacia la especie en cuestión (Montag, 2003).</p>
+                         <p>Por otro lado, la compensación hace poco para reducir las interacciones entre la fauna silvestre y las personas, y para incentivar el uso de medidas preventivas (Rondeau & Bulte, 2007; Pettigrew et al., 2012), ya que recibir compensación puede ser más cómodo que mejorar las prácticas de manejo de las actividades productivas. Incluso, en algunos casos, la compensación se convierte en un incentivo para incrementar el número de cabezas de ganado, lo que a su vez incrementa el problema (Nyhus et al., 2003).</p>
+                         <p>Así, la recomendación más frecuente de las organizaciones que han trabajado con compensaciones es que se requiera de los solicitantes de compensación de daños que empleen prácticas de prevención de daños. Estas prácticas incluyen el mejoramiento del manejo del ganado, por ejemplo, el uso de cuidadores y cercas (Ravenelle & Nyhus, 2017). En Europa, cuando los carnívoros se expanden a localidades vulnerables a su presencia, o donde las medidas de prevención no son una condición para recibir compensación por daños, los costos de compensación por daños ocasionados por carnívoros tienden a ser mayores (Bautista et al., 2019).</p>
+                         <p>Para evitar que las indemnizaciones por daños causados por grandes carnívoros se conviertan en derechos adquiridos sin obligaciones asociadas, las indemnizaciones por daños deberían estar condicionadas al cumplimiento de las leyes o acuerdos de conservación y a la correcta gestión de las actividades vulnerables a la presencia de los carnívoros. Entre las actividades fundamentales requeridas para reducir la vulnerabilidad de las actividades humanas a la presencia de carnívoros, se encuentran el manejo de atrayentes, la presencia de cuidadores y el uso de cercas. No obstante, el requerimiento de medidas preventivas puede contribuir a profundizar las actitudes negativas hacia los carnívoros (Montag, 2003). Por lo tanto, es importante no solo evaluar la vulnerabilidad de manejo de los actores, sino su vulnerabilidad económica para establecer programas de soporte y apoyar los programas de mitigación de daños con programas de financiación de medidas preventivas (Pettigrew et al., 2012).</p>
+                         <p>Por otro lado, muchos programas de compensación de daños presentan problemas, ya que los pagos no reflejan el valor de mercado de los animales, no se realizan de manera rápida o requieren de procedimientos administrativos ineficientes o complejos que incentivan la corrupción. Como resultado, estos programas finalmente no cumplen con su función de mitigar los daños. Las compensaciones deben reflejar el valor de mercado de la pérdida de la propiedad y deben realizarse de manera rápida. Para ello, las reclamaciones por daños deben evaluarse de forma científica, justa, objetiva y rápida (Wilson, 2016; Bautista et al., 2019).</p>
+                     </div>
+                 </details>
+
+                  <details>
+                     <summary>LECCIÓN APRENDIDA 9:</summary>
+                     <div class="content">
+                         <p><strong>La aceptación social de las intervenciones de gestión es tan importante como el coste y la eficacia de la intervención. La confianza en las instituciones desempeña un papel fundamental para asegurar la aceptación y respuesta de los actores ante las diversas estrategias e intervenciones de manejo (Yasmi et al., 2012).</strong></p>
+                         <p>La confianza de la gente en las instituciones encargadas de gestionar la coexistencia con los grandes carnívoros se ve afectada negativamente por varios factores, como el sentimiento de inseguridad y desamparo, el desequilibrio de poder, la inequidad y los problemas en las estructuras de gobierno y gobernabilidad. La percepción de estas problemáticas por parte de los pobladores locales afecta la confianza en las organizaciones e instituciones, lo que aumenta la sensación de inconformidad frente a cualquier pérdida.</p>
+
+                         <div class="interactive-block">
+                             <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador: Construcción de Confianza</h4>
+                             <p class="instructional-text text-center mb-4">Ajusta los sliders para ver cómo factores como la transparencia, participación y equidad pueden influir conceptualmente en el nivel de confianza hacia las instituciones.</p>
+                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                 <div>
+                                     <label for="trust-transparency-slider">Transparencia en Decisiones:</label>
+                                     <input type="range" id="trust-transparency-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                                 </div>
+                                 <div>
+                                     <label for="trust-participation-slider">Participación Comunitaria:</label>
+                                     <input type="range" id="trust-participation-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                                 </div>
+                                 <div>
+                                     <label for="trust-equity-slider">Equidad Percibida:</label>
+                                     <input type="range" id="trust-equity-slider" min="0" max="100" value="50" step="1">
+                                     <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                                 </div>
+                             </div>
+                             <label class="text-sm font-medium text-center block mb-1">Nivel Conceptual de Confianza:</label>
+                             <div class="progress-bar-container mx-auto max-w-md">
+                                 <div id="trust-level-bar" class="progress-bar-fill" style="width: 50%;"></div>
+                             </div>
+                             <div class="flex justify-between text-xs mt-1 max-w-md mx-auto"><span>Baja</span><span>Alta</span></div>
+                             <div id="trust-output" class="output-box">Confianza: Media</div>
+                         </div>
+
+                         <p>Es esencial que las organizaciones o instituciones reconozcan y actúen bajo el principio de que tanto las personas como las especies silvestres son elementos fundamentales en este proceso. Atender de manera oportuna los llamados de la gente, especialmente cuando se producen interacciones negativas como daños, es de suma importancia. En muchas ocasiones, las organizaciones carecen de la capacidad para responder a los reportes de estas interacciones. Cuando esto sucede, las personas pueden sentirse menospreciadas, especialmente si se brinda una respuesta rápida a reportes de caza de especies silvestres. Por tanto, es crucial maximizar la probabilidad de contar con las capacidades necesarias para abordar los reportes que puedan conducir a la intolerancia por parte de la gente.</p>
+                         <p>En cualquier proceso de manejo de interacciones negativas entre la gente y la fauna, es fundamental cumplir con los compromisos pactados y evitar generar falsas expectativas con respecto a acciones que no se puedan cumplir. En este sentido, es esencial llevar a cabo acciones escalonadas que comiencen con compromisos sencillos que puedan cumplirse y aumentar progresivamente la complejidad de los compromisos entre ambas partes. Además, cuidar el lenguaje y establecer un mecanismo de verificación de todos los pactos o compromisos realizados son prácticas fundamentales para evitar malentendidos sobre compromisos no acordados.</p>
+                         <p>Paralelamente, una consideración clave para el manejo del conflicto es que las intervenciones de mitigación y reducción de daños se diseñen y gestionen de manera colaborativa (IUCN, 2023) y que tomen en cuenta la cultura, identidad y los valores de la población local. La colaboración en el diseño y gestión de la coexistencia con grandes carnívoros se señala como una clave del éxito en esta gestión (IUCN, 2023). El uso de formas tradicionales de manejo genera la apropiación de las medidas por parte de las comunidades locales y evita que perciban las acciones como imposiciones externas de terceros que ejercen su poder (van Eeden et al., 2018a).</p>
+                         <p>Así mismo, reconocer los méritos de las comunidades y personas que han contribuido en el diseño e implementación de acciones de manejo que mejoran la coexistencia entre la fauna y la gente es de gran importancia. Asociar el valor de una especie con aspectos no solo económicos, sino también sociales, ha demostrado tener éxito en que las comunidades locales generen cambios de comportamiento más duraderos en el tiempo. Un ejemplo de colaboración y uso de formas tradicionales de manejo es el Proyecto de Vigilantes de Leones en Kenia, que incorpora las costumbres y valores culturales de la comunidad Maasai en el manejo y conservación de los leones (Hazzah et al., 2014).</p>
+                         <p>Por otro lado, para que las comunidades se integren efectivamente en el manejo de programas de conservación y en el manejo de poblaciones de grandes carnívoros, estos programas deben incluir protocolos y herramientas de comunicación efectivas (Lorand et al., 2022).</p>
+                     </div>
+                 </details>
+
+                 <details>
+                     <summary>LECCIÓN APRENDIDA 10:</summary>
+                     <div class="content">
+                         <p><strong>En la actualidad, existe poca evidencia empírica de la eficacia y éxito de distintas estrategias e intervenciones para el manejo de la coexistencia entre los grandes carnívoros y la gente (Hodgson et al. 2020; Lorand et al. 2022). El avance en el manejo de la coexistencia requiere de indicadores y metodologías para evaluar el estado de los factores que impactan la coexistencia y la efectividad de las intervenciones. La gestión de la coexistencia requiere de un manejo adaptativo y un monitoreo continuo que permita la evaluación del éxito de las intervenciones y el estado del sistema (Hodgson et al., 2020).</strong></p>
+                         <p>Cualquier iniciativa de manejo de recursos naturales requiere de una evaluación sistemática y rigurosa de la ejecución y el éxito de las intervenciones de manera de informar la toma de decisiones. A pesar de la gran cantidad de trabajos que se han realizado en cuanto a las distintas estrategias e intervenciones para manejar la coexistencia entre los grandes carnívoros y la gente, hay poca evidencia empírica sobre la efectividad de las distintas intervenciones (van Eeden et al., 2018; Lorand et al., 2022).</p>
+                         <p>Un problema evidente derivado de esta falta de evidencia empírica es que se recomiendan intervenciones de manejo que, en muchos casos, no tienen que ver con la problemática y necesidades reales de manejo (Treves et al., 2016; Eklund et al., 2017; van Eeden et al., 2018). Estas recomendaciones, a menudo, están basadas en factores contextuales tales como la percepción de los tomadores de decisiones, la ética o la factibilidad tanto logística como económica (Lorand et al., 2022).</p>
+                         <p>La evaluación de los resultados de las estrategias e intervenciones desarrolladas es fundamental para asegurar que éstas son las adecuadas para resolver los problemas y para poder continuar con su uso o buscar alternativas que pudieran tener mejores resultados. El ciclo de manejo adaptativo requiere el monitoreo y la evaluación de resultados para que la siguiente iteración se realice de manera informada. La información sobre el éxito de las intervenciones, así como del estado de las variables de interés, permite la toma de decisiones en cuanto a si el modelo del sistema es el adecuado, si los resultados de las intervenciones son los esperados y sobre los objetivos de manejo para el nuevo ciclo.</p>
+                         <p>Un marco de manejo adaptativo a corto, medio y largo plazo permite el monitoreo de los resultados y el cambio de las estrategias e intervenciones a medida que la problemática lo requiera (Hodgson et al., 2020). El monitoreo del manejo de la coexistencia requiere del uso de protocolos sistemáticos que cuenten con estándares de calidad. Estos estándares deben incluir variables tanto de proceso como de resultados e impactos que permitan la colecta de evidencia empírica sobre la eficiencia y eficacia de las distintas intervenciones (Lorand et al., 2022).</p>
+                         <p>Uno de los problemas más graves que la gran mayoría de las iniciativas de manejo de la coexistencia entre los grandes carnívoros y la gente tiene actualmente es la falta de indicadores claros de éxito de las intervenciones de manejo (Nyhus et al., 2003; Pettigrew et al., 2012). Los programas de monitoreo de iniciativas de manejo de la coexistencia deben tener indicadores de avance, resultados e impactos para poder evaluar de manera efectiva las distintas intervenciones de manejo y su éxito.</p>
+                         <p>A pesar de que muchos programas de conservación y manejo señalan el impacto de sus intervenciones en el soporte social y la tolerancia hacia los grandes carnívoros, la realidad es que la falta de programas rigurosos de monitoreo que evalúen las intervenciones con buenos indicadores y procedimientos hace difícil en la actualidad evaluar el éxito de los distintos programas de manejo y conservación (Pettigrew et al., 2012).</p>
+                     </div>
+                 </details>
+             </div>
+
+        </section>
+
+        <section class="mt-12 text-center">
+             <a href="Chap4.html" class="styled-button-link">
+                 Continuar al Capítulo 4 →
+             </a>
+         </section>
+
+    </main>
+
+     <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+         <p class="footer-attribution">Contenido adaptado de "Comprender y Gestionar la Coexistencia entre la Gente y los Grandes Carnívoros" (2025) por Isaac Goldstein & Robert Márquez.</p>
+         <p class="footer-attribution">Una iniciativa de la Alianza para la Conservación del Oso Andino.</p>
+     </footer>
+
+    <script>
+        const sections_coex_cap3 = document.querySelectorAll('.fade-in-section');
+        const observerOptions_coex_cap3 = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observerCallback_coex_cap3 = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-section');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        const observer_coex_cap3 = new IntersectionObserver(observerCallback_coex_cap3, observerOptions_coex_cap3);
+        sections_coex_cap3.forEach(section => { observer_coex_cap3.observe(section); });
+
+        const localizationOutput = document.getElementById('localization-output');
+        const spatialSlider = document.getElementById('spatial-cluster-slider');
+        const temporalSlider = document.getElementById('temporal-cluster-slider');
+
+        function updateLocalizationOutput() {
+            if (!localizationOutput || !spatialSlider || !temporalSlider) return;
+            const spatial = parseInt(spatialSlider.value);
+            const temporal = parseInt(temporalSlider.value);
+            let suggestion = "Enfoque de manejo sugerido: ";
+            if (spatial > 70 && temporal > 70) {
+                suggestion += "Priorizar hotspots específicos durante periodos críticos.";
+            } else if (spatial > 70) {
+                suggestion += "Concentrar esfuerzos preventivos en hotspots identificados.";
+            } else if (temporal > 70) {
+                suggestion += "Intensificar manejo durante temporadas/momentos de alto riesgo.";
+            } else {
+                suggestion += "Implementar medidas preventivas generales en el área.";
+            }
+            localizationOutput.textContent = suggestion;
+        }
+
+        if (spatialSlider && temporalSlider) {
+            spatialSlider.addEventListener('input', updateLocalizationOutput);
+            temporalSlider.addEventListener('input', updateLocalizationOutput);
+            window.addEventListener('load', updateLocalizationOutput);
+        }
+
+        const contextCapacitySlider = document.getElementById('context-capacity-slider');
+        const contextEcologySlider = document.getElementById('context-ecology-slider');
+        const contextPolicySlider = document.getElementById('context-policy-slider');
+        const contextOutput = document.getElementById('context-output');
+
+        function updateContextOutput() {
+             if (!contextCapacitySlider || !contextEcologySlider || !contextPolicySlider || !contextOutput) return;
+             const capacity = parseInt(contextCapacitySlider.value);
+             const ecology = parseInt(contextEcologySlider.value);
+             const policy = parseInt(contextPolicySlider.value);
+             let suggestion = "Tipo de intervención sugerida: ";
+
+             if (capacity < 30 && policy < 30) {
+                 suggestion += "Enfoque inicial en fortalecimiento de capacidades y diálogo político antes de intervenciones complejas.";
+             } else if (ecology > 70 && policy > 50) {
+                 suggestion += "Intervenciones con fuerte base ecológica y respaldo institucional (ej. restauración, corredores).";
+             } else if (capacity > 60 && policy > 60) {
+                 suggestion += "Potencial para co-manejo y soluciones basadas en la comunidad con apoyo institucional.";
+             } else {
+                 suggestion += "Adaptar intervenciones técnicas y educativas al contexto específico.";
+             }
+             contextOutput.textContent = suggestion;
+        }
+
+        if (contextCapacitySlider && contextEcologySlider && contextPolicySlider) {
+            contextCapacitySlider.addEventListener('input', updateContextOutput);
+            contextEcologySlider.addEventListener('input', updateContextOutput);
+            contextPolicySlider.addEventListener('input', updateContextOutput);
+            window.addEventListener('load', updateContextOutput);
+        }
+
+        const compDamageSlider = document.getElementById('comp-damage-slider');
+        const compPreventionSlider = document.getElementById('comp-prevention-slider');
+        const compSustainBar = document.getElementById('compensation-sustainability-bar');
+        const compOutput = document.getElementById('compensation-output');
+
+        function updateCompensationOutput() {
+            if (!compDamageSlider || !compPreventionSlider || !compSustainBar || !compOutput) return;
+            const damage = parseInt(compDamageSlider.value);
+            const prevention = parseInt(compPreventionSlider.value);
+
+            const sustainabilityScore = Math.max(0, Math.min(100, prevention - (damage * 0.7)));
+            compSustainBar.style.width = `${sustainabilityScore}%`;
+
+            let level = "Media";
+            if (sustainabilityScore < 33) level = "Baja";
+            else if (sustainabilityScore > 66) level = "Alta";
+            compOutput.textContent = `Sostenibilidad: ${level}`;
+        }
+
+        if(compDamageSlider && compPreventionSlider) {
+            compDamageSlider.addEventListener('input', updateCompensationOutput);
+            compPreventionSlider.addEventListener('input', updateCompensationOutput);
+            window.addEventListener('load', updateCompensationOutput);
+        }
+
+        const trustTransparencySlider = document.getElementById('trust-transparency-slider');
+        const trustParticipationSlider = document.getElementById('trust-participation-slider');
+        const trustEquitySlider = document.getElementById('trust-equity-slider');
+        const trustLevelBar = document.getElementById('trust-level-bar');
+        const trustOutput = document.getElementById('trust-output');
+
+        function updateTrustOutput() {
+            if (!trustTransparencySlider || !trustParticipationSlider || !trustEquitySlider || !trustLevelBar || !trustOutput) return;
+            const transparency = parseInt(trustTransparencySlider.value);
+            const participation = parseInt(trustParticipationSlider.value);
+            const equity = parseInt(trustEquitySlider.value);
+
+            const trustScore = Math.max(0, Math.min(100, (transparency * 0.4 + participation * 0.4 + equity * 0.2)));
+            trustLevelBar.style.width = `${trustScore}%`;
+
+            let level = "Media";
+            if (trustScore < 33) level = "Baja";
+            else if (trustScore > 66) level = "Alta";
+            trustOutput.textContent = `Confianza: ${level}`;
+        }
+
+        if (trustTransparencySlider && trustParticipationSlider && trustEquitySlider) {
+            trustTransparencySlider.addEventListener('input', updateTrustOutput);
+            trustParticipationSlider.addEventListener('input', updateTrustOutput);
+            trustEquitySlider.addEventListener('input', updateTrustOutput);
+            window.addEventListener('load', updateTrustOutput);
+        }
+
+    </script>
+
+</body>
+</html>
