@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coexistencia Grandes Carnívoros - Cap 2: Marco Conceptual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-section { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151; }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #84cc16; }
+        input[type="number"], select { padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem; }
+        button { background-color: #a3e635; color: #3f6212; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.2s; }
+        button:hover { background-color: #84cc16; }
+        h1 { color: #111827; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700;}
+        h2 { color: #111827; font-size: 1.5rem; line-height: 2rem; font-weight: 700;}
+        h3 { color: #365314; /* lime-900 */ font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; border-bottom: 2px solid #a3e635; /* lime-400 */ padding-bottom: 0.35rem; margin-top: 2rem; margin-bottom: 1rem; background-color: #f0fdf4; /* lime-100 */ padding: 0.5rem 1rem; border-radius: 0.375rem 0.375rem 0 0; display: inline-block; }
+        p, li { color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+        strong { color: #1F2937; font-weight: 600; }
+        blockquote { border-left: 6px solid #a3e635; padding: 1rem 1.5rem; margin: 2rem 0; font-style: italic; color: #374151; background-color: #ffffff; border-radius: 0 0.5rem 0.5rem 0; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+        blockquote ol li { margin-bottom: 0.5rem; }
+        .section-bg-light { background-color: #f7fee7; }
+        .section-bg-white { background-color: #FFFFFF; }
+        .instructional-text { font-size: 0.875rem; color: #4B5563; margin-top: 0.5rem; }
+        .code-like { font-family: monospace; background-color: #f3f4f6; padding: 0.1em 0.4em; border-radius: 0.25rem; }
+        .tolerance-bar-container { height: 20px; background-color: #fca5a5; border-radius: 0.375rem; overflow: hidden; border: 1px solid #d1d5db; }
+        .tolerance-bar-fill { height: 100%; background-color: #84cc16; transition: width 0.5s ease-in-out; text-align: center; color: white; font-size: 0.75rem; line-height: 20px;}
+        hr.styled { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(163, 230, 53, 0), rgba(163, 230, 53, 0.75), rgba(163, 230, 53, 0)); margin: 3rem 0; }
+        img.placeholder-img { border-radius: 0.375rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); margin: 1.5rem auto; display: block; max-width: 80%; height: auto; border: 1px solid #d1fae5; }
+        .interactive-block { margin-top: 2rem; margin-bottom: 2rem; padding: 1.5rem; border: 1px solid #d9f99d; border-radius: 0.5rem; background-color: #ffffff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        .interactive-block-alt { margin-top: 2rem; margin-bottom: 2rem; padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; background-color: #ffffff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        footer ul { list-style: none; padding-left: 0; }
+        footer li { margin-bottom: 0.75rem; }
+        footer a { color: #4d7c0f; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .header-subtitle { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; margin-top: 0.25rem; }
+        .header-attribution { font-size: 0.875rem; line-height: 1.25rem; margin-top: 1rem; opacity: 0.9; }
+        .footer-attribution { margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.25rem; color: #6b7280; text-align: center; }
+        .atom-model-svg { display: block; margin: 1rem auto; max-width: 500px; width: 100%; height: auto; }
+        .atom-model-svg .core-attr { cursor: pointer; transition: fill 0.3s ease; }
+        .atom-model-svg .factor-orbit { cursor: pointer; transition: fill 0.3s ease, r 0.3s ease; }
+        .atom-model-svg .factor-text { font-size: 10px; font-family: 'Inter', sans-serif; fill: #374151; text-anchor: middle; pointer-events: none; }
+        .atom-model-svg .core-text { font-size: 12px; font-family: 'Inter', sans-serif; fill: white; font-weight: 600; text-anchor: middle; pointer-events: none; }
+        .scale-diagram-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+        .scale-box { border: 2px solid; padding: 0.75rem 1.5rem; text-align: center; font-weight: 600; border-radius: 0.375rem; cursor: help; position: relative; }
+        .scale-box .tooltip-text { visibility: hidden; width: 220px; background-color: #374151; color: #fff; text-align: center; border-radius: 6px; padding: 5px 10px; position: absolute; z-index: 1; bottom: 110%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 0.8rem; line-height: 1.4;}
+        .scale-box:hover .tooltip-text { visibility: visible; opacity: 1; }
+        .scale-paisaje { border-color: #a3e635; color: #4d7c0f; }
+        .scale-localidad { border-color: #bef264; color: #65a30d; width: 85%; }
+        .scale-sitio { border-color: #d9f99d; color: #84cc16; width: 70%; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <header class="bg-gradient-to-r from-lime-600 to-green-600 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 text-center md:text-left">
+            <h1>Comprender y Gestionar la Coexistencia</h1>
+            <p class="header-subtitle">Entre la Gente y los Grandes Carnívoros</p>
+            <p class="header-attribution">Basado en el libro de Isaac Goldstein & Robert Márquez (2025)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="capitulo2" class="mb-12 p-6 rounded-lg shadow-lg section-bg-light dynamic-content">
+            <h2 class="text-lime-700 border-b-2 border-lime-200 pb-2 mb-6">Capítulo 2: Marco Conceptual de la Coexistencia entre los Grandes Carnívoros y la Gente</h2>
+
+            <h3>INTRODUCCIÓN</h3>
+            <p>El desarrollo de un marco o modelo conceptual para evaluar y explicar de forma sencilla (narrativa o gráfica) la realidad observada es un paso fundamental en los métodos de análisis de problemas y toma de decisiones (Murphy & Weiland, 2014). Comprender el problema e identificar los factores que impactan el sistema permite caracterizarlo y simplificarlo, además de ayudar a seleccionar las intervenciones más adecuadas para su gestión. Los marcos conceptuales sirven de base para desarrollar modelos cuantitativos (Murphy & Weiland, 2014). La parametrización y cuantificación de los modelos conceptuales permite evaluar y supervisar la eficacia de la gestión y su éxito.</p>
+            <p>Durante las dos últimas décadas, se han desarrollado múltiples marcos conceptuales para comprender y evaluar las interacciones entre la gente y la fauna silvestre (por ejemplo, White et al., 2009; Redpath et al., 2013; Madden & MacQuinn, 2014; Behr et al., 2017; Lishka et al., 2018; Martin et al., 2021; Mohammadi et al., 2022). La mayoría de estos marcos conceptuales y modelos que abordan las interacciones entre la gente y la fauna silvestre se centran en el «conflicto» como problema. Así, el «conflicto», definido como las interacciones negativas entre especies (Marchini et al., 2019) o como los desacuerdos entre grupos humanos respecto a la presencia y gestión de los grandes carnívoros (Redpath et al., 2013), ha sido el problema por resolver, asumiendo que al resolverlo se logrará la reducción de las interacciones negativas y la conservación de las poblaciones de grandes carnívoros.</p>
+
+            <blockquote>En este trabajo el marco conceptual, en lugar de centrarse en el conflicto, se enfoca en la coexistencia como problema por resolver. Hemos definido la coexistencia como «la persistencia en el tiempo de dos o más poblaciones de especies que coocurren e interactúan, y ninguna de las poblaciones de las especies se ve afectada por la otra de manera que conduzca a su extinción».</blockquote>
+
+            <p>Por lo tanto, al tratarse de la coexistencia entre personas y grandes carnívoros, los sujetos (actores) de la coexistencia son la gente y los grandes carnívoros que cohabitan e interactúan en un paisaje (paisaje de coexistencia).</p>
+            <p>El contexto de nuestro interés por la coexistencia entre los grandes carnívoros y las personas es la conservación de la fauna silvestre. Nuestro objetivo es la conservación de poblaciones viables de grandes carnívoros. La conservación de estas poblaciones es una tarea compleja si consideramos el tamaño de los paisajes necesarios para conservar poblaciones viables, la huella humana actual y futura, y el impacto de las interacciones negativas entre la gente y los grandes carnívoros. La mayoría de los paisajes con poblaciones viables de grandes carnívoros incluyen algún tipo y extensión de intervención humana. Además, dadas las extensas áreas de vida, la baja tasa reproductiva y las bajas densidades características de las poblaciones de grandes carnívoros, el área necesaria para mantener una población viable de estos supera, en muchos casos, el tamaño de las áreas protegidas y, en general, incluye zonas con presencia o actividad humana. Sin conectividad entre los parches silvestres o áreas de coexistencia con la gente, muchas poblaciones de grandes carnívoros se verán fragmentadas, reducidas y más vulnerables a los cambios estocásticos en su abundancia. Por lo tanto, la coexistencia es, en muchos casos, crucial para alcanzar la conectividad y el tamaño del paisaje necesarios para conservar poblaciones viables a largo plazo de grandes carnívoros.</p>
+
+            <blockquote class="bg-white">Una población viable de una especie de fauna silvestre es, en este contexto, «una población con un número suficiente de individuos y variación genética entre individuos sanos y parejas reproductoras lo suficientemente bien distribuidos como para garantizar una alta probabilidad de supervivencia a pesar de los efectos previsibles de eventos demográficos, ambientales y genéticos, y de catástrofes naturales» (Soulé, 1987).</blockquote>
+
+            <p>El número de individuos necesario para que una población de carnívoros sea considerada viable es una cuestión que suscita muchos debates y controversias; depende de cómo se defina teóricamente y de lo que signifique la abundancia en la práctica (Stokland, 2016). Además, la superficie necesaria para el mantenimiento de una población viable de grandes carnívoros puede variar considerablemente dependiendo de la capacidad de carga de un paisaje (recursos disponibles), ya que los territorios y el área de vida de los grandes carnívoros pueden variar en órdenes de magnitud en función de la abundancia de los recursos disponibles (Mazak, 1981; Miquelle, 2001).</p>
+            <p>En la actualidad, las personas son el sujeto activo y decisivo en el sistema socio-ecológico de la coexistencia entre los grandes carnívoros y la gente. La disposición de las personas a coexistir con los carnívoros se ve afectada tanto por el daño y vulnerabilidad real o percibido ocasionados por los grandes carnívoros, como por sus valores, creencias, historia, normas, políticas y relaciones de poder entre los diferentes grupos de personas (Pooley et al., 2017). Así, el motor principal de la coexistencia entre las personas y los grandes carnívoros es la voluntad de las personas de coexistir con estos y el contexto en el que esa voluntad se expresa en acciones, es decir, la tolerancia hacia su presencia.</p>
+            <p>En este capítulo, presentaremos el marco conceptual que creemos representa de la mejor manera el sistema socio-ecológico de la coexistencia entre los grandes carnívoros y la gente. Este modelo de coexistencia está compuesto por el componente ecológico, que representa las relaciones ecológicas entre los carnívoros, la gente y su entorno biofísico, sus atributos principales y los factores que afectan dichos atributos, así como por el componente social, que representa las relaciones entre los distintos grupos e individuos de personas, sus atributos principales y los factores que los afectan.</p>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">DESARROLLO DEL MARCO CONCEPTUAL DE LA COEXISTENCIA</h3>
+            <p>La coexistencia entre los grandes carnívoros y la gente requiere dos condiciones fundamentales: la presencia de las especies (grandes carnívoros y gente) y la tolerancia de las personas a la presencia e interacciones con los grandes carnívoros. La presencia, dimensión ecológica de la coexistencia, está compuesta por los factores biofísicos que constituyen el paisaje y actúa sobre la ecología y el comportamiento de los grandes carnívoros, de las personas y de sus interacciones, lo que impacta en la supervivencia individual, la viabilidad de la población de carnívoros en el paisaje de conservación y el bienestar de las personas en el paisaje de coexistencia. La tolerancia, dimensión humana de la coexistencia, se compone del contexto sociocultural, psicológico y legal, y las interacciones entre las personas relacionadas con la coexistencia con las especies silvestres, lo que influye en la disposición de las personas que coocurren o coocurrirán con los grandes carnívoros a coexistir con ellos.</p>
+            <p>La tolerancia puede ser el resultado de la decisión voluntaria de las personas de coexistir con los grandes carnívoros o el resultado de verse obligadas a coocurrir con la especie debido a un contexto legal o social. El rechazo hacia la coexistencia con los grandes carnívoros se manifiesta en comportamientos que afectan la supervivencia de los individuos y la conservación de sus poblaciones (Chapron et al., 2014). La coexistencia con los grandes carnívoros implica la coevolución de la gente expresada como comportamientos que aumentan la resiliencia (reducen su vulnerabilidad) a la presencia de los grandes carnívoros y evitan daños que afectan al bienestar de las personas y a la supervivencia de los grandes carnívoros.</p>
+            <p>Tanto la presencia como la tolerancia tienen atributos, es decir, las características del sistema que las hacen posibles. La presencia tiene dos atributos básicos: <strong class="text-green-700">hábitat</strong> y <strong class="text-red-600">seguridad</strong>. El hábitat representa todo el entorno biofísico que determina la idoneidad de un paisaje para el establecimiento y permanencia tanto de los individuos de grandes carnívoros como de una población viable de estos. Los factores que determinan el hábitat son la cobertura y el uso del suelo, la abundancia de presas/recursos y la abundancia de las especies coexistentes. La seguridad representa el posible impacto de todas las interacciones interespecíficas reales o potenciales en el bienestar y la supervivencia de los individuos de las especies que coexisten. Estos dos atributos se corresponden con las dimensiones espacial (ocurrencia) y técnica (impactos) del modelo de coexistencia presentado por Martin y colaboradores (2021) para las interacciones entre los lobos y el ganado (Fig. 2.1).</p>
+
+            <img src="https://placehold.co/600x400/ffffff/4d7c0f?text=Fig.+2.1+Dimensiones+Coexistencia+(Martin+et+al.+2021)" alt="Figura 2.1 - Dimensiones de la Coexistencia (Martin et al. 2021)" class="placeholder-img max-w-md">
+
+            <p>Para las personas, la seguridad representa el posible impacto de las interacciones con los carnívoros en su medio de vida y bienestar. En el paradigma del «conflicto» (Marchini et al., 2019), los daños son el resultado de las interacciones negativas entre las personas y los carnívoros que afectan los medios de vida y el bienestar de las personas y repercuten en la supervivencia de los carnívoros. Los daños por interacciones negativas son una de las definiciones operativas del conflicto entre los carnívoros y la gente (Can et al., 2014). La seguridad como atributo en el paradigma de la «coexistencia» puede tener una amplia gama de estados, desde riesgo (alta posibilidad de daño o riesgo) hasta seguridad y beneficio (donde la misma presencia del otro podría repercutir en una oportunidad o ganancia). Así, en el modelo que se presenta, se consideran tanto las interacciones negativas como las positivas entre las personas y los carnívoros. El balance entre las interacciones positivas y negativas constituye el estado general de seguridad.</p>
+            <p>La tolerancia tiene dos atributos principales: <strong class="text-blue-600">valor</strong> y <strong class="text-yellow-600">acuerdo</strong>. El atributo valor representa la importancia de la especie silvestre y de la coexistencia para la gente. El carnívoro adquiere un valor a lo largo de un continuo, que va desde muy negativo hasta muy positivo. El valor de una especie concreta es la suma de todos los tipos de valores (culturales, religiosos, estéticos, económicos, etc.). Para las personas que conviven e interactúan con los carnívoros, la coexistencia y la conservación de los carnívoros no tienen por qué ser a priori y de manera natural deseables. Por el contrario, tanto la coexistencia como la conservación de los grandes carnívoros podrían estar sujetas a cuestionamientos sobre derechos, responsabilidad, reparto de beneficios y justicia medioambiental (Martin et al., 2021).</p>
+            <p>El atributo acuerdo representa el estado de la relación entre las personas que coexisten e interactúan, o pueden coexistir e interactuar en el futuro con las especies de grandes carnívoros, y otros grupos de personas en relación con la presencia y gestión de los grandes carnívoros. En el paradigma del «conflicto», la falta de acuerdo es otra de las definiciones operativas de conflicto (Redpath et al., 2013). Es decir, el desacuerdo de las personas que coexisten con los carnívoros (actores) con otros grupos de personas sobre la presencia o la gestión de los carnívoros. El acuerdo puede tener una amplia gama de estados, desde conflicto hasta apoyo.</p>
+            <p>Para lograr y mantener la coexistencia, es necesario gestionar los factores que inciden en los atributos ecológicos y sociológicos del sistema. El objetivo es mantener la presencia de los grandes carnívoros sin afectar a las personas, o reducir la afectación por debajo de un umbral aceptable para las personas. En otras palabras, gestionar el hábitat y la seguridad de los individuos (tanto carnívoros como personas) y fomentar la tolerancia, es decir, gestionar el valor y el acuerdo hacia la presencia de los grandes carnívoros por parte de las personas que conviven con ellos.</p>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">FACTORES QUE INCIDEN EN LOS ATRIBUTOS DE LA COEXISTENCIA</h3>
+            <p>La coexistencia entre los grandes carnívoros y la gente es el resultado de un sistema socio-ecológico complejo con múltiples bucles de retroalimentación entre sus atributos ecológicos y sociológicos (hábitat, seguridad, valor y acuerdo) que abarca diferentes escalas espaciales, temporales y poblacionales. Lishka y colaboradores (2018) presentan un marco conceptual para las interacciones entre los carnívoros y las personas, en el que se muestran los llamados sistemas ecológico-sociales, los distintos niveles de interacción y los factores que impactan tanto la conducta de la gente como la de los carnívoros (Fig. 2.2). El modelo hace especial énfasis en los factores (que ellos denominan atributos) que impactan en la conducta individual tanto de los carnívoros como de las personas.</p>
+
+            <img src="https://placehold.co/600x450/ffffff/4d7c0f?text=Fig.+2.2+Modelo+Socio-Ecol%C3%B3gico+(Lishka+et+al.,+2018)" alt="Figura 2.2 - Modelo Socio-Ecológico (Lishka et al., 2018)" class="placeholder-img max-w-lg">
+
+            <p>El modelo socio-ecológico que presentamos en este trabajo difiere tanto del modelo de Martin y colaboradores (2021), que define cuatro dimensiones de la coexistencia (espacial, técnica, social e institucional), como del modelo de Lishka y colaboradores (2018), que define dos sistemas (ecológico y social) y los atributos individuales que impactan en la conducta de la gente. El modelo que estamos presentando caracteriza la coexistencia entre los carnívoros y las personas como un modelo socio-ecológico con dos dimensiones: la dimensión ecológica (sistema ecológico sensu Lishka et al., 2018) y la dimensión social (sistema social sensu Lishka et al., 2018). La coexistencia se expresa en función del estado de las poblaciones y la interacción entre cuatro atributos: hábitat, seguridad, valor y acuerdo. Estos atributos son impactados por múltiples factores, entre ellos, la biología, ecología y conducta de las especies involucradas, lo que Lishka y colaboradores (2018) denominan «atributos» individuales de los carnívoros y de las personas.</p>
+            <p>Para representar el modelo conceptual del sistema socio-ecológico de la coexistencia, utilizaremos como base el modelo conceptual presentado por Rechcinsky y colaboradores (2019) para entender los conflictos en las áreas protegidas, ya que reconoce la retroalimentación y la interdependencia de los atributos ecológicos y sociológicos (Fig. 2.3). Al igual que los conflictos en las áreas protegidas descritos en el modelo de Rechcinsky y colaboradores (2019), las interacciones entre la fauna silvestre y la gente, así como la interdependencia entre los factores ecológicos y sociales, cambian en las diferentes escalas espaciales y poblacionales (Hull et al., 2023). Nuestro modelo conceptual sustituye los cinco atributos propuestos por Rechcinsky y colaboradores (2019) por los cuatro atributos del modelo de coexistencia (Fig. 2.4) y mantiene las escalas espaciales de sitio, localidad y paisaje.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                 <img src="https://placehold.co/500x400/ffffff/4d7c0f?text=Fig.+2.3+Marco+Conflictos+%C3%81reas+Protegidas+(Rechcinsky+et+al.+2018)" alt="Figura 2.3 - Marco Conflictos Áreas Protegidas (Rechcinsky et al. 2018)" class="placeholder-img !max-w-full">
+                 <img src="https://placehold.co/500x400/ffffff/4d7c0f?text=Fig.+2.4+Marco+Conceptual+Coexistencia+(Este+trabajo)" alt="Figura 2.4 - Marco Conceptual Coexistencia (Este trabajo)" class="placeholder-img !max-w-full">
+            </div>
+
+             <div class="interactive-block-alt">
+                 <h3 class="text-xl font-semibold mb-4 text-center text-lime-700">Escalas de Análisis de la Coexistencia</h3>
+                 <p class="instructional-text text-center mb-4">La coexistencia opera en múltiples escalas. Pasa el cursor sobre cada nivel para ver ejemplos de factores relevantes.</p>
+                 <div class="scale-diagram-container">
+                     <div class="scale-box scale-paisaje">
+                         Paisaje
+                         <span class="tooltip-text">Población viable, conectividad, políticas nacionales/regionales, mercados, tendencias demográficas generales.</span>
+                     </div>
+                     <div class="scale-box scale-localidad">
+                         Localidad
+                         <span class="tooltip-text">Grupos sociales (demes), uso del suelo predominante, normas comunitarias, gobernanza local, infraestructura, recursos compartidos.</span>
+                     </div>
+                     <div class="scale-box scale-sitio">
+                         Sitio
+                         <span class="tooltip-text">Individuos (humanos y carnívoros), predios/fincas, hogar, interacciones directas, vulnerabilidad específica, decisiones de manejo individuales.</span>
+                     </div>
+                 </div>
+             </div>
+
+            <p>Al igual que en el modelo de Rechcinsky y colaboradores (2019), en el modelo para la coexistencia aquí propuesto, cada uno de los atributos es impactado por todos los demás. En nuestro modelo, el atributo hábitat es equivalente al atributo «medioambiental» de Rechcinsky y colaboradores (2019). El hábitat representa el entorno geográfico y ecológico para la coexistencia en las diferentes escalas espaciales, lo que determina los tipos de hábitat disponibles, la capacidad de carga, el uso, la probabilidad de encuentro y los movimientos de las diferentes especies. Las condiciones biofísicas del paisaje, la historia del uso humano y su impacto a diferentes escalas espaciales conforman la estructura y composición del paisaje, así como el potencial de presencia y coocurrencia de las especies. El hábitat está conformado por dos factores: la cobertura y uso del suelo, y la abundancia de las especies coocurrentes (incluidos los recursos alimenticios). La disponibilidad de recursos y la abundancia de las especies que cohabitan están determinadas por el tamaño, la estructura y la composición tanto de los tipos de hábitat como del uso pasado y presente del suelo. Se puede afirmar que la cobertura vegetal y el uso del suelo son, en su conjunto, un buen sustituto de la disponibilidad de recursos y la abundancia de especies, y el principal factor a evaluar en relación con el hábitat.</p>
+            <p>La cobertura vegetal, el uso del suelo y la disponibilidad de recursos determinan la probabilidad de uso y encuentro con otros individuos de la misma especie o de otras especies en un momento y sitio determinado. A escala de localidad, la cobertura vegetal, el uso del suelo y la disponibilidad de recursos determinan las interacciones inter e intraespecíficas. A escala de paisaje, el tamaño, la estructura y la composición de los tipos de hábitat y el uso del suelo determinan la capacidad de carga y el tamaño de la población.</p>
+            <p>El atributo seguridad es impactado por los factores amenaza/oportunidad, vulnerabilidad/resiliencia y daño/beneficio. La amenaza/oportunidad viene determinada por la posibilidad de que se den encuentros con la especie dado el uso espacio-temporal del sitio o localidad por cada individuo. Si el encuentro puede generar un daño lo consideramos una amenaza, por el contrario, si el encuentro puede generar un beneficio lo consideramos una oportunidad. La vulnerabilidad/resiliencia es la capacidad de resistir o aprovechar un encuentro. El daño/beneficio describe el impacto real de las interacciones entre las personas y los grandes carnívoros. El factor daño/beneficio es lo que Madden & McQuinn (2014) definen como «sustancia» en su modelo del triángulo de intervención en conflictos (Fig. 2.5).</p>
+
+            <img src="https://placehold.co/300x250/ffffff/4d7c0f?text=Fig.+2.5+Tri%C3%A1ngulo+de+Conflicto+(Madden+%26+McQuinn+2014)" alt="Figura 2.5 - Triángulo de Conflicto (Madden & McQuinn 2014)" class="placeholder-img max-w-xs">
+
+            <p>El atributo seguridad impacta la decisión del individuo en relación con dónde y cuándo desarrollará sus actividades o evitará al otro al sentirse más vulnerable, lo que determina, en el caso de las intervenciones negativas, el «paisaje del miedo» (Bleicher, 2017). Desde el punto de vista de la gente, el atributo de seguridad está relacionado con sus medios de subsistencia y la protección de sus propiedades y vidas. Además, el daño a la propiedad o a la vida repercute en el estado económico y psicológico del individuo y la comunidad, lo que afecta su sustento y bienestar. Para los carnívoros, la seguridad determina el grado de molestia, persecución o mortalidad, lo que afecta la supervivencia de los individuos a escala de sitio y localidad, y la tasa de crecimiento y distribución de la población a escala de paisaje.</p>
+            <p>El impacto de las interacciones entre los grandes carnívoros y las personas está determinado tanto por la frecuencia e intensidad de amenaza/oportunidad, la vulnerabilidad/resiliencia y el daño/beneficio para las personas, así como por la percepción de amenaza/oportunidad, vulnerabilidad/resiliencia y daño/beneficio. La pérdida de bienes de las personas repercute directamente en la seguridad, ya que afecta sus medios de subsistencia y su bienestar; el peor daño sería la pérdida de vidas humanas. Cuanto mayor es el daño (es decir, mayor es el impacto en el bienestar de la persona), más negativa puede tornarse la actitud de la persona hacia el carnívoro y la coexistencia. El acoso, la persecución y la muerte de los grandes carnívoros por causa de las personas afectan directamente la seguridad de la población de carnívoros, dado su impacto en la presencia, supervivencia y abundancia.</p>
+            <p>La tolerancia, definida como «la habilidad y deseo de un individuo o sociedad de absorber el costo actual o potencial de coexistir con la vida silvestre» (Kansky et al., 2016), o la respuesta conductual de las personas hacia la presencia e interacciones con carnívoros, es el resultado de múltiples factores psicológicos y sociales tales como los valores culturales, las experiencias emocionales, la economía y los compromisos e interacciones de las partes interesadas (Decker et al., 2012; Bruskotter et al., 2019). Nuestra aproximación al entendimiento de la tolerancia como respuesta conductual se apoya en la «Teoría de la Conducta Planificada» (TPB por sus siglas en inglés) (Ajzen, 1991), que ha demostrado ser una buena aproximación para explicar la conducta de la gente. La TPB señala que la «intención de realizar una conducta» predice, en buena medida, la conducta de las personas. Dado que, en el caso de la coexistencia, las conductas asociadas con la no tolerancia son difíciles de medir debido a su condición de conductas clandestinas (ya que, en muchos casos, dichas conductas son ilegales o socialmente no aceptadas), optamos por evaluar la intención de realizar la conducta. Según el modelo de la TPB, la «intención de realizar una conducta» está compuesta por la actitud (tendencia psicológica expresada en la evaluación de una entidad particular con un grado de favor o desfavor), las normas subjetivas (percepción de las expectativas de otros sobre nuestras acciones) y el control percibido de la conducta (percepción individual sobre la capacidad de realizar la conducta). Al modelo clásico de la Teoría de Conducta Planificada, además de las normas subjetivas y el control percibido, se pueden incorporar como contexto otros factores que impactan la intención de realizar una conducta.</p>
+            <p>En el marco conceptual propuesto para entender y manejar la COEXISTENCIA entre los grandes carnívoros y las personas, el valor y el acuerdo son los principales atributos de la tolerancia, y son estos los que se tomarán en cuenta para la evaluación de la intención de realizar una conducta relacionada con la coexistencia, la actitud hacia la coexistencia con los carnívoros, las normas subjetivas y el control percibido. En el caso de la COEXISTENCIA entre los carnívoros y la gente, el valor describe la importancia de la especie y su presencia para las personas. El acuerdo representa el estado de entendimiento entre las personas que conviven e interactúan con el gran carnívoro y otros actores y partes interesadas en relación con la presencia y gestión de la especie. Tanto el valor como el acuerdo dependen de múltiples factores, como la actitud de la población hacia la especie y la coexistencia, la actitud hacia otros actores y partes interesadas, el conocimiento sobre la especie y su gestión, la historia, las normas y la equidad.</p>
+
+            <blockquote>La actitud (evaluación positiva o negativa de la especie y de la coexistencia con la especie) tiene tres componentes básicos: emoción, cognición y conducta esperada (en función del grupo al cual pertenece o se identifica la persona).</blockquote>
+
+            <p>El aspecto emocional está relacionado con el «afecto» (amor/odio) suscitado por la especie o el afecto hacia las otras partes implicadas. Las personas pueden sentir un fuerte afecto positivo o negativo por determinadas especies; por ejemplo, el afecto negativo relacionado con los lobos y las serpientes. Asimismo, en un contexto de grandes daños, la gente puede desarrollar un fuerte afecto negativo hacia las especies causantes de las pérdidas.</p>
+            <p>La parte cognitiva de la actitud es lo que la gente piensa sobre la especie y la coexistencia con esta, enmarcada por sus valores, creencias y percepciones. Los valores son los principios que guían la vida de las personas, son resistentes al cambio y forman parte del sistema global de creencias de cada individuo (Rokeach & Kliejunas, 1972). Por ejemplo, si la seguridad es un valor importante para una persona, teniendo en cuenta el posible riesgo que conlleva la presencia de grandes carnívoros, existe una mayor posibilidad de que esa persona tenga poca tolerancia a la presencia de grandes carnívoros. Los valores y las creencias se centran no solo en las especies, sino también en las demás partes interesadas y componentes del sistema socio-ecológico.</p>
+            <p>Para conformar la actitud de la gente hacia la coexistencia con los grandes carnívoros, son tan importantes la realidad como las percepciones sobre los diferentes factores que impactan la coexistencia, tales como la equidad, el daño y el riesgo (Dickman, 2010; Behr et al., 2017), ya que la percepción conforma la «realidad» de cada persona. La percepción del riesgo (particularmente, el miedo) es considerada una de las cuestiones clave que impactan la tolerancia (Lute & Gore, 2019; Johansson et al., 2016). Lute & Gore (2019) describen siete factores que se deben tomar en cuenta para el análisis de la percepción del riesgo: certeza, control, frecuencia, naturalidad, seriedad, capacidad de respuesta y confianza. La percepción del riesgo impacta directamente en el valor de la especie. Así, una elevada percepción de riesgo reducirá el valor de la especie para la gente. De igual manera, una percepción favorable de la capacidad de respuesta y la confianza en la institucionalidad de las partes interesadas aumentará la probabilidad de alcanzar un acuerdo, mientras que una percepción negativa del control, la capacidad de respuesta y la confianza aumentará la probabilidad de conflicto.</p>
+            <p>La conducta que realizamos está relacionada con la conducta a la que estamos acostumbrados o que es la conducta esperada dado el grupo al cual pertenecemos o con el cual nos identificamos (van Eeden et al., 2021), es decir, nuestra identidad. Se considera la identidad como el conjunto de rasgos comunes que nos caracterizan, unifican y diferencian de los demás. Las personas pertenecientes a un grupo comparten valores y creencias sobre la vida silvestre y otros actores y partes interesadas, lo que legitima sus ideas, mitos y comportamientos (Blount-Hill & Oder, 2020).</p>
+            <p>La actitud tiene una estructura horizontal compuesta por el conjunto de valores y creencias que la constituyen, y una centralidad, determinada por la importancia relativa de los valores y creencias (Heberlain, 2012). Una actitud estable, es decir, una actitud difícil de cambiar, está compuesta por muchas creencias vinculadas a la identidad y a los valores de la persona (Heberlain, 2012).</p>
+            <p>Como ya hemos mencionado, la actitud tiene muchos componentes y puede ser difícil de medir. Sin embargo, hay buenos ejemplos de evaluación y monitoreo de la actitud y sus componentes (Bath & Majic, 2001; Karlson & Sjöström, 2011; Thorn et al., 2015; Suryawanshi et al., 2014; Venkataraman et al., 2021; Janeiro-Otero et al., 2023), así como metaanálisis de los factores clave que impactan la actitud (Kansky & Knight, 2014).</p>
+            <p>El otro factor que impacta al atributo valor en el marco conceptual que presentamos es el conocimiento. Se ha observado que el conocimiento influye en la tolerancia (Glikman et al., 2021; Mohammadi et al., 2022) y que las especies conocidas por las personas son más toleradas que las recién llegadas y las desconocidas (Glikman et al., 2021). El conocimiento sobre la ecología y el comportamiento de las especies, la gestión de la coocurrencia, la legislación y el papel de otras partes interesadas también influye en el valor y el acuerdo. El conocimiento incluye el conocimiento formal y la historia (incluidas las experiencias personales). Por ejemplo, saber identificar los ataques de carnívoros ayudaría a evaluar los daños y a desarrollar intervenciones eficaces basadas en la realidad. El conocimiento sobre la gestión eficaz del riesgo para evitar interacciones con carnívoros ayudaría a reducir la vulnerabilidad. Además, saber cómo utilizar la coocurrencia con el carnívoro para impulsar la comercialización de los productos locales puede aumentar el valor de esas especies.</p>
+            <p>Así mismo, el conocimiento de las sanciones limitaría las actividades ilegales (por ejemplo, reduciría la probabilidad de cazar carnívoros). Por último, saber cómo ponerse en contacto con las organizaciones gubernamentales y sus responsabilidades ayudaría a reducir los conflictos. La historia como parte del conocimiento, definida como los acontecimientos pasados relacionados con las interacciones de la gente con las especies de carnívoros y otras partes interesadas, es, junto con los valores y creencias, el trasfondo para el desarrollo de la «narrativa» sobre la relación de las personas con las especies de grandes carnívoros en un paisaje, localidad o sitio determinado. Por lo tanto, es una parte importante del conocimiento.</p>
+            <p>El acuerdo es el otro atributo relacionado con la tolerancia. A diferencia del atributo valor, que trata del aspecto psicológico de la relación entre la gente y los grandes carnívoros, el atributo acuerdo aborda el aspecto de las relaciones entre las personas o grupos de personas, relacionadas con la presencia, interacción y manejo de los grandes carnívoros. Podemos definir los factores que impactan el acuerdo como los factores que constituyen el contexto socioeconómico, político, institucional y jurídico de la tolerancia, que incluyen las normas y la equidad.</p>
+
+            <img src="https://placehold.co/500x350/ffffff/4d7c0f?text=Fig.+2.6+Componentes+Equidad+(Kenfack+Essoungong+et+al.,+2019)" alt="Figura 2.6 - Componentes de la Equidad (Kenfack Essoungong et al., 2019)" class="placeholder-img max-w-md">
+
+            <p>Bajo el factor norma, se agrupan tanto el marco legal como las políticas, las estructuras institucionales, las estructuras sociales y la gobernanza. El factor norma tiene un impacto significativo tanto en la extinción como en la persistencia y recuperación de las poblaciones de carnívoros (Linnell et al., 2001). Linnell y colaboradores (2001) sugieren que la extinción y persistencia de los grandes carnívoros en Norteamérica y Europa son consecuencia de las políticas, la gestión eficaz y las estructuras de aplicación de la ley, y no la consecuencia directa de la densidad humana, como habían sugerido anteriormente Woodroffe y Ginsberg (1998). La norma es un factor esencial que afecta el contexto en el que se expresa la tolerancia. La norma influye de forma directa en los factores paisaje y equidad de la coexistencia. En lo que respecta al paisaje, la norma tiene un impacto determinante en la estructura y composición del paisaje, ya que establece los usos del suelo y la gestión de la presencia e interacciones de los carnívoros. En cuanto a la equidad, la norma incide de manera directa en la distribución, el procedimiento y el reconocimiento de las diferentes partes interesadas respecto a los daños y beneficios derivados de la presencia y las interacciones con los grandes carnívoros, las funciones institucionales e individuales en la gestión de la presencia y las interacciones de los grandes carnívoros y, en particular, el papel de las diferentes partes interesadas en la toma de decisiones.</p>
+            <p>Tanto el acuerdo como el valor se ven afectados por la distribución (tanto real como percibida) de las ganancias/pérdidas y los daños/beneficios, la falta de reconocimiento y la falta de participación en la toma de decisiones relacionadas con la presencia de grandes carnívoros, es decir, la falta real o percibida de equidad (justicia medioambiental). La equidad tiene tres componentes interdependientes (Fig. 2.6): equidad distributiva, equidad contextual (reconocimiento) y equidad procedimental (participación) (Schlosberg, 2004; Essougong et al., 2019).</p>
+
+            <blockquote class="bg-white border-lime-500">
+                <ul class="list-disc list-inside pl-0 space-y-1">
+                    <li><strong>Equidad Distributiva:</strong> Distribución de costos y beneficios del acceso, interacción y uso de recursos naturales.</li>
+                    <li><strong>Equidad Procedimental:</strong> Participación y representación en la toma de decisiones y acceso a información.</li>
+                    <li><strong>Equidad Contextual:</strong> Entorno social, cultural y político que puede generar desigualdad o falta de reconocimiento.</li>
+                </ul>
+            </blockquote>
+
+            <p>En los países en desarrollo, la interacción entre norma y equidad tiene efectos sinérgicos negativos en la actitud de las personas que cohabitan e interactúan con los grandes carnívoros. Debido a la falta de normas de mitigación o de gobernanza, las personas que interactúan con los grandes carnívoros, independientemente de su capacidad financiera, asumen toda la carga de los daños o el costo de las medidas preventivas (Bruskotter et al., 2015; Lute y Gore, 2019). Además, las partes interesadas en la conservación de la especie, pero no afectadas por la coexistencia con los grandes carnívoros (población urbana, gobierno central), son las que deciden las normas y las políticas a escala nacional, y obtienen los «beneficios» de la presencia de grandes carnívoros (Jordan et al., 2020; Mech, 1996; Naughton-Treves et al., 2003; Lute y Gore, 2019).</p>
+
+            <div class="interactive-block">
+                 <h3 class="text-xl font-semibold mb-4 text-center text-lime-700">Modelo Atómico de la Coexistencia (Conceptual)</h3>
+                 <p class="instructional-text text-center mb-4">Este modelo representa los atributos centrales (núcleo) y los factores que influyen (electrones) en el sistema socio-ecológico de la coexistencia. Pasa el cursor sobre los elementos para ver descripciones.</p>
+                 <svg id="atom-model" viewBox="0 0 600 450" class="atom-model-svg">
+                     <defs>
+                         <radialGradient id="gradHabitat" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                             <stop offset="0%" style="stop-color:#65a30d;stop-opacity:1" />
+                             <stop offset="100%" style="stop-color:#a3e635;stop-opacity:1" />
+                         </radialGradient>
+                         <radialGradient id="gradSeguridad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                             <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+                             <stop offset="100%" style="stop-color:#fca5a5;stop-opacity:1" />
+                         </radialGradient>
+                          <radialGradient id="gradValor" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                             <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                             <stop offset="100%" style="stop-color:#93c5fd;stop-opacity:1" />
+                         </radialGradient>
+                          <radialGradient id="gradAcuerdo" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                             <stop offset="0%" style="stop-color:#d97706;stop-opacity:1" />
+                             <stop offset="100%" style="stop-color:#fcd34d;stop-opacity:1" />
+                         </radialGradient>
+                     </defs>
+                     <ellipse cx="300" cy="225" rx="280" ry="100" fill="none" stroke="#d1d5db" stroke-width="1"/>
+                     <ellipse cx="300" cy="225" rx="280" ry="100" transform="rotate(45 300 225)" fill="none" stroke="#d1d5db" stroke-width="1"/>
+                     <ellipse cx="300" cy="225" rx="280" ry="100" transform="rotate(90 300 225)" fill="none" stroke="#d1d5db" stroke-width="1"/>
+                      <ellipse cx="300" cy="225" rx="280" ry="100" transform="rotate(135 300 225)" fill="none" stroke="#d1d5db" stroke-width="1"/>
+                     <g class="core-attr" id="core-habitat">
+                         <title>Hábitat: Entorno biofísico (cobertura, uso suelo, abundancia especies) que determina idoneidad del paisaje.</title>
+                         <circle cx="280" cy="205" r="30" fill="url(#gradHabitat)"/>
+                         <text x="280" y="210" class="core-text">Hábitat</text>
+                     </g>
+                     <g class="core-attr" id="core-seguridad">
+                         <title>Seguridad: Impacto de interacciones (amenaza, vulnerabilidad, daño/beneficio) en bienestar humano y supervivencia del carnívoro.</title>
+                         <circle cx="320" cy="205" r="30" fill="url(#gradSeguridad)"/>
+                          <text x="320" y="210" class="core-text">Seguridad</text>
+                     </g>
+                      <g class="core-attr" id="core-valor">
+                          <title>Valor: Importancia atribuida al carnívoro y a la coexistencia (actitud, conocimiento).</title>
+                         <circle cx="280" cy="245" r="30" fill="url(#gradValor)"/>
+                          <text x="280" y="250" class="core-text">Valor</text>
+                     </g>
+                      <g class="core-attr" id="core-acuerdo">
+                          <title>Acuerdo: Relaciones entre actores humanos respecto a la presencia y gestión del carnívoro (normas, equidad).</title>
+                         <circle cx="320" cy="245" r="30" fill="url(#gradAcuerdo)"/>
+                          <text x="320" y="250" class="core-text">Acuerdo</text>
+                     </g>
+                     <g class="factor-orbit" transform="translate(480, 155)"> <title>Cobertura / Uso del suelo: Factor clave del Hábitat.</title> <circle r="15" fill="#a3e635"/> <text y="5" class="factor-text">Cobertura</text> </g>
+                     <g class="factor-orbit" transform="translate(550, 225)"> <title>Abundancia de especies: Factor clave del Hábitat.</title> <circle r="15" fill="#a3e635"/> <text y="5" class="factor-text">Abundancia</text> </g>
+                     <g class="factor-orbit" transform="translate(480, 295)"> <title>Riesgo / Oportunidad: Factor clave de la Seguridad.</title> <circle r="15" fill="#fca5a5"/> <text y="5" class="factor-text">Riesgo</text> </g>
+                     <g class="factor-orbit" transform="translate(300, 345)"> <title>Ganancia / Pérdida: Factor clave de la Seguridad.</title> <circle r="15" fill="#fca5a5"/> <text y="5" class="factor-text">Daño/Benef.</text> </g>
+                     <g class="factor-orbit" transform="translate(120, 295)"> <title>Actitud: Factor clave del Valor.</title> <circle r="15" fill="#93c5fd"/> <text y="5" class="factor-text">Actitud</text> </g>
+                     <g class="factor-orbit" transform="translate(50, 225)"> <title>Conocimiento: Factor clave del Valor.</title> <circle r="15" fill="#93c5fd"/> <text y="5" class="factor-text">Conocim.</text> </g>
+                     <g class="factor-orbit" transform="translate(120, 155)"> <title>Normas: Factor clave del Acuerdo.</title> <circle r="15" fill="#fcd34d"/> <text y="5" class="factor-text">Normas</text> </g>
+                     <g class="factor-orbit" transform="translate(300, 105)"> <title>Equidad: Factor clave del Acuerdo.</title> <circle r="15" fill="#fcd34d"/> <text y="5" class="factor-text">Equidad</text> </g>
+                 </svg>
+                 <p class="instructional-text text-center mt-2">Modelo conceptual del sistema socio-ecológico de coexistencia (Basado en Fig. 2.7).</p>
+             </div>
+
+            <p>El modelo conceptual presentado representa un marco teórico que integra tanto la dimensión ecológica como la dimensión social y permite la puesta a prueba de distintas hipótesis sobre el funcionamiento del sistema. El modelo conceptual y la figura que lo representa son una generalización del sistema socio-ecológico de la coexistencia. No debemos olvidar que los atributos de hábitat, seguridad, valor y acuerdo, así como los factores que los afectan, son específicos para cada paisaje, localidad, sitio, población e individuo. Tanto las hipótesis sobre el funcionamiento del sistema como las intervenciones para gestionar la coexistencia tienen que ser, por lo tanto, específicas para cada lugar e individuo, ya que deben responder a los factores que les afectan, lo que requiere múltiples disciplinas y prácticas, entre ellas la ecología, la sociología, la economía y la antropología.</p>
+        </section>
+
+        <section class="mt-12 text-center">
+             <a href="#" class="inline-block bg-lime-500 hover:bg-lime-600 text-lime-900 font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
+                 Continuar al Capítulo 3 →
+             </a>
+         </section>
+
+    </main>
+
+     <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+         <p class="footer-attribution">Contenido adaptado de "Comprender y Gestionar la Coexistencia entre la Gente y los Grandes Carnívoros" (2025) por Isaac Goldstein & Robert Márquez.</p>
+         <p class="footer-attribution">Una iniciativa de la Alianza para la Conservación del Oso Andino.</p>
+     </footer>
+
+    <script>
+        const sections_coex_cap2 = document.querySelectorAll('.fade-in-section');
+        const observerOptions_coex_cap2 = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observerCallback_coex_cap2 = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-section');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        const observer_coex_cap2 = new IntersectionObserver(observerCallback_coex_cap2, observerOptions_coex_cap2);
+        sections_coex_cap2.forEach(section => { observer_coex_cap2.observe(section); });
+
+        const expansionSlider = document.getElementById('expansion-slider');
+        const humanAreaDiv = document.getElementById('human-area');
+        const carnivoreAreaDiv = document.getElementById('carnivore-area');
+
+        function updateExpansionVisual() {
+            if (!expansionSlider || !humanAreaDiv || !carnivoreAreaDiv) return;
+            const value = parseInt(expansionSlider.value);
+            const humanScale = 0.2 + (value / 100) * 0.8;
+            const carnivoreScale = 1.0 - (value / 100) * 0.8;
+            humanAreaDiv.style.transform = `scale(${humanScale})`;
+            humanAreaDiv.textContent = `${Math.round(humanScale*100)}%`;
+            carnivoreAreaDiv.style.transform = `scale(${carnivoreScale})`;
+            carnivoreAreaDiv.textContent = `${Math.round(carnivoreScale*100)}%`;
+        }
+
+        if (expansionSlider) {
+            expansionSlider.addEventListener('input', updateExpansionVisual);
+            if (document.readyState === 'loading') {
+                window.addEventListener('load', updateExpansionVisual);
+            } else {
+                updateExpansionVisual();
+            }
+        }
+
+         const damageSlider = document.getElementById('damage-slider');
+         const valueSlider = document.getElementById('value-slider');
+         const toleranceBar = document.getElementById('tolerance-bar');
+         const toleranceLabel = document.getElementById('tolerance-label');
+
+         function updateToleranceVisual() {
+             if (!damageSlider || !valueSlider || !toleranceBar || !toleranceLabel) return;
+             const damage = parseInt(damageSlider.value);
+             const value = parseInt(valueSlider.value);
+             const damageFactor = (damage / 50) - 1;
+             const valueFactor = (value / 50) - 1;
+             const toleranceScore = (0.7 * valueFactor) - (0.3 * damageFactor);
+             const tolerancePercent = Math.max(0, Math.min(100, (toleranceScore + 1) * 50));
+             toleranceBar.style.width = `${tolerancePercent}%`;
+
+             if (tolerancePercent < 33) {
+                 toleranceLabel.textContent = 'Rechazo';
+                 toleranceBar.style.backgroundColor = '#fca5a5';
+             } else if (tolerancePercent > 66) {
+                 toleranceLabel.textContent = 'Soporte';
+                 toleranceBar.style.backgroundColor = '#84cc16';
+             } else {
+                 toleranceLabel.textContent = 'Neutral';
+                 toleranceBar.style.backgroundColor = '#fbbf24';
+             }
+         }
+
+         if (damageSlider && valueSlider) {
+             damageSlider.addEventListener('input', updateToleranceVisual);
+             valueSlider.addEventListener('input', updateToleranceVisual);
+              if (document.readyState === 'loading') {
+                 window.addEventListener('load', updateToleranceVisual);
+             } else {
+                 updateToleranceVisual();
+             }
+         }
+    </script>
+
+</body>
+</html>
