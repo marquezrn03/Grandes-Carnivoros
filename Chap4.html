@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coexistencia Grandes Carnívoros - Cap 4: Gestión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-section { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151; font-size: 0.875rem; }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #84cc16; }
+        input[type="number"], select { padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem; }
+        button, .styled-button-link { background-color: #a3e635; color: #3f6212; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.2s; display: inline-block; text-align: center; border: none; }
+        button:hover, .styled-button-link:hover { background-color: #84cc16; }
+        h1 { color: #111827; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700;}
+        h2 { color: #111827; font-size: 1.5rem; line-height: 2rem; font-weight: 700;}
+        h3 { color: #365314; font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; border-bottom: 2px solid #a3e635; padding-bottom: 0.35rem; margin-top: 2rem; margin-bottom: 1rem; background-color: #f0fdf4; padding: 0.5rem 1rem; border-radius: 0.375rem 0.375rem 0 0; display: inline-block; }
+        p, li { color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+        strong { color: #1F2937; font-weight: 600; }
+        blockquote { border-left: 6px solid #a3e635; padding: 1rem 1.5rem; margin: 2rem 0; font-style: italic; color: #374151; background-color: #ffffff; border-radius: 0 0.5rem 0.5rem 0; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+        .section-bg-light { background-color: #f7fee7; }
+        .section-bg-white { background-color: #FFFFFF; }
+        .instructional-text { font-size: 0.875rem; color: #4B5563; margin-top: 0.5rem; }
+        hr.styled { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(163, 230, 53, 0), rgba(163, 230, 53, 0.75), rgba(163, 230, 53, 0)); margin: 3rem 0; }
+        .interactive-block { margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; border: 1px solid #d9f99d; border-radius: 0.5rem; background-color: #ffffff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        .output-box { margin-top: 1rem; padding: 0.75rem; background-color: #ecfdf5; border: 1px solid #d1fae5; border-radius: 0.375rem; font-size: 0.875rem; color: #065f46; text-align: center; font-weight: 500; min-height: 40px; }
+        .slider-label-container { display: flex; justify-content: space-between; font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
+        .progress-bar-container { height: 1rem; background-color: #e5e7eb; border-radius: 0.375rem; overflow: hidden; border: 1px solid #d1d5db; margin-top: 0.5rem; }
+        .progress-bar-fill { height: 100%; background-color: #84cc16; transition: width 0.3s ease-in-out; }
+        footer ul { list-style: none; padding-left: 0; }
+        footer li { margin-bottom: 0.75rem; }
+        footer a { color: #4d7c0f; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .header-subtitle { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; margin-top: 0.25rem; }
+        .header-attribution { font-size: 0.875rem; line-height: 1.25rem; margin-top: 1rem; opacity: 0.9; }
+        .footer-attribution { margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.25rem; color: #6b7280; text-align: center; }
+        .adaptive-cycle-svg { display: block; margin: 1.5rem auto; max-width: 500px; width: 100%; height: auto; }
+        .adaptive-cycle-svg .stage { cursor: pointer; transition: fill 0.2s ease-in-out; }
+        .adaptive-cycle-svg .stage:hover { filter: brightness(1.1); }
+        .adaptive-cycle-svg .arrow { fill: #65a30d; }
+        .adaptive-cycle-svg .stage-text { font-size: 14px; font-weight: 600; fill: #365314; text-anchor: middle; pointer-events: none; }
+        .placeholder-box { padding: 1rem; border: 1px dashed #a3e635; border-radius: 0.375rem; background-color: #f0fdf4; text-align: center; color: #4d7c0f; margin: 1.5rem 0; font-style: italic; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <header class="bg-gradient-to-r from-lime-600 to-green-600 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 text-center md:text-left">
+            <h1>Comprender y Gestionar la Coexistencia</h1>
+            <p class="header-subtitle">Entre la Gente y los Grandes Carnívoros</p>
+            <p class="header-attribution">Basado en el libro de Isaac Goldstein & Robert Márquez (2025)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="capitulo4" class="mb-12 p-6 rounded-lg shadow-lg section-bg-white dynamic-content">
+            <h2 class="text-lime-700 border-b-2 border-lime-200 pb-2 mb-6">Capítulo 4: Gestión de la coexistencia entre la gente y los grandes carnívoros</h2>
+
+            <h3>INTRODUCCIÓN</h3>
+            <p>La gestión se define como la «actividad de controlar algo, o de utilizar o tratar algo de forma eficaz» (Diccionario de Cambridge). En este contexto, gestionar la coexistencia entre especies implica controlar un sistema dinámico de poblaciones de múltiples especies para garantizar su viabilidad a largo plazo. Básicamente, la gestión de la coexistencia es un proceso de toma de decisiones sobre QUÉ hacer respecto a los factores que impactan la coexistencia, DÓNDE intervenir, CÓMO hacerlo (considerando las intervenciones más efectivas), QUIEN es el responsable y CUÁNDO intervenir (escogiendo el momento adecuado).</p>
+            <p>Desarrollar y ejecutar un programa de gestión en un sistema socio-ecológico complejo, como es la coexistencia, siempre representa un desafío. Aspectos como normas formales e informales, intereses de las partes comprometidas, agendas políticas, complejidad administrativa, equilibrio entre distintas intervenciones y objetivos de los actores, así como la incertidumbre sobre los factores que afectan al sistema, hacen que la toma de decisiones sea compleja. Además, la gestión de la coexistencia, al igual que muchos problemas de conservación de la vida silvestre, está guiada por valores morales (Decker et al., 2012; Pooley et al., 2017). Existen diversas aproximaciones al problema que reflejan diferentes enfoques sobre qué hacer, cómo hacerlo y dónde lograrlo (Lute et al., 2018).</p>
+            <p>El paisaje actual es el resultado de procesos, normas e instituciones del pasado, impulsados por valores que pueden resultar obsoletos o inadecuados hoy. De igual forma, el paisaje futuro dependerá de los procesos, normas e instituciones actuales, basados en valores que podrían volverse obsoletos en el futuro. Por lo tanto, gestionar la coexistencia requiere un manejo constante de la coocurrencia, las interacciones (Lección Aprendida 1) y las coadaptaciones entre personas y grandes carnívoros a escala de paisaje, localidad y sitio (Lección Aprendida 5), lo que implica intervenciones recurrentes en un contexto de cambio e incertidumbre (Riley et al., 2003).</p>
+            <p>En escenarios tan complejos e inciertos, la gestión adaptativa, entendida como una opción de toma de decisiones flexible pero estructurada, es probablemente la mejor manera de manejar la coexistencia (Lección Aprendida 10). Reconociendo que cada paisaje y situación son únicos y que no existe una receta única para la toma de decisiones (Lección Aprendida 3) y las intervenciones, en las siguientes páginas presentamos nuestra propuesta de proceso para gestionar la coexistencia entre grandes carnívoros y personas, siguiendo los cuatro pasos básicos del ciclo de gestión adaptativa: análisis del problema, diseño, implementación y evaluación.</p>
+
+            <div class="interactive-block">
+                <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Ciclo de Gestión Adaptativa</h4>
+                <p class="instructional-text text-center mb-4">Haz clic en cada etapa del ciclo para ver sus componentes clave.</p>
+                <svg id="adaptive-cycle" viewBox="0 0 400 400" class="adaptive-cycle-svg">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#65a30d"/>
+                        </marker>
+                    </defs>
+                    <circle cx="200" cy="200" r="140" fill="none" stroke="#d9f99d" stroke-width="30"/>
+
+                    <path id="cycle-path" d="M 200, 60 A 140,140 0 1 1 199.9, 60 Z" fill="none"/>
+
+                    <path d="M 200, 50 L 200, 30" stroke="#65a30d" stroke-width="2" marker-end="url(#arrowhead)" />
+                    <path d="M 350, 200 L 370, 200" stroke="#65a30d" stroke-width="2" marker-end="url(#arrowhead)" />
+                    <path d="M 200, 350 L 200, 370" stroke="#65a30d" stroke-width="2" marker-end="url(#arrowhead)" />
+                    <path d="M 50, 200 L 30, 200" stroke="#65a30d" stroke-width="2" marker-end="url(#arrowhead)" />
+
+                    <g class="stage" onclick="showStageInfo('analisis')">
+                        <title>Análisis del Problema: Evaluar estado actual, contexto, actores, modelos, indicadores.</title>
+                        <circle cx="200" cy="60" r="40" fill="#d9f99d"/>
+                        <text x="200" y="65" class="stage-text">Análisis</text>
+                    </g>
+                    <g class="stage" onclick="showStageInfo('diseno')">
+                         <title>Diseño y Planificación: Definir y priorizar objetivos, evaluar y seleccionar intervenciones, plan de trabajo y monitoreo.</title>
+                        <circle cx="340" cy="200" r="40" fill="#d9f99d"/>
+                        <text x="340" y="195" class="stage-text">Diseño y</text>
+                        <text x="340" y="215" class="stage-text">Planificación</text>
+                    </g>
+                     <g class="stage" onclick="showStageInfo('implementacion')">
+                         <title>Implementación: Ejecutar plan de trabajo, gestionar recursos, comunicar, adaptarse a imprevistos.</title>
+                        <circle cx="200" cy="340" r="40" fill="#d9f99d"/>
+                        <text x="200" y="345" class="stage-text">Implementación</text>
+                    </g>
+                     <g class="stage" onclick="showStageInfo('evaluacion')">
+                         <title>Evaluación: Medir proceso, resultados e impacto. Aprender, rendir cuentas, informar siguiente ciclo.</title>
+                        <circle cx="60" cy="200" r="40" fill="#d9f99d"/>
+                        <text x="60" y="205" class="stage-text">Evaluación</text>
+                    </g>
+                </svg>
+                <div id="stage-info" class="output-box mt-4">Haz clic en una etapa del ciclo...</div>
+            </div>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">ANÁLISIS DEL PROBLEMA</h3>
+            <p>El análisis del problema equivale a la etapa de «evaluación» en la metodología de los Estándares Abiertos para la Práctica de la Conservación (CMP–openstandards.org) o al «problema» en el proceso PrOACT de Toma de Decisiones Estructurada (structureddecisionmaking.org). Responde a las preguntas: ¿cuál es el estado actual de la coexistencia y de los factores que la impactan? y ¿cuál es el contexto en el que se tomarán las decisiones? (Gregory et al., 2012).</p>
+            <p>Este análisis es fundamental en la gestión adaptativa de la coexistencia, ya que genera información sobre el estado de las poblaciones que coexisten, los factores que las afectan, sus interacciones y el contexto en el que opera el sistema. Esto permitirá evaluar QUÉ hacer con los factores que impactan la coexistencia, DÓNDE actuar, CÓMO intervenir (considerando las intervenciones más efectivas), QUIEN es el responsable y CUÁNDO intervenir (escogiendo el momento adecuado).</p>
+            <p>Basándonos en el modelo de coexistencia presentado, el diagnóstico se enfoca en evaluar el estado de los cuatro atributos de la coexistencia: hábitat, seguridad, valor y acuerdo, así como los factores que impactan cada uno de estos atributos en el paisaje, localidad y sitio de interés. Además, el diagnóstico debe incluir información sobre el contexto social, legal, político-administrativo (Lección Aprendida 4) y sobre los actores involucrados en la coexistencia (Lección Aprendida 6).</p>
+            <p>A partir de la línea base del estado poblacional del carnívoro y los factores que impactan los atributos hábitat y seguridad, podemos identificar el tipo de escenario de conservación de la población (mantenimiento, recuperación, reintroducción), las amenazas (fragmentación, reducción, deterioro, etc.) y el nivel de daños tanto a la gente (daños a la propiedad y la vida) como a los carnívoros (mortalidad inducida por la gente).</p>
+            <p>En general, existen dos problemáticas básicas que impulsan la necesidad de comprender y gestionar la coexistencia: problemas de conservación de la fauna silvestre y problemas que afectan la vida de las personas. Los problemas de conservación pueden deberse a factores que afectan el hábitat y/o la seguridad de los carnívoros, impactando la cantidad o calidad del hábitat, la supervivencia de los individuos y la viabilidad de la población. En cuanto a la vida de las personas, el problema se centra en la afectación de sus medios de vida o en su integridad física. A menudo, ambos tipos de problemas están estrechamente ligados, ya que uno repercute en el otro. Por ejemplo, pérdidas significativas de ganado pueden incentivar la cacería de grandes carnívoros, afectando la viabilidad de la población. Este análisis nos permite identificar actores y posibles aproximaciones para el manejo.</p>
+            <p>Dada la diversidad de factores que pueden afectar los atributos de la coexistencia en un paisaje, localidad y sitio determinados, el análisis del problema requiere una gran cantidad y variedad de información, que puede provenir de diferentes campos y fuentes de conocimiento. En el mejor de los casos, la información sobre cada factor está disponible; en el peor, puede faltar o no estar accesible.</p>
+            <p>La falta de información no debe detener el proceso de gestión adaptativa. Debe reconocerse y abordarse como parte integral del proceso. En lugar de esperar a tener toda la información necesaria antes de tomar medidas, los gestores deben adoptar un enfoque iterativo y flexible. Esto implica tomar decisiones basadas en la mejor información disponible en cada momento, mientras se buscan llenar los vacíos de información a medida que surgen. La gestión adaptativa se convierte así en un proceso continuo de aprendizaje y ajuste. A medida que se implementan medidas de conservación o manejo, se evalúa su efectividad y se recopila nueva información, que se utiliza para refinar las estrategias existentes, adaptar acciones futuras y cerrar brechas de conocimiento identificadas.</p>
+            <p>El análisis del problema tiene 3 partes principales: 1. evaluación del modelo del sistema y determinación de los indicadores de interés, 2. evaluación del contexto y actores, y 3. determinación del paisaje de conservación, el paisaje de coexistencia, y el escenario de conservación.</p>
+
+            <h4>1. Evaluación del modelo del sistema y determinación de los indicadores de interés</h4>
+            <p>Los modelos, entendidos como representaciones simplificadas del funcionamiento de un sistema, nos permiten identificar los factores más importantes del sistema en un momento dado, realizar simulaciones sobre el impacto de distintas intervenciones en el estado de los componentes de la coexistencia, determinar la opción de manejo más eficiente y seleccionar el enfoque y diseño del monitoreo.</p>
+            <p>Intuitivamente, al pensar en un problema, identificamos la causa y evaluamos posibles soluciones, lo cual equivale a generar un modelo. El modelo más sencillo es el modelo Presión-Estado-Respuesta (modelo PER), útil para el análisis de problemas sencillos o componentes específicos de problemas más complejos.</p>
+            <p>En sistemas complejos como los socio-ecológicos, donde operan múltiples factores físico-naturales y sociopolíticos, muchos de los cuales tienen un impacto mínimo o cuya interpretación y medición solo introduce ruido. Además, la evaluación de todos los factores es inviable logísticamente, los modelos nos permiten reducir el sistema a los factores más determinantes.</p>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Selección Conceptual de Modelos</h4>
+                 <p class="instructional-text text-center mb-4">Ajusta los sliders para ver qué tipo de modelo podría ser más apropiado según la complejidad y los datos disponibles (conceptual).</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                     <div>
+                         <label for="model-data-slider">Disponibilidad de Datos:</label>
+                         <input type="range" id="model-data-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                     <div>
+                         <label for="model-complexity-slider">Complejidad del Sistema:</label>
+                         <input type="range" id="model-complexity-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                 </div>
+                 <div id="model-suggestion-output" class="output-box">Ajusta los sliders para ver la sugerencia.</div>
+             </div>
+
+            <p>El tipo y calidad de modelo dependerá de la calidad y cantidad de la información disponible, desde modelos situacionales basados en el impacto cualitativo de los factores, hasta modelos cuantitativos complejos que permiten evaluar el impacto de intervenciones y simular sus efectos en las poblaciones de las especies de interés.</p>
+            <p>Independientemente de la información disponible, es recomendable comenzar el análisis del problema con un modelo situacional para determinar de manera general los atributos y factores que impactan la coexistencia en un paisaje determinado. Esto facilita el desarrollo posterior de modelos cuantitativos y la formulación de hipótesis, ya que se pueden descartar factores irrelevantes o poco importantes.</p>
+            <p>Una herramienta comúnmente usada para desarrollar modelos situacionales es el software MIRADI, que es parte de los Estándares Abiertos para la Práctica de la Conservación (Conservation Measures Partnerships – CMP). Los modelos situacionales de MIRADI se enfocan en la selección de objetos de conservación, las amenazas a dichos objetos y los factores que impactan estas amenazas.</p>
+
+            <p class="my-6 p-4 border border-dashed border-gray-300 rounded bg-white text-center text-gray-600 italic">
+                 Referencia a Figura 4.1: Modelo conceptual para la conservación del oso andino (Ejemplo MIRADI) - Ilustra objetos, amenazas y factores contribuyentes.
+            </p>
+
+            <p>El modelo conceptual propuesto en este trabajo para el sistema socio-ecológico de la coexistencia consta de cuatro atributos: hábitat, seguridad, valor y acuerdo. En la Figura 4.1 se presenta un ejemplo de un modelo situacional para la conservación de poblaciones de oso andino desarrollado con MIRADI, donde se identifican los factores que impactan cada atributo (amenazas) y distintos factores y contextos que dinamizan estas amenazas. La evaluación de hábitat permite determinar el estado y distribución de las poblaciones; la evaluación de seguridad permite evaluar el nivel de daños y riesgos tanto para la gente como para los carnívoros; y la evaluación de valor y acuerdo permite determinar la importancia de la especie y la coexistencia de esta con la gente, así como el contexto sociopolítico de la coexistencia. La información derivada del modelo situacional nos ayuda a evaluar el paisaje de conservación, el paisaje de coexistencia, así como el escenario de conservación (mantenimiento, recuperación, o reintroducción).</p>
+            <p>En cuanto a los modelos cuantitativos, se han utilizado diversas metodologías para integrar atributos ecológicos y sociales y comprender las interacciones entre fauna y gente. Hull y colaboradores (2023) enumeran metodologías utilizadas para integrar atributos y factores ecológicos y sociales, así como las preguntas de investigación que buscan responder. En la coexistencia entre gente y grandes carnívoros, la mayoría de los modelos se han centrado en la dimensión ecológica (hábitat y seguridad), con un sesgo hacia datos ecológicos, dejando de lado variables psico-sociales (valor y acuerdo) que podrían tener un impacto clave en el sistema.</p>
+            <p>Ejemplos de metodologías incluyen modelos de ocupación, modelos de riesgo, y modelado basado en agentes, entre otros. La Tabla 4.1 ofrece una breve descripción de los principales métodos usados para comprender las interacciones entre la gente y fauna silvestre.</p>
+
+            <p class="my-6 p-4 border border-dashed border-gray-300 rounded bg-white text-center text-gray-600 italic">
+                 Referencia a Tabla 4.1: Métodos para integrar atributos ecológicos y sociales.
+            </p>
+
+            <p>Así, por ejemplo, Gálvez y colaboradores (2018) utilizaron modelos de ocupación de múltiples temporadas para estimar la probabilidad de presencia y factores que afectan a una población de guiña (Leopardus guigna), integrando factores ecológicos y sociales. Goswami y colaboradores (2015) emplearon la incidencia de daños a cultivos por elefantes, así como factores ecológicos y sociales, para estimar la probabilidad estas interacciones negativas.</p>
+            <p>En muchas iniciativas para modelar sistemas socio-ecológicos complejos ha existido un sesgo hacia el componente ecológico debido a la falta de información sobre el componente social. La metodología de solapamiento espacial puede ayudar a resolver este problema al integrar gráficamente modelos separados para el componente ecológico y para el componente social. Estos modelos tienen la ventaja que utilizan la información disponible para el desarrollo de cada modelo, permitiendo evaluar el sesgo del modelo resultante, además de ser fáciles de entender y de usar para guiar la toma de decisiones en áreas específicas, dado su carácter gráfico y su fácil representación a través de mapas.</p>
+            <p>Ejemplos de uso del solapamiento espacial se encuentran en Márquez y Goldstein (2014), Behr y colaboradores (2017) y Carter y colaboradores (2016), quienes desarrollan modelos independientes para presencia y tolerancia, integrándolos en un único modelo de idoneidad de coexistencia presente o futura. Márquez y Goldstein (2014) diagnostican el paisaje de conflicto oso-gente sobreponiendo la probabilidad de ocupación del oso andino y los mapas de los componentes del riesgo de interacción (amenaza, vulnerabilidad de manejo, vulnerabilidad económica, daño y la actitud hacia la especie), estimados con base en encuestas a responsables de las fincas, bajo el supuesto que a mayor riesgo y peor actitud será menor la tolerancia.</p>
+            <p>Márquez y Goldstein (2014) recomiendan evaluar a diversas escalas (paisaje, localidad, sitio) las posibles acciones de manejo para conseguir la coexistencia, promoviendo la conservación de la especie, así como la reducción de las vulnerabilidades de manejo y económica, para disminuir el daño, en fincas priorizadas en cada localidad.</p>
+            <p>Behr y colaboradores (2017) también sobrepusieron la predicción de modelos independientes de la presencia del lobo y la tolerancia de la gente a su presencia Ellos utilizaron el mapa de disponibilidad de hábitat como un proxi de la ocurrencia del lobo, y un modelo de aceptación social espacialmente explícito, basado en información sociodemográfica y social georreferenciada, como un proxi de la tolerancia. Behr y colaboradores (2017) evaluaron los hábitats adecuados para el lobo y predijeron la expansión de su área de distribución a corto y mediano plazo.</p>
+            <p>Que modelo y metodología usar en cada caso de estudio o manejo de la coexistencia queda a discreción de los gestores, y dependerá tanto de la información (tipo, cantidad y calidad de datos) como de los recursos disponibles. En nuestra experiencia, el solapamiento de modelos independientes de las dimensiones ecológica (presencia) y social (tolerancia) ayuda a minimizar un posible sesgo hacia los datos ecológicos, permite incluir variables socioeconómicas que posiblemente no afectan el daño, pero son importantes para entender y gestionar la tolerancia y la coexistencia. Además, del solapamiento se puede hacer con modelos sencillos y de fácil interpretación basados en el conocimiento disponible o de fácil colecta, que pueden ser mejorados a medida que avanza la gestión adaptativa.</p>
+            <p>Para evaluar en el tiempo la coexistencia y los factores que la afectan (por ejemplo, las amenazas o las medidas de manejo) se requieren indicadores que permitan medir el estado de las poblaciones y los atributos de la coexistencia. Para ello, es crucial diferenciar entre los términos variable e indicador, siendo la variable el aspecto de interés, mientras que el indicador es la medida específica que se utiliza para evaluar esa variable.</p>
+            <p>Para evaluar la gestión de la coexistencia se requieren tres tipos de indicadores:</p>
+            <ol class="list-decimal list-inside mb-4 pl-4 space-y-1">
+                <li>Indicadores de proceso: Evalúan si se han desarrollado las actividades programadas durante la implementación del proyecto.</li>
+                <li>Indicadores de resultado: Miden la cantidad, calidad y eficiencia de las acciones llevadas a cabo y los cambios directos o logros alcanzados como resultado de las actividades realizadas, los productos o servicios entregados, así como en los efectos inmediatos que se derivan de ellos.</li>
+                <li>Indicadores de impacto: Miden los cambios en los atributos de interés, reflejando el éxito a largo plazo del proyecto. Estos indicadores permiten evaluar si se han alcanzado los objetivos del proyecto.</li>
+            </ol>
+            <p>Los indicadores dependerán de las problemática, actividades, resultados esperados y planificación particular de cada paisaje, localidad y sitio, por lo cual, aunque se pueden tener un grupo de indicadores para todo el paisaje de conservación, muchos indicadores serán únicos para ciertas localidades y sitios. El marco SMART (del inglés specific, measurable, achievable, relevant, time-bound, esto es, específico, medible, disponibles, relevante, limitado en el tiempo) es útil para la selección de buenos indicadores. Un indicador es especifico y medible cuando es capaz de proporcionar información detallada y precisa sobre el aspecto particular (la variable de interés) que se está evaluando y está definido en términos y unidades de medidas para evitar confusiones o interpretaciones incorrectas. Los indicadores deben ser factibles de medir en términos de recursos humanos, financieros y técnicos, deben ser fáciles de medir y entender, y tienen que reflejar el estado de las variables y sus cambios en el tiempo o como resultado de las intervenciones de manejo.</p>
+            <p>Una buena práctica es elaborar un cuadro de operacionalización de variables que defina los indicadores para cada dimensión de las variables de interés (Anexo 1). En nuestro caso los componentes del sistema (atributos de la coexistencia y factores que la afectan) son parte importante de las variables, Cada variable tiene una definición conceptual, que describe la esencia o características de la variable, y una definición operacional, que enuncia cual es el aspecto característico de esa variable que nos interesa. La variable puede tener una o varias dimensiones, que describe la característica de interés o el rasgo de esa variable que queremos medir. La correcta definición de las dimensiones permite la selección del indicador adecuado.</p>
+            <p>El cuadro de operacionalización de variables que se presenta en el Anexo 1, está basado en el trabajo de Márquez y Goldstein (2014) en donde las variables son la información sobre el encuestado, ubicación del predio, vulnerabilidad económica, vulnerabilidad de manejo, pérdidas, y tolerancia. Cada una de estas variables puede presentar múltiples dimensiones e indicadores dependiendo del interés del gestor/investigador. Es así, que en relación con la variable vulnerabilidad económica tenemos 3 dimensiones y 9 indicadores que nos permites evaluar lo que nos interesa en relación con cada uno de los predios. La Tabla 4.2 muestra ejemplos de indicadores utilizados por diferentes autores para medir variables asociadas al estado de la coexistencia, sus atributos y los factores que los impactan.</p>
+
+             <p class="my-6 p-4 border border-dashed border-gray-300 rounded bg-white text-center text-gray-600 italic">
+                 Referencia a Tabla 4.2: Ejemplos de indicadores usados para la evaluación de los atributos de la coexistencia.
+            </p>
+
+            <p>En muchos casos, los diferentes autores utilizan modelos (e.g., ocupación) que incluyen indicadores para las variables asociadas a los atributos hábitat, seguridad, valor y acuerdo, y de los factores que los impactan. Si existen indicadores ya en uso por la institucionalidad u otros actores que se consideren adecuados para evaluar el estado de algún atributo o factor, es eficaz continuar utilizándolos.</p>
+            <p>En caso de no disponer de datos o considerar que los indicadores disponibles no son adecuados para abordar el problema en cuestión, se recomienda desarrollar los indicadores apropiados según el modelo elegido.</p>
+
+            <h4>2. Evaluación de los actores y partes interesadas</h4>
+            <p>Cada territorio, localidad y sitio tiene su historia en cuanto a la ocupación, uso de la tierra y relaciones de poder, lo que determina el contexto social, político-administrativo y de gobernanza, lo cual afecta las relaciones y expectativas de distintos grupos sociales respecto al manejo de la presencia y coexistencia con grandes carnívoros (Pooley et al., 2017). Consecuentemente, es esencial evaluar e identificar a los actores, partes interesadas y responsables de la toma de decisiones e implementación de intervenciones en todas las escalas espaciales del sistema (Lecciones Aprendidas 4 y 6). En caso de que los actores, partes interesadas, y responsables de la toma de decisiones no estén bien definidos e identificados, tanto el análisis del problema como las intervenciones de gestión podrían enfocarse en personas e instituciones que no forman parte directa del problema y, como resultado, las intervenciones podrían no tener el impacto deseado.</p>
+            <p>Existen múltiples herramientas para identificar los distintos actores y partes interesadas, así como las posiciones y relaciones de poder. Por ejemplo, los mapas de relaciones (Fig. 4.2), incluyendo el mapa de conflicto y de autoridad y gobernanza, son usados para evaluar a los actores, partes interesadas, y sus relaciones (De Bortoli et al., 2019). El «mapa de conflicto» muestra de forma gráfica la calidad de las relaciones entre las partes (personas, instituciones y/o grupos de personas, instituciones); el «mapa de autoridad y gobernanza» muestra el nivel de cooperación y trabajo en red entre las diferentes partes interesadas institucionales (De Bortoli et al., 2019). Estos mapas se construyen utilizando múltiples fuentes de información y herramientas disponibles (por ejemplo, opinión de expertos, análisis de medios sociales, entrevistas), y son una herramienta clave para evaluar con quién es importante trabajar, y cuál es la problemática que plantea la coexistencia.</p>
+
+             <p class="my-6 p-4 border border-dashed border-gray-300 rounded bg-white text-center text-gray-600 italic">
+                 Referencia a Figura 4.2: Mapa de relaciones entre grupos de interés (Ejemplo de Grossmann et al., 2020).
+            </p>
+
+            <p>La falta de coordinación entre distintas autoridades nacionales, regionales y locales es un problema frecuente en la gestión de la coexistencia, lo que puede resultar en intervenciones ineficaces y pérdida de confianza de las personas afectadas. El mapa de autoridad y gobernanza muestra la coordinación entre las partes institucionales interesadas, información crucial para desarrollar intervenciones centradas en el atributo de acuerdo, concretamente en normas y factores que impactan la equidad. Además, la coordinación interinstitucional es importante para generar confianza, fundamental para desarrollar una actitud positiva hacia la especie y las instituciones que la conservan, ya que las personas sentirán que a través de las instituciones controlan el riesgo y sus implicaciones.</p>
+            <p>Si bien tanto el mapa de conflicto como el mapa de autoridad y gobernanza incluyen a los actores y grupos de interés, para ser más efectivos y eficientes en cuanto al uso de recursos, nuestra premisa de trabajo con respecto a la gestión de la coexistencia es que las intervenciones estén dirigidas a los actores (personas y grandes carnívoros que coocurren e interactúan). Eventualmente buscaremos impactar a otros grupos de interés, si su rol es importante en un escenario y momento particular para la coexistencia entre la gente y los carnívoros.</p>
+            <p>Una vez identificadas las partes interesadas, es importante evaluar la narrativa con respecto a la coexistencia de cada actor y parte interesada. La narrativa es una excelente aproximación a los valores y actitudes de los interesados. Una herramienta útil para esto es el método de «la cebolla» (Figura 4.3), que permite un análisis en profundidad de las posiciones públicas, intereses y necesidades de los actores y partes interesadas (De Bortoli et al., 2019). La capa exterior presenta las posiciones públicas de los diferentes actores y partes interesadas que, en muchos casos, son exageradas. La capa intermedia es una representación de los intereses o de lo que espera conseguir. La capa interna es una representación de las necesidades que cada parte exige que se satisfagan. La herramienta permite identificar diferencias internas y conflictos, especialmente útiles cuando existe un marco común de intereses y valores generales sobre igualdad y justicia. Se recomienda realizar el análisis de «la cebolla» para todos los actores humanos y partes interesadas representadas en el mapa de conflictos.</p>
+
+             <p class="my-6 p-4 border border-dashed border-gray-300 rounded bg-white text-center text-gray-600 italic">
+                 Referencia a Figura 4.3: Esquema de "la cebolla" (Posiciones, Intereses, Necesidades).
+            </p>
+
+            <h4>3. Determinación del paisaje de conservación, paisaje de coexistencia y escenario de conservación</h4>
+            <p>La presencia tanto de los carnívoros como de la gente son una condición sine qua non para la coexistencia. Tanto la distribución y abundancia actual de las poblaciones, la cobertura y uso de la tierra, como el marco institucional, son determinantes para evaluar el paisaje de conservación, el paisaje de coexistencia y el escenario de conservación.</p>
+            <p>La disponibilidad, estructura y composición del hábitat para los carnívoros, así como el uso actual y proyectado de la tierra, definen el paisaje de conservación, es decir, el área donde la sociedad planifica la conservación de la especie de interés. Al interior de este paisaje, el solapamiento, tanto presente como futuro, de la presencia de la especie carnívora con las actividades humanas determina el paisaje de coexistencia. Por último, el escenario de conservación está dado por la evaluación del estado actual de la población en relación con lo considerado como una población viable de la especie. Tanto el paisaje de conservación, el paisaje de coexistencia como el escenario de conservación constituyen el marco de trabajo para la etapa de diseño y planificación en la gestión de la coexistencia.</p>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">DISEÑO y PLANIFICACIÓN</h3>
+            <p>La etapa de diseño y planificación del ciclo de gestión adaptativa se inicia una vez que se cuenta con la información derivada del análisis del problema, incluyendo el estado de los atributos de coexistencia, los factores que los afectan, y el contexto político, administrativo y social. Además, se deben haber definido el paisaje de conservación, el paisaje de coexistencia y el escenario de conservación. Generalmente, la unidad de muestreo para evaluar el estado de los factores que impactan los atributos de coexistencia (hábitat, seguridad, valor y acuerdo) es el sitio (unidad de producción, área de acción de los individuos) y/o los individuos (dueños de predios, personas afectadas). El análisis del estado de los atributos de la coexistencia y los factores que los afectan aporta información a escala de sitio (individuo), localidad (deme) y paisaje (población).</p>
+            <p>Como se señaló al inicio del capítulo, la gestión de la coexistencia es un proceso de toma de decisiones sobre QUÉ hacer con los factores que están impactando la coexistencia, DÓNDE actuar, CÓMO intervenir (considerando las intervenciones más eficaces), y CUÁNDO intervenir (escogiendo el momento adecuado). La etapa de diseño es el corazón de este proceso de toma de decisiones y se desarrolla a través de cinco pasos fundamentales:</p>
+            <ol class="list-decimal list-inside mb-4 pl-4 space-y-1">
+                <li>Identificación de los objetivos de gestión (QUÉ)</li>
+                <li>Priorización de los objetivos de gestión (QUÉ y DÓNDE)</li>
+                <li>Evaluación de las posibles intervenciones (QUE, DÓNDE y CÓMO)</li>
+                <li>Selección de las intervenciones (QUÉ, DÓNDE y CÓMO)</li>
+                <li>Planificación de su aplicación (DÓNDE, CÓMO y CUÁNDO)</li>
+            </ol>
+            <p>Dado que la coexistencia es el resultado de un complejo sistema socio-ecológico que opera a múltiples escalas espaciales, la toma de decisiones, así como el diseño y planificación, deben considerar cada una de estas escalas. El diseño y planificación deben desarrollarse de manera progresiva, comenzando por evaluar el paisaje en su totalidad (para la conservación de una población viable de la especie), seguido por la evaluación de localidades clave dentro del paisaje y, posteriormente, los sitios prioritarios dentro de esas localidades. Así, el diseño y planificación son procesos multidimensionales e iterativos que transitan de una escala espacial a otra, dependiendo del objetivo de gestión y del proceso de evaluación de prioridades, normas y capacidades para la ejecución de las intervenciones.</p>
+            <p>Un paisaje de coexistencia puede estar constituido por numerosos tipos y tamaños de localidades y unidades de gestión (aldeas, pueblos, ciudades, municipios, unidades productivas, áreas protegidas, resguardos, etc.), cada una con sus particularidades en cuanto a gobernanza, recursos y factores que inciden en la coexistencia. Dado que cada paisaje, localidad y sitio tiene un conjunto único de problemas y disponibilidad de información sobre los factores que afectan al sistema, cada uno tendrá una red de objetivos de gestión particular (los cambio que queremos conseguir en el estado de coexistencia, sus diferentes atributos y los factores que afectan a la coexistencia, detectados en el análisis del problema; Lección Aprendida 3).</p>
+            <p>Tal como se ha señalado en capítulos anteriores, el objetivo último de nuestro interés en la coexistencia entre los grandes carnívoros y la gente es la conservación de poblaciones viables de grandes carnívoros. La conservación de estas poblaciones requiere, idealmente, que las mismas tengan un tamaño que les permita ser resilientes ante variaciones estocásticas naturales de su abundancia, que estén poco o nada sometidas a mortalidad inducida por la gente y que la población humana no perciba riesgos de daño a sus propiedades y vidas debido a la presencia de grandes carnívoros (Behr et al., 2017). Dado el tamaño de las áreas de acción de los grandes carnívoros, el área requerida para la conservación de una población viable (cientos de individuos) está en el orden de miles de kilómetros cuadrados (escala de paisaje). Por lo tanto, la evaluación de los objetivos de gestión se realizará primero a escala de paisaje, para luego evaluar los objetivos de gestión en las localidades priorizadas y finalmente en los sitios priorizados donde se llevará a cabo el manejo.</p>
+            <p>Dado que la presencia es condición sine qua non para la conservación y coexistencia, comenzaremos la determinación de los objetivos de gestión a escala de paisaje con los atributos hábitat y seguridad, para luego continuar con los atributos valor y acuerdo, que condicionan la tolerancia y sostenibilidad de la presencia en el tiempo.</p>
+
+            <h4>Presencia</h4>
+            <p>La presencia, como componente ecológico de la coexistencia, se enfoca en dos atributos: hábitat (abundancia y distribución de las especies, y tamaño, estructura y composición del hábitat) y seguridad (pérdidas de bienes o vidas humanas causadas por los carnívoros, o mortalidad de carnívoros por causas humanas). En cuanto al hábitat, la información sobre el estado actual de las poblaciones (humanos y carnívoros), así como sobre el tamaño, composición y estructura de los hábitats, cobertura y uso de la tierra, nos permite determinar los objetivos de gestión para el atributo hábitat a escala de paisaje, localidad y sitio.</p>
+            <p>Los objetivos de manejo del atributo hábitat a escala de paisaje están enfocados en reducir las posibles amenazas para el mantenimiento o cambio del tamaño, estructura y composición del paisaje que pueda albergar una población viable de la especie y/o en reducir las amenazas que permitan el aumento o mantenimiento de la abundancia y distribución del carnívoro, asegurando así una población viable de la especie de interés.</p>
+            <p>Ejemplos de objetivos de manejo a escala de paisaje considerando el atributo hábitat:</p>
+            <blockquote class="bg-white">
+                <ol class="list-decimal list-inside space-y-1 pl-0">
+                    <li>Mantener la abundancia del carnívoro de interés dentro de un rango de ±10% respecto a la abundancia actual (densidad, ocupación) en el paisaje de conservación. Esto en caso de que la abundancia actual ya se considere una población viable (escenario de mantenimiento).</li>
+                    <li>Aumentar la abundancia (número de individuos, densidad, ocupación) del carnívoro de interés en el paisaje de conservación (escenario de expansión o reintroducción).</li>
+                    <li>Mantener los corredores y áreas silvestres remanentes en el paisaje para evitar la fragmentación o reducción del paisaje de conservación, que pueda poner en peligro la sostenibilidad de la población (escenario de mantenimiento, reintroducción).</li>
+                    <li>Mejorar y/o expandir corredores y áreas silvestres que son hábitat de la especie y contribuyan al mantenimiento y expansión del tamaño, estructura y composición del hábitat de la especie dentro del paisaje de conservación.</li>
+                </ol>
+            </blockquote>
+            <p>En cuanto al atributo seguridad, la información sobre el estado actual de los daños y riesgos (vulnerabilidad de manejo, vulnerabilidad económica), así como sobre la mortalidad de carnívoros inducida por humanos, nos permite determinar los objetivos de gestión para este atributo a escala de paisaje. El objetivo del atributo seguridad es reducir tanto los daños como el riesgo de manera que no afecten el bienestar de las personas ni pongan en riesgo la viabilidad de la población de carnívoros.</p>
+            <p>Ejemplos de objetivos de gestión a escala de paisaje para el atributo seguridad:</p>
+             <blockquote class="bg-white">
+                <ol class="list-decimal list-inside space-y-1 pl-0">
+                    <li>Reducir los daños ocasionados por los grandes mamíferos a bienes o personas, para reducir pérdidas patrimoniales o vidas humanas.</li>
+                    <li>Reducir el riesgo de interacciones negativas entre mamíferos y la gente, mediante la reducción de la vulnerabilidad de las personas a la presencia de carnívoros o la vulnerabilidad de los carnívoros a la presencia de humanos.</li>
+                </ol>
+            </blockquote>
+
+            <h4>Tolerancia</h4>
+            <p>La tolerancia, componente psico-social de la coexistencia, condiciona la sostenibilidad de la presencia de la especie en el tiempo. La tolerancia se enfoca en 2 atributos: valor y acuerdo.</p>
+            <p>En relación con el atributo valor a escala de paisaje, los factores que lo impactan son la actitud de los actores y partes interesadas hacia la especie y hacia la coexistencia con ella, así como el conocimiento de estos actores sobre la especie y la coexistencia. El objetivo es que la gente en el paisaje tenga una actitud positiva tanto hacia la especie como hacia la coexistencia con la misma. Además, se busca que la gente presente en el paisaje tenga conocimiento sobre la especie y sobre cómo coexistir con ella. Cualquiera sea el escenario de conservación (mantenimiento, recuperación, reintroducción) se mantienen los mismos objetivos en cuanto al atributo valor. Los objetivos de manejo relacionados con el atributo valor a escala de paisaje estarán determinados por el estado actual de los indicadores relacionados con las variables de interés de los factores actitud y conocimiento.</p>
+            <p>Ejemplos de objetivos de gestión a escala de paisaje para el atributo valor:</p>
+             <blockquote class="bg-white">
+                <ol class="list-decimal list-inside space-y-1 pl-0">
+                    <li>Mantener o aumentar la actitud positiva hacia la especie y su presencia en el paisaje.</li>
+                    <li>Mantener o aumentar el conocimiento sobre la especie y la coexistencia con ella.</li>
+                </ol>
+            </blockquote>
+            <p>El atributo acuerdo es impactado por las normas y la equidad. Existen normas formales e informales, así como la gobernanza asociada al paisaje, sus localidades y sitios, que impactan tanto directa como indirectamente la tolerancia y coexistencia con los grandes carnívoros. Las acciones de la gente y las instituciones, así como las relaciones entre instituciones y gente, están condicionadas por el sistema de gobernanza, así como por el marco legal vigente y las normas presentes en el paisaje. Además, las intervenciones están condicionadas por el marco legal de protección vigente. Sin embargo, es posible que una especie esté protegida pero la institucionalidad no tenga los recursos a mecanismos requeridos para implementar la norma.</p>
+            <p>En relación con la equidad, el aspecto más comúnmente discutido es la equidad de distribución, relacionada con la distribución de los costos y beneficios de la coexistencia con los grandes carnívoros. Sin embargo, también son importantes al considerar los objetivos de gestión a escala de paisaje, la equidad de procedimiento y la equidad de reconocimiento.</p>
+            <p>Ejemplos de objetivos de gestión a escala de paisaje para el atributo acuerdo:</p>
+             <blockquote class="bg-white">
+                <ol class="list-decimal list-inside space-y-1 pl-0">
+                    <li>Impulsar legislación para la protección de especies en peligro de extinción.</li>
+                    <li>Impulsar el establecimiento de mecanismos de compensación de daños causados por especies de carnívoros silvestres, enmarcados en acuerdos de voluntades.</li>
+                    <li>Incrementar el sentimiento de equidad en los propietarios de predios con presencia de grandes carnívoros, enmarcados en acciones dentro de los acuerdos de conservación.</li>
+                </ol>
+            </blockquote>
+            <p>Existen diversas herramientas para evaluar el estado de los componentes de la coexistencia, así como sus atributos. Márquez & Goldstein (2014) utilizaron una metodología de diagnóstico del sistema oso-gente, tanto para evaluar los distintos componentes del sistema, así como para priorizar sitios a intervenir, basada en la representación espacial tanto del riesgo (daño, amenaza y vulnerabilidad) como de la tolerancia (actitud y norma) a escala de sitio. Para medir el daño, se usó el daño percibido por los pobladores locales, bajo el supuesto que los pobladores actúan con base en lo que creen y no en base a lo real y demostrado. La amenaza se calculó mediante la sobreposición de la presencia/uso de hábitat del oso andino con las áreas de cultivos de maíz y ganadería bovina. Para evaluar la vulnerabilidad se propusieron dos indicadores: vulnerabilidad económica (la importancia de la pérdida considerando su impacto en el patrimonio de la familia afectada) y vulnerabilidad de manejo (probabilidad de que se produzcan daños debido a la manera como se realizan las actividades productivas y/o humanas). La actitud se midió evaluando la actitud de las personas a la presencia del oso andino cerca vs lejos de la finca, así como la confianza sobre las instituciones que están a cargo del manejo de las interacciones y el oso andino. Para calcular la norma se preguntó sobre el conocimiento de ley que protege al oso (norma formal) y la actitud de nuestra familia, amigos y vecinos sobre la presencia del oso (proxi a la norma social). La prioridad de intervención es en los lugares (propiedades, granjas) y grupos familiares con más daños, mayor amenaza, y mayor vulnerabilidad económica. La evaluación de todas las variables se usó para establecer las posibles intervenciones de manejo necesarias (con base en los objetivos de gestión priorizados). Otro producto fue la generación de un mapa de localidades donde era más eficiente y efectivo intervenir.</p>
+            <p>Otros autores utilizan modelos de riesgo o modelos dinámicos de ocupación para determinar la probabilidad de interacción entre carnívoros y personas (Treves et al., 2004; Goswany et al., 2015; Miller, 2015; Miller et al., 2015; Rostro-García et al., 2016; Gastineau et al., 2019; McInturff et al., 2021; Bautista et al., 2021). Todas las herramientas mencionadas buscan la identificación de sitios de alto riesgo y de hogares más vulnerables para la implementación de intervenciones tanto de adaptación como de mitigación.</p>
+
+            <h4>Priorización de los Objetivos de Gestión</h4>
+            <p>La identificación de los objetivos de gestión a diversas escalas (paisaje, localidad y sitio) genera una amplia gama de metas enfocadas en los atributos de hábitat, seguridad, valor y acuerdo. Sin embargo, debido a limitaciones financieras, humanas, logísticas, legales y de gobernanza, es esencial priorizar estos objetivos considerando aquellos que tienen un impacto significativo en la coexistencia entre grandes carnívoros y comunidades humanas. Esta priorización debe tener en cuenta el contexto legal, político y social, así como las capacidades humanas y financieras disponibles.</p>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador de Priorización Conceptual</h4>
+                 <p class="instructional-text text-center mb-4">Ajusta la urgencia relativa para la conservación del carnívoro y para el bienestar humano para ver cómo podría cambiar el enfoque de priorización.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                     <div>
+                         <label for="priority-carnivore-slider">Urgencia: Viabilidad del Carnívoro</label>
+                         <input type="range" id="priority-carnivore-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                     <div>
+                         <label for="priority-human-slider">Urgencia: Bienestar/Seguridad Humana</label>
+                         <input type="range" id="priority-human-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                 </div>
+                 <div id="priority-output" class="output-box">Ajusta los sliders para ver la sugerencia de priorización.</div>
+             </div>
+
+            <p>En la priorización de los objetivos de gestión, la presencia de las especies es una condición indispensable para la coexistencia. Así, desde un enfoque de conservación, la prioridad siempre será mantener la presencia de los carnívoros, para lo cual es necesario manejar tanto el atributo hábitat como el atributo seguridad. Es imprescindible implementar intervenciones que impacten las principales amenazas a las poblaciones de carnívoros que incluyen la reducción, deterioro y fragmentación del hábitat. Además, cuando existen problemas en el atributo seguridad, como daños a la propiedad, pérdida de vidas humanas o mortalidad de carnívoros inducida por humanos, o una alta probabilidad de que esto ocurra, es necesario implementar intervenciones que minimicen el impacto de estos daños y reduzcan el riesgo de futuras interacciones negativas. La seguridad afecta directamente el componente presencia, pero también tiene un gran efecto sobre el componente tolerancia, afectando el atributo valor, disminuyendo la tolerancia de las comunidades hacia los carnívoros.</p>
+            <p>Dado que en los paisajes de coexistencia el estado de los atributos hábitat y seguridad suelen variar en el espacio, la gestión de la presencia inicia por priorizar localidades y sitios donde sea más urgente manejar los factores que afectan el hábitat y la abundancia de carnívoros, y la incidencia de interacciones negativas. Al combinar la gestión de la seguridad con la del hábitat en las diversas escalas, se potencia el impacto de los objetivos del componente presencia. Estos objetivos de gestión se enfocan principalmente en mantener/aumentar la presencia de los carnívoros en las localidades donde queremos que estén presentes, al tiempo que se remedian los daños y previenen futuras interacciones negativas. En ausencia de problemas de seguridad, la priorización se centra en la integridad del hábitat y la efectividad para conservar una población viable de la especie.</p>
+            <p>En las áreas de coexistencia es fundamental gestionar los factores que impactan el componente tolerancia y sus atributos. La tolerancia, esto es, la disposición de las personas a cohabitar con los carnívoros condiciona la sostenibilidad de la coexistencia entre personas y carnívoros, y, por ende, la conservación a largo plazo de estos últimos. Las leyes, normas, valores de la comunidad, así como la gobernanza y capacidades disponibles, son clave para evaluar qué acciones son viables en un momento y sitio determinados.</p>
+
+            <h4>Evaluación de posibles estrategias e intervenciones</h4>
+            <p>Una vez identificados y priorizados los objetivos de gestión a las diversas escalas, es necesario evaluar las posibles estrategias e intervenciones para manejar la coexistencia. Para cada objetivo de gestión, pueden existir múltiples estrategias e intervenciones que podrían tener impacto a distintas escalas (por ejemplo, establecimiento de áreas protegidas, cambio o reubicación de actividades productiva, patrullajes de control y vigilancia, mejora de las cercas y aumento de la frecuencia de vigilancia de las actividades productivas, manejo de carcasas). Las posibles estrategias e intervenciones para gestionar la coexistencia, basadas en los objetivos de gestión identificados para cada paisaje, localidad y sitio, dependen de su importancia relativa para lograr la coexistencia, del marco legal y normativo vigente, y de la disponibilidad de recursos. Una característica típica de los sistemas socio-ecológicos complejos como la coexistencia es que los distintos actores pueden tener objetivos de gestión en disputa. Por ejemplo, el objetivo de la gente podría ser aumentar el área de cultivo o incrementar el área de asentamientos urbanos, o remover los carnívoros de las áreas donde están sus actividades productivas, mientras que el objetivo de las organizaciones gubernamentales y de conservación podría ser mantener el área silvestre y la conectividad para aumentar la presencia de los carnívoros. Las intervenciones más eficientes son aquellas que satisfacen en conjunto los objetivos de los distintos actores.</p>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Evaluador Conceptual de Intervenciones</h4>
+                 <p class="instructional-text text-center mb-4">Ajusta los sliders para evaluar conceptualmente la viabilidad de una intervención hipotética.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                     <div>
+                         <label for="interv-effect-slider">Efectividad (Evidencia):</label>
+                         <input type="range" id="interv-effect-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                     <div>
+                         <label for="interv-cost-slider">Costo / Recursos:</label>
+                         <input type="range" id="interv-cost-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Alto</span><span>Bajo</span></div>
+                     </div>
+                     <div>
+                         <label for="interv-accept-slider">Aceptación Social:</label>
+                         <input type="range" id="interv-accept-slider" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                 </div>
+                 <label class="text-sm font-medium text-center block mb-1">Viabilidad Conceptual de la Intervención:</label>
+                 <div class="progress-bar-container mx-auto max-w-md">
+                     <div id="intervention-feasibility-bar" class="progress-bar-fill" style="width: 50%;"></div>
+                 </div>
+                 <div class="flex justify-between text-xs mt-1 max-w-md mx-auto"><span>Baja</span><span>Alta</span></div>
+                 <div id="intervention-output" class="output-box">Viabilidad: Media</div>
+             </div>
+
+            <p>Independientemente de la escala (paisaje, localidad o sitio), la prioridad de gestión se centra en los daños a las personas, enfocando las estrategias e intervenciones en mitigar los daños para reducir el impacto negativo sobre el bienestar de las personas y su seguridad personal y financiera, especialmente en localidades y sitios clave para la gestión del hábitat y la integridad del paisaje de conservación. Además, es necesario evitar nuevas pérdidas, reduciendo la vulnerabilidad de las personas, sus actividades y productos a la presencia de grandes carnívoros. Esto es lo que Madden & McQueen (2014) describen como «nivel 1» en su modelo de conflicto entre seres humanos y fauna silvestre. Los objetivos de gestión relacionados con la seguridad suelen poder resolverse con el desarrollo de soluciones prácticas aceptadas por los actores (Zimmermann et al., 2020). Una vez la gestión de la seguridad de la gente está en curso y se cuentan con recursos financieros y humanos, se puede abordar la seguridad asociada a la especie de interés, el valor y el acuerdo.</p>
+            <p>Los daños a las personas o a sus propiedades repercuten en su bienestar, modificando su actitud y conducta ante la presencia de la especie, y posiblemente incentivando acciones de retaliación por parte de la gente y ocasionando un incremento en la mortalidad de carnívoros. Es importante, como estrategia, mitigar los efectos de los daños sobre el bienestar de las personas. Consideramos como mitigación la compensación directa de las pérdidas resultantes de la interacción entre las personas y los carnívoros una vez que se ha producido la pérdida, o la compensación indirecta, por ejemplo, el pago por servicios ecosistémicos a las personas que coexisten con los carnívoros como compensación por las posibles interacciones actuales o futuras. Las intervenciones para mitigar el daño están condicionadas por el marco normativo (formal e informal) del paisaje, localidad o sitio de interés en relación con la especie y su gestión. No siempre existe un marco legal que permita la aplicación de medidas de mitigación del daño.</p>
+            <p>Las intervenciones de compensación de daños son costosas y no previenen ni reducen los daños. Para que la compensación sea una estrategia sostenible, los daños deben ser pocos, no importantes y no recurrentes, lo que requiere la reducción de la vulnerabilidad de las actividades humanas a la presencia de grandes carnívoros (Treves et al., 2009; Gross et al., 2022). Para evitar que las compensaciones por daños causados por grandes carnívoros se conviertan en derechos adquiridos sin más requisitos, estas deberían estar condicionadas al cumplimiento de las leyes/acuerdos de conservación y a la correcta gestión de las actividades vulnerables (Lección Aprendida 8). Las reclamaciones por daños deben evaluarse de forma científica, justa y objetiva, y la indemnización debe reflejar el valor justo de mercado de la pérdida de propiedad (Wilson, 2016).</p>
+            <p>En cuanto a la prevención de daños futuros, la estrategia de gestión e intervenciones se centra en disminuir el riesgo de interacciones negativas, ya sea impactando la amenaza, es decir, reduciendo la frecuencia y la intensidad de los encuentros, o reduciendo la vulnerabilidad de las actividades humanas a la presencia de grandes carnívoros, ya sea mejorando o cambiando la gestión de la actividad, reduciendo la dependencia sobre la actividad o cambiando la actividad. La reducción de la amenaza (probabilidad de interacción) puede lograrse gestionando la presencia y las actividades de las personas (gestión del comportamiento humano) o gestionando la presencia y las actividades de los grandes carnívoros (gestión del comportamiento de los carnívoros). Existen muchas estrategias e intervenciones enfocadas en la conducta de la gente que se pueden utilizar para reducir la amenaza. Por ejemplo, se puede restringir el tipo y frecuencia de actividades humanas permitidas en una localidad o sitio mediante la planificación del uso del suelo basada en el paisaje de conservación y coexistencia. Asimismo, dentro del paisaje de coexistencia, se puede reducir la vulnerabilidad de las actividades de la gente a la presencia de carnívoros mediante la gestión de los atrayentes, definidos como actividades humanas, comportamientos y subproductos de actividades que anuncian su presencia y/o son fuentes de alimento fácilmente disponibles, lo que puede aumentar la habituación de los carnívoros al recurso alimenticio y fomentar su uso.</p>
+            <p>Con respecto a la presencia y actividades de los grandes carnívoros en localidades donde su presencia no es recomendable, existen dos tipos principales de estrategias de control: letal y no letal (Can et al., 2014). Considerando la estrategia de control letal, las principales intervenciones son la eliminación de individuos problemáticos, o la gestión de la abundancia de la población. En el pasado, la eliminación de individuos problemáticos de carnívoros que se identificaban como causantes de daños a propiedades o a la gente era la estrategia más utilizada, considerando que la conservación de los grandes carnívoros no era importante en aquel contexto. Sin embargo, en la actualidad, la eliminación de individuos de grandes carnívoros no es una opción muy popular o, en algunos casos legal. La eliminación de individuos problemáticos puede realizarse mediante la translocación o la captura de los individuos. Sin embargo, la captura y translocación de grandes carnívoros requiere una gran cantidad de recursos humanos, técnicos, de infraestructura y financieros que muchos casos no están disponibles. Otras estrategias no letales se centran en disminuir el tipo y la frecuencia de las actividades de los grandes carnívoros en los lugares con presencia humana mediante distintos tipos de repelentes o condicionamientos aversivos.</p>
+            <p>La reducción del riesgo de daño a los carnívoros mediante la aplicación de medidas de control y vigilancia, y/o la aplicación de la ley, reducirá el daño, pero probablemente no afectará a las causas primordiales de los comportamientos de rechazo a la presencia de grandes carnívoros relacionadas con los atributos valor y acuerdo. Las causas de los comportamientos de rechazo hacia los grandes carnívoros pueden clasificarse en 3 tipos principales: interacciones negativas con los carnívoros, valor negativo de la especie, o el conflicto sobre su presencia. La primera causa arriba mencionada, las interacciones negativas con los carnívoros, forma parte de la dimensión ecológica y se discutió como la prioridad de intervención a la hora de gestionar la coexistencia con los grandes carnívoros. Sin embargo, el valor negativo de la especie y el acuerdo sobre su presencia son el núcleo de la dimensión humana de la coexistencia. Se tienen que desarrollar e implementar estrategias para abordar los factores identificados en el análisis, que están impactando negativamente los atributos de valor y acuerdo para reducir las causas primordiales de la no tolerancia y del daño a la población de carnívoros. Los factores que impactan a los atributos de valor y acuerdo son lo que Madden & MacQueen (2014) describen como conflictos de «nivel 2» (subyacentes) y de «nivel 3» (basados en la identidad). Los conflictos de «nivel 2» se relacionan con la insatisfacción de la gente con el tratamiento de sus problemas, relacionados principalmente con la equidad distributiva y la equidad procedimental. En muchos casos, los actores tienen o perciben tener una mezcla de problemas de equidad, por ejemplo, muchos campesinos que interactúan con los osos andinos son en muchos casos pobres (equidad contextual) sufriendo la mayor parte de las pérdidas (equidad distributiva), sin ningún papel en la toma de decisiones (equidad procedimental). El «nivel 3» de conflicto es lo que Madden & MacQueen (2014) denominan conflicto «identitario», relacionado con valores e identidades sociales e individuales que se oponen a la coexistencia con la especie de gran carnívoro.</p>
+            <p>Si no existen daños, las estrategias e intervenciones enfocadas en la dimensión ecológica de la coexistencia es preventiva, centrada en aumentar la seguridad (reducir el riesgo) y mantener o mejorar el habitat. Dependiendo del estado de la tolerancia, las estrategia e intervenciones se enfocan en mantener o incrementar tanto el valor como el acuerdo.</p>
+            <p>Independientemente de los distintos tipos de intervenciones que se requieran en un paisaje, localidad o sitio, hay dos factores contextuales que limitan cuantas y cuales intervenciones podrían llevarse a cabo: la disponibilidad de recursos y la aceptación social. En muchos proyectos, el factor limitante es la disponibilidad de recursos (financieros o humanos), lo que limita el número y tipo de intervenciones dependiendo del costo de estas. Sin embargo, la última palabra sobre lo que podría hacerse en un sitio o unidad de gestión la tiene el responsable de la toma de decisiones (propietario o gestor) (Lección Aprendida 9). Siempre es recomendable disponer de un conjunto de posibles intervenciones para cualquier estrategia de gestión, incluyendo intervenciones que el responsable de la toma de decisiones considera adecuadas para alcanzar sus objetivos, de modo que la intervención sea negociable con el responsable de la toma de decisiones sin abandonar la estrategia. Por ejemplo, los profesionales del área social tienen herramientas para determinar las preferencias de manejo del responsable del área. Entre estas, una herramienta usada en el manejo de la coexistencia es el mapa hablado, donde el responsable del predio, plasma el estado actual del área, así como el estado final y los cambios que quisiera realizar si tuviese los recursos y capacidades necesarias. Estas herramientas no solo ayudan a determinar las preferencias de la persona responsable, sino que ayudan a la selección de las intervenciones, pues en muchos casos las intervenciones que quiere llevar a cabo el responsable son compatibles con los cambios en el estado de los componentes del paisaje de coexistencia que se requieren para su gestión.</p>
+            <p>Siempre es recomendable disponer de tiempo adicional para iterar el proceso de toma de decisiones de la intervención en caso de dificultades o negativa del responsable de la toma de decisiones (propietario de la finca, director del área protegida, etc.) a aplicar una estrategia o intervención especifica. En esta fase del diseño, podemos reevaluar y ajustar nuestros objetivos iniciales de gestión a las intervenciones que podemos realizar teniendo en cuenta los recursos disponibles y la aceptabilidad social.</p>
+            <p>Diferentes estrategias e intervenciones para gestionar la coexistencia se abordarán y discutirán en el Capítulo 5. Sin embargo, la lista no es exhaustiva y puede haber diferentes alternativas a la gestión de la coexistencia, por lo que animamos a la evaluación de diferentes y nuevas opciones.</p>
+            <p>El último paso en la fase de planificación/diseño para el manejo de la coexistencia es el plan de trabajo. El plan de trabajo debe ser una hoja de ruta concertada con todos los actores y partes involucradas del paso a paso para la ejecución de todas las intervenciones. Cada intervención debe ser cuidadosamente diseñada, especificando claramente las actividades necesarias para su implementación, los recursos y el presupuesto requeridos, y el cronograma propuesto. Así mismo, es necesario determinar la secuencia de realización de las intervenciones, sobre todo cuando una actividad es fundamental para realizar otras actividades, por lo cual el retraso en una actividad afectaría la realización de las otras. Es fundamental que el plan de trabajo sea desarrollado con la participación de todas las partes interesadas, incluyendo agencias gubernamentales, organizaciones no gubernamentales, comunidades locales, individuos y expertos en conservación. Esto garantizará que se tengan en cuenta todas las perspectivas relevantes y se generen soluciones que sean socialmente aceptables, culturalmente apropiadas y científicamente sólidas (Lección Aprendida 9). Se debe identificar claramente las instituciones o personas responsables de llevar a cabo cada actividad, así como los mecanismos de coordinación y comunicación entre todas las partes involucradas</p>
+            <p>La cadena de resultados es una herramienta ampliamente usada y muy efectiva para la identificación de todos los pasos y actividades necesarias para la implementación de las intervenciones, que además nos permite evaluar la cronología más eficiente para la implementación de cada una de las actividades, así como el desarrollo de indicadores de progreso para las distintas intervenciones.</p>
+            <p>Un elemento importante del ciclo de gestión adaptativa que tiene que ser abordado en la etapa de diseño y planificación es el monitoreo. El monitoreo permite tener información de manera continua de los factores que impactan los atributos de la coexistencia y evaluar el éxito de las intervenciones. Esta información se utilizará para refinar las estrategias existentes, adaptar las intervenciones futuras y cerrar las brechas de conocimiento identificadas.</p>
+            <p>Se deben establecer sistemas de monitoreo continuo para evaluar el progreso y el impacto de las intervenciones. Esto implica la recopilación de datos sobre indicadores clave de proceso y resultado, y su análisis regular para identificar acciones que requieren atención, por ejemplo, para su modificación. Basándose en la información recopilada durante el monitoreo, se deben tomar decisiones informadas sobre posibles ajustes en las estrategias y acciones. Esto puede implicar la modificación de actividades existentes, la incorporación de nuevas intervenciones o el cambio en la asignación de recursos.</p>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">IMPLEMENTACIÓN</h3>
+            <p>La fase de implementación en el manejo de la coexistencia representa la etapa en que las acciones diseñadas durante la planificación se convierten en realidad. Este paso es esencial para materializar los objetivos de gestión, asegurando que las intervenciones se lleven a cabo de manera eficiente y con un enfoque adaptativo que permita responder a los desafíos propios de los sistemas socio-ecológicos complejos. Durante esta etapa, las intervenciones se ejecutan con base en un plan de trabajo estructurado que detalla las actividades específicas, los recursos asignados, los responsables y los cronogramas establecidos. La implementación debe ser ser meticulosa, adaptándose a las particularidades de cada escala, desde el paisaje hasta los sitios prioritarios. A nivel de paisaje, las acciones pueden enfocarse en mantener corredores ecológicos y reducir amenazas de fragmentación, mientras que, en localidades específicas, la atención se centra en mitigar riesgos y fomentar actitudes positivas hacia los carnívoros. En los sitios seleccionados, las intervenciones son aún más específicas, diseñadas para abordar problemas concretos y adaptadas a las características únicas de la finca o área.</p>
+            <p>La gestión eficiente de los recursos es un pilar fundamental para la implementación. Esto incluye no solo garantizar la disponibilidad de fondos, equipos y herramientas, sino también asegurar que los equipos humanos estén capacitados para enfrentar las demandas del proyecto. La planificación y supervisión continua son esenciales para evitar desequilibrios o retrasos que puedan comprometer el éxito de las intervenciones. Así, durante esta fase, se asignan y se hace seguimiento al uso de los recursos necesarios para llevar a cabo las actividades planificadas. Esto puede incluir personal, equipos, financiamiento y cualquier otro recurso necesario para la implementación exitosa del plan. Al mismo tiempo, la comunicación constante y transparente entre todos los actores involucrados, desde comunidades locales hasta organismos gubernamentales y no gubernamentales, fortalece la coordinación y permite resolver conflictos de manera oportuna. Esta interacción también fomenta la confianza y refuerza el compromiso de las partes interesadas hacia los objetivos del manejo adaptativo.</p>
+            <p>La implementación requiere un enfoque flexible y adaptativo, reconociendo que los sistemas en los que se interviene son dinámicos y que pueden surgir desafíos imprevistos. Cambios en las condiciones sociales, políticas o ambientales pueden demandar ajustes rápidos en las estrategias. Por ello, es crucial establecer mecanismos que permitan evaluar continuamente el progreso, identificar desviaciones y modificar las acciones según sea necesario. Durante esta fase, el monitoreo desempeña un papel crítico, no solo como herramienta para medir avances, sino también como un mecanismo para recopilar datos que alimenten las etapas posteriores del ciclo de manejo.</p>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">EVALUACIÓN</h3>
+            <p>La evaluación es la etapa en la que se analiza de manera sistemática el desempeño de las intervenciones implementadas, proporcionando una comprensión integral de su impacto y eficacia. Este proceso permite determinar si las intervenciones se realizaron según lo planificado (proceso), si cada acción e intervención tuvo el resultado esperado (resultados) y, por último, la evaluación determinara si se cumplieron los objetivos de gestión, esto es el cambio esperado (impacto) en la coexistencia, sus componentes (presencia y tolerancia), y sus atributos (hábitat, seguridad, valor y acuerdo). Operativamente, la evaluación permite la comparación del cambio logrado en relación con el cambio esperado durante un periodo de gestión, y la determinación de los condicionantes de ese cambio observado.</p>
+            <p>La evaluación es fundamental para la gestión adaptativa, ya que determinará si el modelo propuesto refleja la realidad, si las intervenciones están logrando el cambio esperado, y si el peso de los diferentes atributos y factores del modelo ha cambiado. A través de la evaluación, se puede medir el progreso realizado en la implementación de las intervenciones planificadas y determinar si se están logrando los resultados deseados, como la reducción de las interacciones negativas entre especies o el incremento de la tolerancia de la gente a los carnívoros.</p>
+            <p>La evaluación proporciona una oportunidad para identificar tanto los aspectos positivos como los desafíos encontrados durante la implementación. Esto permite a los gestores del proyecto reconocer y celebrar los logros alcanzados, así como identificar las áreas que necesitan atención adicional o ajustes en el enfoque de manejo para el nuevo ciclo.</p>
+            <p>La evaluación facilita el aprendizaje continuo y la adaptación del enfoque de manejo a medida que se adquiere más información y se obtienen nuevos conocimientos. Al analizar los resultados de la evaluación, los gestores del proyecto pueden identificar lecciones aprendidas y tomar decisiones informadas sobre los ajustes necesarios en las estrategias y acciones futuras.</p>
+            <p>La evaluación proporciona una base objetiva para demostrar el impacto y la efectividad de las acciones implementadas, lo que ayuda a generar confianza y apoyo para el proyecto de manejo de la coexistencia. Un buen ejemplo de lo anterior y de cómo la evaluación de los resultados e impactos nos permite evaluar si el modelo se ajusta a la realidad lo podemos tener al evaluar el éxito del modelo enfocado en el conflicto y su capacidad para resolver el problema de la presencia de carnívoros. El modelo de conflicto se centra en las interacciones negativas (paradigma del conflicto), donde sólo se tiene en cuenta los factores que afectan a los atributos de presencia (habitat) y riesgo (seguridad). El supuesto del modelo propone que si se asegura la presencia y se reducen las interacciones negativas entre la gente y los grandes carnívoros o se compensan los daños, se reducirá la mortalidad de carnívoros inducida por la gente. Sin embargo, en muchas localidades donde se reducían las interacciones negativas y/o se compensaban los daños, seguían existiendo eventos de cacería de grandes carnívoros, incluso en lugares sin daño o riesgo para las propiedades o vidas humanas. La mera presencia de los carnívoros desencadena comportamientos negativos hacia ellos. Es evidente que el modelo enfocado solo en la ecología no es el adecuado para representar la coexistencia ya que no incluye factores que afectan a la tolerancia, como la actitud, las normas, la gobernanza y la equidad.</p>
+            <p>Además de facilitar el aprendizaje continuo, la evaluación es una herramienta clave para la rendición de cuentas ante las partes interesadas. La presentación de informes claros y objetivos que detallen el impacto de las intervenciones no solo fortalece la legitimidad del proyecto, sino que también genera confianza y apoya la sostenibilidad del manejo adaptativo. Este proceso debe ser inclusivo, asegurando que todas las voces relevantes, especialmente las de las comunidades locales, sean consideradas al evaluar los logros y desafíos del proyecto.</p>
+            <p>La evaluación no marca el final del ciclo, sino que actúa como un puente hacia el siguiente. Los hallazgos obtenidos se integran en la fase de análisis del problema, actualizando los modelos conceptuales y ajustando los objetivos de gestión según la nueva información. De esta manera, el manejo adaptativo se enriquece con cada iteración, fortaleciendo su capacidad para enfrentar los desafíos de la coexistencia entre grandes carnívoros y comunidades humanas.</p>
+        </section>
+
+        <section class="mt-12 text-center">
+             <a href="Chap5.html" class="styled-button-link">
+                 Continuar al Capítulo 5 →
+             </a>
+         </section>
+
+    </main>
+
+     <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+         <p class="footer-attribution">Contenido adaptado de "Comprender y Gestionar la Coexistencia entre la Gente y los Grandes Carnívoros" (2025) por Isaac Goldstein & Robert Márquez.</p>
+         <p class="footer-attribution">Una iniciativa de la Alianza para la Conservación del Oso Andino.</p>
+     </footer>
+
+    <script>
+        const sections_coex_cap4 = document.querySelectorAll('.fade-in-section');
+        const observerOptions_coex_cap4 = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observerCallback_coex_cap4 = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-section');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        const observer_coex_cap4 = new IntersectionObserver(observerCallback_coex_cap4, observerOptions_coex_cap4);
+        sections_coex_cap4.forEach(section => { observer_coex_cap4.observe(section); });
+
+        const cycleStages = {
+            analisis: "Evaluar estado actual (atributos, factores), contexto (social, legal, político), actores, modelos e indicadores.",
+            diseno: "Identificar y priorizar objetivos; evaluar y seleccionar intervenciones; planificar aplicación (plan de trabajo, monitoreo).",
+            implementacion: "Ejecutar plan de trabajo, gestionar recursos, comunicar, coordinar, adaptarse a imprevistos.",
+            evaluacion: "Medir proceso, resultados e impacto; aprender, rendir cuentas, informar el siguiente ciclo."
+        };
+        const stageInfoDiv = document.getElementById('stage-info');
+        function showStageInfo(stage) {
+            if(stageInfoDiv) {
+                stageInfoDiv.textContent = cycleStages[stage] || "Haz clic en una etapa del ciclo...";
+            }
+        }
+
+        const modelDataSlider = document.getElementById('model-data-slider');
+        const modelComplexitySlider = document.getElementById('model-complexity-slider');
+        const modelSuggestionOutput = document.getElementById('model-suggestion-output');
+
+        function updateModelSuggestion() {
+            if (!modelDataSlider || !modelComplexitySlider || !modelSuggestionOutput) return;
+            const data = parseInt(modelDataSlider.value);
+            const complexity = parseInt(modelComplexitySlider.value);
+            let suggestion = "Modelo sugerido: ";
+            if (data < 40 && complexity < 40) {
+                suggestion += "PER / Situacional (MIRADI).";
+            } else if (data > 60 && complexity > 60) {
+                suggestion += "Cuantitativo complejo (Ocupación dinámica, Agentes, Bayesiano).";
+            } else if (data > 50 && complexity < 50) {
+                suggestion += "Cuantitativo específico (Ocupación estática, Riesgo espacial).";
+            } else if (data < 50 && complexity > 50) {
+                 suggestion += "Situacional detallado / Solapamiento espacial con datos limitados.";
+            } else {
+                suggestion += "Solapamiento espacial / Modelos cuantitativos básicos.";
+            }
+            modelSuggestionOutput.textContent = suggestion;
+        }
+
+        if (modelDataSlider && modelComplexitySlider) {
+            modelDataSlider.addEventListener('input', updateModelSuggestion);
+            modelComplexitySlider.addEventListener('input', updateModelSuggestion);
+            window.addEventListener('load', updateModelSuggestion);
+        }
+
+        const priorityCarnivoreSlider = document.getElementById('priority-carnivore-slider');
+        const priorityHumanSlider = document.getElementById('priority-human-slider');
+        const priorityOutput = document.getElementById('priority-output');
+
+        function updatePriorityOutput() {
+            if (!priorityCarnivoreSlider || !priorityHumanSlider || !priorityOutput) return;
+            const carnivore = parseInt(priorityCarnivoreSlider.value);
+            const human = parseInt(priorityHumanSlider.value);
+            let suggestion = "Enfoque prioritario: ";
+            if (carnivore > 70 && human > 70) {
+                suggestion += "Seguridad (ambos) y Hábitat crítico.";
+            } else if (human > 70) {
+                suggestion += "Seguridad humana y Tolerancia (Valor/Acuerdo).";
+            } else if (carnivore > 70) {
+                suggestion += "Hábitat (conectividad/calidad) y Seguridad del carnívoro.";
+            } else if (carnivore > 50 && human > 50) {
+                 suggestion += "Equilibrado entre Seguridad, Hábitat y Tolerancia.";
+            } else {
+                 suggestion += "Mantenimiento general y monitoreo.";
+            }
+             priorityOutput.textContent = suggestion;
+        }
+
+        if (priorityCarnivoreSlider && priorityHumanSlider) {
+            priorityCarnivoreSlider.addEventListener('input', updatePriorityOutput);
+            priorityHumanSlider.addEventListener('input', updatePriorityOutput);
+            window.addEventListener('load', updatePriorityOutput);
+        }
+
+        const intervEffectSlider = document.getElementById('interv-effect-slider');
+        const intervCostSlider = document.getElementById('interv-cost-slider');
+        const intervAcceptSlider = document.getElementById('interv-accept-slider');
+        const intervFeasibilityBar = document.getElementById('intervention-feasibility-bar');
+        const intervOutput = document.getElementById('intervention-output');
+
+         function updateInterventionOutput() {
+            if (!intervEffectSlider || !intervCostSlider || !intervAcceptSlider || !intervFeasibilityBar || !intervOutput) return;
+            const effect = parseInt(intervEffectSlider.value);
+            const cost = parseInt(intervCostSlider.value); // High value = Low cost
+            const accept = parseInt(intervAcceptSlider.value);
+
+            const feasibilityScore = Math.max(0, Math.min(100, (effect * 0.5 + cost * 0.25 + accept * 0.25)));
+            intervFeasibilityBar.style.width = `${feasibilityScore}%`;
+
+            let level = "Media";
+            if (feasibilityScore < 33) level = "Baja";
+            else if (feasibilityScore > 66) level = "Alta";
+            intervOutput.textContent = `Viabilidad: ${level}`;
+        }
+
+        if (intervEffectSlider && intervCostSlider && intervAcceptSlider) {
+             intervEffectSlider.addEventListener('input', updateInterventionOutput);
+             intervCostSlider.addEventListener('input', updateInterventionOutput);
+             intervAcceptSlider.addEventListener('input', updateInterventionOutput);
+             window.addEventListener('load', updateInterventionOutput);
+         }
+
+    </script>
+
+</body>
+</html>
