@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coexistencia Grandes Carnívoros - Cap 5: Intervenciones</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-section { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151; font-size: 0.875rem; }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: #84cc16; }
+        input[type="number"], select { padding: 0.5rem; border: 1px solid #D1D5DB; border-radius: 0.375rem; width: 100%; }
+        button, .styled-button-link { background-color: #a3e635; color: #3f6212; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.2s; display: inline-block; text-align: center; border: none; }
+        button:hover, .styled-button-link:hover { background-color: #84cc16; }
+        h1 { color: #111827; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700;}
+        h2 { color: #111827; font-size: 1.5rem; line-height: 2rem; font-weight: 700;}
+        h3 { color: #365314; font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; border-bottom: 2px solid #a3e635; padding-bottom: 0.35rem; margin-top: 2rem; margin-bottom: 1rem; }
+        h4 { color: #4d7c0f; font-size: 1.1rem; line-height: 1.6rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;}
+        p, li { color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+        strong { color: #1F2937; font-weight: 600; }
+        blockquote { border-left: 6px solid #a3e635; padding: 1rem 1.5rem; margin: 2rem 0; font-style: italic; color: #374151; background-color: #ffffff; border-radius: 0 0.5rem 0.5rem 0; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
+        .section-bg-light { background-color: #f7fee7; }
+        .section-bg-white { background-color: #FFFFFF; }
+        .instructional-text { font-size: 0.875rem; color: #4B5563; margin-top: 0.5rem; }
+        hr.styled { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(163, 230, 53, 0), rgba(163, 230, 53, 0.75), rgba(163, 230, 53, 0)); margin: 3rem 0; }
+        .interactive-block { margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; border: 1px solid #d9f99d; border-radius: 0.5rem; background-color: #ffffff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        .output-box { margin-top: 1rem; padding: 0.75rem; background-color: #ecfdf5; border: 1px solid #d1fae5; border-radius: 0.375rem; font-size: 0.875rem; color: #065f46; text-align: center; font-weight: 500; min-height: 40px; }
+        .slider-label-container { display: flex; justify-content: space-between; font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
+        .progress-bar-container { height: 1rem; background-color: #e5e7eb; border-radius: 0.375rem; overflow: hidden; border: 1px solid #d1d5db; margin-top: 0.5rem; }
+        .progress-bar-fill { height: 100%; background-color: #84cc16; transition: width 0.3s ease-in-out; }
+        footer ul { list-style: none; padding-left: 0; }
+        footer li { margin-bottom: 0.75rem; }
+        footer a { color: #4d7c0f; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .header-subtitle { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; margin-top: 0.25rem; }
+        .header-attribution { font-size: 0.875rem; line-height: 1.25rem; margin-top: 1rem; opacity: 0.9; }
+        .footer-attribution { margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.25rem; color: #6b7280; text-align: center; }
+        details.intervention-list { background-color: transparent; border: none; box-shadow: none; margin-bottom: 0.5rem;}
+        details.intervention-list summary { padding: 0.5rem 0; font-weight: 600; font-size: 1rem; color: #4d7c0f; list-style: none; display: flex; justify-content: flex-start; align-items: center; background-color: transparent; border-bottom: none;}
+        details.intervention-list summary::after { content: '▸'; font-size: 1rem; color: #84cc16; margin-left: 0.5rem; transition: transform 0.2s; }
+        details.intervention-list[open] summary::after { content: '▾'; }
+        details.intervention-list div.content { padding: 0.5rem 0 0.5rem 1.5rem; border-top: none; background-color: transparent; }
+        details.intervention-list div.content p, details.intervention-list div.content ul { margin-bottom: 0.5rem; font-size: 0.95rem;}
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <header class="bg-gradient-to-r from-lime-600 to-green-600 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 text-center md:text-left">
+            <h1>Comprender y Gestionar la Coexistencia</h1>
+            <p class="header-subtitle">Entre la Gente y los Grandes Carnívoros</p>
+            <p class="header-attribution">Basado en el libro de Isaac Goldstein & Robert Márquez (2025)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="capitulo5" class="mb-12 p-6 rounded-lg shadow-lg section-bg-white dynamic-content">
+            <h2 class="text-lime-700 border-b-2 border-lime-200 pb-2 mb-6">Capítulo 5: Intervenciones para el manejo de la coexistencia</h2>
+
+            <h3>INTRODUCCIÓN</h3>
+            <p>El manejo de las interacciones entre la gente y fauna silvestre, así como los conflictos asociados a la presencia de carnívoros, abarca una amplia gama de estrategias y herramientas (Nyhus, 2016; Hodgson et al., 2020; Martin et al., 2021; Lorand et al., 2022). La mayoría de las intervenciones se centran en soluciones técnicas para reducir la vulnerabilidad de las personas ante la presencia de fauna silvestre (sensu Heberlain, 2012). Sin embargo, en años recientes ha crecido el interés por abordar los factores subyacentes que impactan la tolerancia a la presencia de fauna silvestre y los conflictos sociales impulsados por las diferencias de valores, las desigualdades y las relaciones de poder entre la gente (Pooley et al., 2017; Hodgson et al., 2020; Gross et al., 2022).</p>
+            <p>Existen diversas clasificaciones de las intervenciones para gestionar la coexistencia, que incluyen:</p>
+            <ul class="list-disc list-inside pl-4 mb-4">
+                <li>Destino del individuo: letal, translocación, no letal (Can et al., 2014; Lorand et al., 2022).</li>
+                <li>Objetivo: Preventivas, de control, de compensación (Treves & Karath, 2003; Goldstein, 2013).</li>
+                <li>Enfoque: Proactivas o reactivas (Beecham, 2007), el sujeto (vida silvestre, el hábitat o las personas (Nyhus, 2016).</li>
+                <li>Marco general: Legales, espaciales, sociales, técnicas, financieras o de monitoreo (Gross et al., 2022).</li>
+                <li>Tipo de intervención: Cognitivas, técnicas o estructurales (Heberlain, 2012).</li>
+            </ul>
+            <p>Para ser coherentes con el modelo conceptual presentado en este trabajo, abordaremos la clasificación de los diferentes métodos y herramientas para gestionar la coexistencia considerando los atributos de las dimensiones ecológica y social (hábitat, seguridad, valor y acuerdo) y los factores que inciden en ellos.</p>
+            <p>El análisis de las diferentes intervenciones se abordará utilizando la clasificación de las intervenciones de Heberlain (2012):</p>
+            <ol class="list-decimal list-inside mb-4 pl-4 space-y-1">
+                <li>Cognitivas: Orientadas principalmente a cambiar actitudes y comportamientos a través de la educación, la información y la sensibilización.</li>
+                <li>Técnicas: Soluciones principalmente prácticas, como cercas, sistemas de alarma o equipos de monitoreo.</li>
+                <li>Estructurales: Cambios principalmente en las políticas, normas o estructuras institucionales que regulan las interacciones entre humanos y fauna.</li>
+            </ol>
+            <p>Los métodos y herramientas de los cuales hablaremos no son excluyentes; diversas acciones pueden realizarse simultáneamente. Sin embargo, para la selección de dichos métodos y herramientas es necesario realizar un análisis del contexto y los problemas específicos (Capítulo 4), teniendo en cuenta factores ecológicos y sociales.</p>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Ayudante Conceptual de Selección de Intervenciones</h4>
+                 <p class="instructional-text text-center mb-4">Selecciona el atributo a impactar, el tipo de intervención preferido y la escala para ver ejemplos conceptuales de intervenciones.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                     <div>
+                         <label for="intervention-attribute">Atributo Principal:</label>
+                         <select id="intervention-attribute">
+                             <option value="habitat">Hábitat</option>
+                             <option value="seguridad">Seguridad</option>
+                             <option value="valor">Valor</option>
+                             <option value="acuerdo">Acuerdo</option>
+                         </select>
+                     </div>
+                      <div>
+                         <label for="intervention-type">Tipo de Intervención (Heberlein):</label>
+                         <select id="intervention-type">
+                             <option value="cognitiva">Cognitiva</option>
+                             <option value="tecnica">Técnica</option>
+                             <option value="estructural">Estructural</option>
+                         </select>
+                     </div>
+                      <div>
+                         <label for="intervention-scale">Escala Principal:</label>
+                         <select id="intervention-scale">
+                             <option value="sitio">Sitio</option>
+                             <option value="localidad">Localidad</option>
+                             <option value="paisaje">Paisaje</option>
+                         </select>
+                     </div>
+                 </div>
+                 <div id="intervention-suggestion-output" class="output-box">Selecciona opciones para ver ejemplos...</div>
+             </div>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">DIMENSION ECOLÓGICA</h3>
+            <p>La dimensión ecológica de la coexistencia entre los grandes carnívoros y la gente comprende 2 atributos: hábitat y seguridad.</p>
+            <ul class="list-disc list-inside pl-4 mb-4">
+                <li>Hábitat: Corresponde al contexto físico-natural (cobertura y uso del suelo, abundancia de las poblaciones de las especies que interactúan), el cual define la sostenibilidad a largo plazo de una población de grandes carnívoros.</li>
+                <li>Seguridad: Se refiere a las interacciones (competencia, depredación, interferencia, etc.) y relaciones entre las personas y los grandes carnívoros que afectan la supervivencia de los carnívoros y el bienestar de la gente.</li>
+            </ul>
+
+            <h4>HÁBITAT</h4>
+            <p>En el marco conceptual presentado en este trabajo, 2 factores principales impactan en el atributo hábitat, la cobertura/uso del suelo (tipos de cobertura, tamaño, estructura, y uso) y la distribución/abundancia de las poblaciones de las especies coexistentes.</p>
+            <p>El factor de cobertura/uso del suelo (tamaño, estructura y composición de los tipos de hábitat) determina la capacidad de carga del sitio, localidad o paisaje. La disponibilidad de hábitat adecuado (en extensión, conectividad y calidad) es esencial para la persistencia de poblaciones viables de grandes carnívoros a largo plazo (Nyhus, 2016; Hodgson et al., 2020). En muchos casos, se asume que la extensión y la calidad del hábitat son indicadores indirectos de la abundancia poblacional, especialmente cuando la información poblacional es limitada (Pooley et al., 2017).</p>
+            <p>El objetivo respecto a la cobertura/uso del suelo puede enfocarse en conservar/mantener, restaurar/aumentar, o modificar/cambiar la cobertura. Las intervenciones relacionadas con este factor pretenden cambiar el tamaño, la estructura o la composición del hábitat, o limitar el tipo de actividades humanas permitidas, impactando la probabilidad de encuentros e interacciones entre la fauna silvestre y la gente.</p>
+            <p>A continuación, señalaremos las principales intervenciones asociadas, indicando entre paréntesis el tipo de arreglo según Heberlain (2012).</p>
+
+            <details class="intervention-list">
+                <summary>Intervenciones para conservar/mantener</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>Zonas protegidas (arreglo estructural):</strong> Creación de áreas naturales protegidas que restringen o regulan actividades humanas (p. ej., agricultura extensiva, caza, minería) para preservar la estructura y composición vegetal (Treves et al., 2006; Goldstein et al., 2006). Estas intervenciones también requieren procesos de participación local para evitar la percepción de imposición y asegurar la equidad en la toma de decisiones (Madden & McQuinn, 2014).</li>
+                        <li><strong>Zonificación de la tierra (arreglo estructural):</strong> Delimitación de usos de suelo específicos que priorizan la conservación en ciertas zonas y permiten actividades compatibles en otras. Estas zonificaciones pueden coexistir con áreas productivas de bajo impacto, reduciendo así el riesgo de interacciones negativas con la fauna silvestre (Nyhus, 2016).</li>
+                        <li><strong>Zonas de amortiguación (arreglo estructural):</strong> Establecimiento de áreas intermedias entre la zona estrictamente protegida y las zonas de uso intensivo, mitigando gradualmente la presión humana y facilitando el movimiento de los carnívoros (Beecham, 2007).</li>
+                        <li><strong>Acuerdos de uso de tierras privadas (arreglo estructural):</strong> Mecanismos voluntarios (convenios, servidumbres ecológicas) para mantener vegetación nativa en propiedades privadas, otorgando beneficios o incentivos a los propietarios (Anyango-Van Zwieten et al., 2015).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="intervention-list">
+                 <summary>Intervenciones para restaurar/aumentar</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Restauración / reforestación (arreglo técnico):</strong> Mediante la siembra de especies vegetales nativas o la regeneración asistida, se busca restablecer la calidad, conectividad y extensión del hábitat (Hodgson et al., 2020).</li>
+                         <li><strong>Enriquecimiento (arreglo técnico):</strong> Prácticas de incremento de diversidad florística y estructural en áreas empobrecidas para favorecer la presencia de presas silvestres y refugio para carnívoros (Márquez & Goldstein, 2014).</li>
+                         <li><strong>Aislamientos (arreglo técnico):</strong> Cuando se requiere proteger zonas recién restauradas (p. ej., con cercas temporales), garantizando la recuperación de la vegetación nativa y limitando la entrada de ganado (Bautista et al., 2021).</li>
+                         <li><strong>Modificación de la vegetación (arreglo técnico):</strong> Incluye el cambio en la estructura y ubicación de la cobertura natural (por ejemplo, los bosques) para mejorar la calidad del hábitat del carnívoro en los lugares con baja probabilidad de interacción y reducir la calidad del hábitat de los carnívoros en áreas con alta probabilidad de interacción, sin afectar significativamente la cantidad global del hábitat disponible para la especie (Márquez & Goldstein, 2014).</li>
+                     </ul>
+                 </div>
+             </details>
+            <p class="mt-4">Las medidas para conservar/mantener, para restaurar/aumentar y para modificar/cambiar pueden y suelen combinarse en un mismo paisaje. Por ejemplo, la creación de un área protegida genera el marco legal que facilita la restauración en zonas degradadas dentro de la misma área (Nyhus, 2016).</p>
+            <p>El segundo factor que impacta el atributo hábitat es la abundancia de las especies coexistentes, en este caso, la abundancia de los grandes carnívoros y de la gente. El objetivo en cuanto al factor abundancia para los carnívoros puede enfocarse en aumentar, mantener o controlar la población. Las medidas relacionadas con este factor pretenden mantener la abundancia de grandes carnívoros dentro de un determinado rango considerado como viable, mientras que el objetivo respecto a la gente apunta a limitar la huella humana y/o distribuir las actividades para reducir las interacciones negativas (Treves & Karath, 2003).</p>
+            <p>A continuación, se describen las principales estrategias:</p>
+
+            <details class="intervention-list">
+                 <summary>Intervenciones para controlar la abundancia de carnívoros</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Remoción letal / Recolección regulada / caza (arreglo técnico):</strong> Cuando los carnívoros alcanzan niveles que se consideran superiores a la capacidad de carga ecológica o a la tolerancia social, algunos programas contemplan la caza regulada (Baruch-Mordo et al., 2014). Sin embargo, esta estrategia ha perdido aceptación social en muchas regiones (Dickman et al., 2011).</li>
+                         <li><strong>Remoción letal / Sacrificio (arreglo técnico):</strong> Práctica más drástica, generalmente legal sólo bajo circunstancias de amenaza a la vida humana o a la propiedad (Beecham, 2007; Hodgson et al., 2020).</li>
+                         <li><strong>Remoción no letal / Protección bajo cuidado humano (arreglo técnico):</strong> Algunos individuos problemáticos son retirados permanentemente y llevados a centros de rescate o zoológicos. Puede mitigar conflictos puntuales, pero no siempre aborda el problema subyacente (Lorand et al., 2022).</li>
+                         <li><strong>Remoción no letal / Translocación (arreglo técnico):</strong> Consiste en la captura y liberación de individuos en áreas alejadas, con el fin de dispersar poblaciones y reducir la interacción conflictiva (Can et al., 2014). Puede ser eficaz a corto plazo, pero existen riesgos de recolonización o efectos sobre la población residente.</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones para conservar/aumentar la población de carnívoros</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Reasentamiento humano (arreglo estructural):</strong> En contadas ocasiones, las estrategias de zonificación permiten la reubicación de comunidades humanas ubicadas en zonas críticas para la conservación. Esta práctica ha sido históricamente conflictiva y debe aplicarse con cautela y siguiendo principios de equidad y participación (Treves et al., 2006).</li>
+                         <li><strong>Control y vigilancia (arreglo técnico):</strong> Implica monitoreo constante de la población de carnívoros e implementación de acciones preventivas (por ejemplo, en áreas cercanas a asentamientos humanos) (Nyhus, 2016).</li>
+                         <li><strong>Manejo de las poblaciones de presas (arreglo técnico):</strong> Asegurar la disponibilidad de presas naturales (ciervos, pecaríes, conejos, etc.) puede disuadir la depredación sobre el ganado y favorecer la persistencia de los carnívoros (Goldstein, 2013).</li>
+                         <li><strong>Alimentación suplementaria (arreglo técnico):</strong> Se recurre a depósitos de alimento para carnívoros en épocas de escasez. Aunque puede reducir el conflicto a corto plazo, existe riesgo de habituar a los carnívoros o generar dependencia (Killion et al., 2021).</li>
+                         <li><strong>Reducción de amenazas (arreglo técnico):</strong> Incluye la eliminación de trampas ilegales y la persecución indiscriminada; fomenta la coexistencia al reducir la mortalidad de carnívoros inducida por la gente (Gross et al., 2022).</li>
+                         <li><strong>Reintroducción (arreglo técnico):</strong> Liberación de individuos en zonas donde la especie no esté presente o donde el tamaño de la población sea muy pequeño, con el propósito de restablecer poblaciones viables (Pooley et al., 2017).</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones para limitar la huella humana</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Zonas protegidas/ Zonificación de la tierra/ Zonas de amortiguación/ Acuerdos de uso de tierras privadas (arreglos estructurales):</strong> Similares a las descritas en cobertura y uso del suelo, enfocadas en reducir la intensidad de actividades humanas que incrementan la probabilidad de encuentros adversos con carnívoros y las amenazas que reducen su abundancia (Madden & McQuinn, 2014).</li>
+                     </ul>
+                 </div>
+             </details>
+            <p class="mt-4">En el caso de las intervenciones enfocadas en la gente, aunque el factor abundancia está principalmente relacionado con el atributo hábitat también impacta y es impactado por los atributos seguridad, valor y acuerdo. En relación con la gente, el objetivo de impactar el factor abundancia se enfoca principalmente en limitar la huella humana mediante el control y la reducción de la presencia de personas, limitando sus actividades.</p>
+
+            <hr class="styled">
+
+            <h4>SEGURIDAD</h4>
+            <p>El atributo seguridad se refiere a la interacción entre personas y grandes carnívoros, y su consecuencia en la supervivencia de los carnívoros y el bienestar de la gente, siendo las interacciones negativas la causa inmediata y directa del muchas veces denominado «conflicto» entre la gente y los carnívoros (Beecham, 2007). Dos factores impactan directamente la seguridad: riesgo/oportunidad y pérdida/ganancia.</p>
+
+            <h5>Riesgo/oportunidad</h5>
+            <p>El riesgo es la posibilidad de que se produzca una interacción negativa, mientras que la oportunidad se relaciona con la posibilidad de que la interacción sea positiva (por ejemplo, obtención de beneficios turísticos o culturales). Sus componentes incluyen la amenaza/probabilidad de interacción o posibilidad de una interacción negativa/positiva entre los grandes carnívoros y la gente durante un periodo y lugar específico y la vulnerabilidad o falta de capacidad para anticipar, sobrevivir, resistir, y recuperarse de una interacción negativa. Por otro lado, la pérdida/ganancia es el impacto real en el bienestar de las personas, y/o el impacto en la supervivencia de los carnívoros.</p>
+            <p>El objetivo en cuanto al factor riesgo/oportunidad es reducir la amenaza y la vulnerabilidad (riesgo) y, al mismo tiempo, potenciar las oportunidades (p. ej., ecoturismo responsable) (Pooley et al., 2017).</p>
+
+            <details class="intervention-list">
+                 <summary>Intervenciones de adaptación del comportamiento de los animales / Estímulos condicionantes aversivos pasivos</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Herramientas disuasorias visuales, sonoras o químicas (arreglo técnico):</strong> Herramientas instaladas de manera permanente, como banderines, espantapájaros, dispositivos sonoros o químicos (Dickman et al., 2011). Aunque a veces los carnívoros se habitúan a estas señales, combinarlas con otras medidas incrementa la eficacia (Bautista et al., 2021).</li>
+                         <li><strong>Vigilancia con pastores / Perros de guardia (arreglo técnico):</strong> Pastores humanos y/o caninos (p. ej., perros mastines) para proteger el ganado o cultivos. Son medidas tradicionales y efectivas cuando se mantiene la constancia en la vigilancia (Killion et al., 2021).</li>
+                         <li><strong>Cercas o barreras (arreglo técnico):</strong> Desde vallas tradicionales a cercas eléctricas o sónicas, reducen la probabilidad de contacto directo entre carnívoros y ganado (Bautista et al., 2021).</li>
+                         <li><strong>Presencia de otras especies (abejas, mulas, etc.) (arreglo técnico):</strong> Se aprovecha la conducta defensiva de ciertas especies para repeler carnívoros (Beecham, 2007). Por ejemplo, la apicultura en el perímetro de un cultivo puede disuadir la entrada de ciertos mamíferos.</li>
+                         <li><strong>Guardianes electrónicos (arreglo técnico):</strong> Sistemas electrónicos de alerta temprana (luces, alarmas) que detectan la presencia de fauna y avisan a los productores (Nyhus, 2016).</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Eficacia Conceptual de Disuasivos</h4>
+                 <p class="instructional-text text-center mb-4">Selecciona el tipo de disuasivo y el nivel de habituación del carnívoro para ver una estimación conceptual de su eficacia a largo plazo.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                     <div>
+                         <label for="deterrent-type-select">Tipo de Disuasivo:</label>
+                         <select id="deterrent-type-select">
+                             <option value="passive">Pasivo (Visual/Sonoro)</option>
+                             <option value="guardian">Guardián Activo (Perro/Pastor)</option>
+                             <option value="fence">Cerca Bien Mantenida</option>
+                             <option value="aversive">Condicionamiento Aversivo Activo</option>
+                         </select>
+                     </div>
+                     <div>
+                         <label for="habituation-slider">Nivel de Habituación del Carnívoro:</label>
+                         <input type="range" id="habituation-slider" min="0" max="100" value="20" step="1">
+                         <div class="slider-label-container"><span>Bajo</span><span>Alto</span></div>
+                     </div>
+                 </div>
+                 <label class="text-sm font-medium text-center block mb-1">Eficacia Conceptual a Largo Plazo:</label>
+                 <div class="progress-bar-container mx-auto max-w-md">
+                     <div id="deterrent-effectiveness-bar" class="progress-bar-fill" style="width: 80%;"></div>
+                 </div>
+                 <div class="flex justify-between text-xs mt-1 max-w-md mx-auto"><span>Baja</span><span>Alta</span></div>
+                 <div id="deterrent-output" class="output-box">Eficacia: Alta</div>
+             </div>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones de adaptación del comportamiento o presencia de los animales / Estímulos condicionantes aversivos activos</summary>
+                 <div class="content">
+                      <p class="text-sm italic mb-2">(Aplicados a individuos específicos como carnívoros habituados o «problemáticos»).</p>
+                     <ul>
+                         <li><strong>Collares electrónicos de adiestramiento (arreglo técnico):</strong> Dispositivos que emiten estímulos aversivos (descargas o señales) cuando el carnívoro se acerca a zonas conflictivas, buscando que asocie dichos espacios con una experiencia desagradable y los evite (Baruch-Mordo et al., 2014). Específicamente útiles para individuos problemáticos, aunque requieren monitoreo continuo, personal especializado y supervisión ética.</li>
+                         <li><strong>Hostigamiento con balas de goma o pimienta (arreglo técnico):</strong> Uso de balas de goma disparadas de manera puntual para ahuyentar carnívoros que se adentran en áreas productivas o cercanas a asentamientos humanos. Ofrece una respuesta rápida y no letal, pero debe complementarse con otros métodos de prevención y manejo de atrayentes para evitar que el animal regrese.</li>
+                         <li><strong>Captura y liberación con aversión condicionada (arreglo técnico):</strong> Captura del individuo «habitual» y aplicación de estímulos aversivos (ej. balas de goma, químicos eméticos) antes de su liberación en otro sitio, con el objetivo de generar una asociación negativa que reduzca su tendencia a merodear áreas humanas (Baruch-Mordo et al., 2014). Aunque evita el sacrificio, su efectividad depende de la eliminación de factores de atracción y de un manejo ético adecuado.</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <details class="intervention-list">
+                 <summary>Medidas de adaptación del comportamiento de las personas</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Reducción de los atrayentes (arreglo técnico):</strong> Manejo adecuado de basura, cadáveres de animales y alimentos para evitar que los carnívoros asocien áreas humanas con recursos (Treves & Karath, 2003).</li>
+                         <li><strong>Cambio de manejo de ganado (arreglo técnico):</strong> Cambio del pastoreo libre a sistemas de estabulación o semiestabulación; también se promueve la vigilancia activa en horarios críticos (Goldstein, 2013).</li>
+                         <li><strong>Aumento del cuidado de animales vulnerables (arreglo técnico):</strong> Mayor supervisión durante la época de cría o parición para reducir la depredación (Krofel et al., 2020).</li>
+                         <li><strong>Aumento de la frecuencia de vigilancia (arreglo técnico):</strong> Implica incrementar la presencia constante de personas (ganaderos, guardas, técnicos) en las áreas donde se producen o se espera la interacción con grandes carnívoros, monitoreando el ganado o los recursos sensibles. Esta vigilancia reforzada dificulta el acceso de los depredadores a zonas productivas y facilita la detección temprana, permitiendo tomar medidas preventivas (ej. ahuyentamiento) para reducir posibles daños.</li>
+                         <li><strong>Disminución de la distancia entre las actividades productivas y la vivienda (arreglo técnico):</strong> Mantener el ganado cerca de las viviendas limita las pérdidas y facilita la vigilancia (Pooley et al., 2017).</li>
+                         <li><strong>Adaptación y mantenimiento de cercas (arreglo técnico):</strong> Reforzar y revisar periódicamente las cercas para garantizar su efectividad (Bautista et al., 2021).</li>
+                         <li><strong>Reubicación de las actividades productivas (arreglos técnicos):</strong> Trasladar prácticas agrícolas o ganaderas fuera de zonas críticas de presencia de carnívoros (Treves et al., 2006).</li>
+                         <li><strong>Fortalecimiento de actividades productivas seguras (ya realizadas en la finca) (arreglo técnico):</strong> Optimizar y mejorar las prácticas productivas existentes, incorporando infraestructuras o metodologías que reduzcan riesgos frente a carnívoros (p. ej., rotación de potreros, cercas reforzadas, mayor control de la reproducción del ganado). Favorece la continuidad de actividades rentables disminuyendo la probabilidad de interacciones negativas.</li>
+                         <li><strong>Cambio de actividades productivas (arreglo técnico):</strong> Sustitución parcial o total de las prácticas propensas al conflicto (por ejemplo, ciertos tipos de ganadería intensiva) por otras actividades menos vulnerables a la depredación, como cultivos, ecoturismo o ganadería de especies más resistentes. Contribuye a reducir la presión sobre el hábitat y la exposición de la fauna a los sistemas productivos.</li>
+                         <li><strong>Cambio de la composición del rebaño (arreglo técnico):</strong> Sustituir especies particularmente vulnerables por otras más resistentes o menos atractivas para los depredadores (Nyhus, 2016).</li>
+                         <li><strong>Manejo de las oportunidades (arreglo técnico):</strong> Fomentar estrategias verdes, como las de turismo de naturaleza o mercados verdes, que generen ingresos a partir de la presencia de carnívoros y promuevan la conservación (Anyango-Van Zwieten et al., 2015).</li>
+                     </ul>
+                 </div>
+             </details>
+
+            <h5>Pérdida/ganancia</h5>
+            <p>Las intervenciones que repercuten en la ganancia/pérdida pueden definirse como intervenciones de mitigación, enfocadas en compensar los efectos de las pérdidas y/o consolidar ganancias derivadas de la presencia de carnívoros (Dickman et al., 2011). Las intervenciones de mitigación no reducen por sí mismas la frecuencia ni la intensidad de las interacciones, pero sí el costo social y económico de interactuar y coexistir con grandes carnívoros, reconociendo el impacto en la economía y el bienestar de las personas.</p>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador: Sostenibilidad de la Compensación</h4>
+                 <p class="instructional-text text-center mb-4">Ajusta los sliders para ver cómo el nivel de daño y el esfuerzo de prevención afectan conceptualmente la sostenibilidad de un programa de compensación.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                     <div>
+                         <label for="comp-damage-slider-2">Frecuencia/Severidad del Daño:</label>
+                         <input type="range" id="comp-damage-slider-2" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                     <div>
+                         <label for="comp-prevention-slider-2">Nivel de Medidas Preventivas Usadas:</label>
+                         <input type="range" id="comp-prevention-slider-2" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Bajo</span><span>Alto</span></div>
+                     </div>
+                 </div>
+                 <label class="text-sm font-medium text-center block mb-1">Sostenibilidad Conceptual de la Compensación:</label>
+                 <div class="progress-bar-container mx-auto max-w-md">
+                     <div id="compensation-sustainability-bar-2" class="progress-bar-fill" style="width: 50%;"></div>
+                 </div>
+                 <div class="flex justify-between text-xs mt-1 max-w-md mx-auto"><span>Baja</span><span>Alta</span></div>
+                 <div id="compensation-output-2" class="output-box">Sostenibilidad: Media</div>
+             </div>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones de mitigación preventiva</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Compensación indirecta o incentivos financieros (arreglo técnico):</strong> Pagos por servicios ambientales (PSA), subsidios u otras compensaciones condicionales a la adopción de prácticas de conservación (Anyango-Van Zwieten et al., 2015).</li>
+                         <li><strong>Fondos para desarrollar intervenciones adaptativas (arreglo técnico):</strong> Apoyo financiero que permita realizar actividades como la compra de cercas eléctricas, perros guardianes u otros arreglos técnicos (Maclennan et al., 2009).</li>
+                         <li><strong>Reducción de impuestos (arreglo estructural):</strong> Política fiscal que incentive el mantenimiento de hábitats o la adopción de medidas de coexistencia (Amit & Jacobson, 2018).</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones de mitigación reactiva</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Compensación financiera de daños (arreglo técnico):</strong> Reembolso económico a los propietarios cuando sufren pérdida de ganado u otros bienes. Aunque es la forma más frecuente, enfrenta retos como la verificación de daños, la demora en pagos y la equidad en su aplicación (Zabel & Holms-Müller, 2008; Hodgson et al., 2020).</li>
+                         <li><strong>Programas de seguros para el pago de daños (arreglo técnico):</strong> Modelos donde el productor y/o el gobierno aportan a un fondo de seguro que cubre las pérdidas ocasionadas por carnívoros. Pueden ser difíciles de implementar en comunidades de bajos ingresos o con escasa infraestructura legal (Dickman et al., 2011).</li>
+                     </ul>
+                 </div>
+             </details>
+
+            <hr class="styled">
+
+            <h3 class="text-xl font-semibold">DIMENSION SOCIAL</h3>
+            <p>La dimensión social del sistema socio-ecológico de la coexistencia se compone de 2 atributos: valor y acuerdo, que impactan en la disposición de las personas a coexistir con los grandes carnívoros.</p>
+
+            <h4>VALOR</h4>
+            <p>El atributo valor comprende tanto la percepción que tienen las personas de la especie de carnívoro como la valoración de la propia coexistencia (Pooley et al., 2017; Hodgson et al., 2020). Dos factores principales influyen en el valor:</p>
+             <ul class="list-disc list-inside pl-4 mb-4">
+                 <li>Actitud (con componentes afectivos, cognitivos e identitarios).</li>
+                 <li>Conocimiento (sobre la especie y las formas de interacción).</li>
+             </ul>
+            <p>Para impactar en la actitud, se proponen dos estrategias básicas: la cognitiva y la financiera.</p>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones cognitivas</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Inclusión de la coexistencia en planes de educación formal (arreglo cognitivo):</strong> Ajustar los planes de estudio en escuelas y universidades para promover actitudes positivas hacia la fauna silvestre (Can et al., 2014).</li>
+                         <li><strong>Campañas de educación ambiental (arreglo cognitivo):</strong> Diseño y divulgación de contenidos (folletos, carteles, vídeos, charlas) dirigidos a las comunidades locales, estudiantes y otros sectores, para informar sobre la importancia ecológica de los grandes carnívoros, promover actitudes positivas y difundir prácticas de coexistencia (ej. manejo de atrayentes, uso de cercas, vigilancia). Contribuye a generar conciencia y fomentar cambios conductuales que favorezcan la coexistencia (Can et al., 2014).</li>
+                         <li><strong>Marketing social (arreglo cognitivo):</strong> Uso de medios de comunicación y redes sociales para concientizar acerca de la importancia ecológica de los carnívoros y las buenas prácticas de convivencia (Proctor et al., 2018).</li>
+                         <li><strong>Talleres y cursos (arreglo cognitivo):</strong> Programas de capacitación para actores locales (ganaderos, líderes comunitarios) sobre técnicas de prevención de daños y manejo de conflictos (Nyhus, 2016).</li>
+                         <li><strong>Ferias y festivales de conservación (arreglo cognitivo):</strong> Eventos culturales que resaltan la relevancia ecológica y simbólica de los carnívoros, fortaleciendo la identidad y el sentido de pertenencia (Killion et al., 2021).</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones financieras</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Compensación indirecta o incentivos financieros (e.g. pagos por servicios medioambientales) (arreglo técnico):</strong> Se otorgan a productores o comunidades que adoptan prácticas que favorecen la conservación, compensando así el costo de coexistir con carnívoros. Incrementan el valor económico de la preservación del hábitat y reducen la presión sobre la fauna.</li>
+                         <li><strong>Fondos para desarrollar intervenciones adaptativas (arreglo técnico):</strong> Recursos económicos destinados a implementar medidas concretas de prevención o mitigación (cercas, perros guardianes, restauración de hábitat). Permiten costear la infraestructura necesaria para disminuir daños y fomentar la coexistencia.</li>
+                         <li><strong>Reducción de impuestos (arreglo estructural):</strong> Incentivos fiscales para quienes protegen el hábitat o realizan prácticas de manejo amigables con la fauna silvestre. Aligerar la carga económica de la conservación y promueve la adopción de medidas que eviten conflictos.</li>
+                     </ul>
+                 </div>
+             </details>
+
+            <h4>ACUERDO</h4>
+            <p>El acuerdo tiene que ver con las relaciones e interacciones entre la gente que coocurre con los grandes mamíferos, así como con otras partes interesadas relacionadas con la presencia, la coocurrencia, y la gestión de los grandes carnívoros, teniendo en cuenta la distribución de las ganancias y las pérdidas debidas a la presencia y las interacciones con los grandes carnívoros en un entorno social, cultural y político. El atributo de acuerdo se ve directamente afectado por dos factores: la equidad y la norma. El factor equidad tiene tres componentes: equidad de distribución, equidad de procedimiento, y equidad contextual. El factor de equidad es lo que Madden y Mac Quinn (2014) definen como «proceso» y «relaciones» en su modelo de triángulo de intervención en conflictos. El proceso está relacionado con la posición de poder y la implicación de todos los actores y partes interesadas que coocurren y que no coocurren con los grandes carnívoros, tanto en la toma de decisiones como en las intervenciones.</p>
+            <p>Las intervenciones de proceso impactan tanto la equidad contextual como la equidad de procedimiento, al establecer quién está a cargo y cuáles son las distintas responsabilidades, permitiendo a la población local y a las comunidades compartir la responsabilidad de la gestión de la coexistencia. La implicación de las comunidades locales y el reparto de responsabilidades están consideradas como elementos fundamentales de la gestión de la coexistencia en Norteamérica (Treves et al., 2006), y una cuestión clave a resolver en Sudamérica (Goldstein et al., 2006).Las intervenciones de relaciones se enfocan en la calidad de las interacciones y la confianza mutua, incluyen prácticas como foros de intercambio de experiencias, comités locales de gestión y capacitaciones conjuntas (Madden & McQuinn, 2014).</p>
+
+             <div class="interactive-block">
+                 <h4 class="text-lg font-semibold mb-3 text-center text-lime-700">Explorador: Construcción de Confianza</h4>
+                 <p class="instructional-text text-center mb-4">Ajusta los sliders para ver cómo factores como la transparencia, participación y equidad pueden influir conceptualmente en el nivel de confianza hacia las instituciones.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                     <div>
+                         <label for="trust-transparency-slider-2">Transparencia en Decisiones:</label>
+                         <input type="range" id="trust-transparency-slider-2" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                     <div>
+                         <label for="trust-participation-slider-2">Participación Comunitaria:</label>
+                         <input type="range" id="trust-participation-slider-2" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                     <div>
+                         <label for="trust-equity-slider-2">Equidad Percibida:</label>
+                         <input type="range" id="trust-equity-slider-2" min="0" max="100" value="50" step="1">
+                         <div class="slider-label-container"><span>Baja</span><span>Alta</span></div>
+                     </div>
+                 </div>
+                 <label class="text-sm font-medium text-center block mb-1">Nivel Conceptual de Confianza:</label>
+                 <div class="progress-bar-container mx-auto max-w-md">
+                     <div id="trust-level-bar-2" class="progress-bar-fill" style="width: 50%;"></div>
+                 </div>
+                 <div class="flex justify-between text-xs mt-1 max-w-md mx-auto"><span>Baja</span><span>Alta</span></div>
+                 <div id="trust-output-2" class="output-box">Confianza: Media</div>
+             </div>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones para el manejo de los procesos y las relaciones</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Co-manejo (arreglo estructural):</strong> Colaboración formal entre autoridades (gubernamentales, ONG) y comunidades locales para tomar decisiones y compartir responsabilidades en la gestión de la coexistencia. Este enfoque busca equilibrar conocimientos técnicos y saberes locales, fomentando la participación de los actores involucrados y aumentando la aceptación de las medidas de conservación (Treves et al., 2006).</li>
+                         <li><strong>Reparto de costes (arreglo técnico):</strong> Acuerdos en que la comunidad y las instituciones dividen gastos de implementación de las intervenciones de manejo (Madden & McQuinn, 2014).</li>
+                         <li><strong>Resolución y transformación de conflictos (arreglo cognitivo):</strong> Espacios de diálogo, mediación y construcción de consensos que mejoran la relación entre actores (Goldstein et al., 2006).</li>
+                         <li><strong>Resolución de derechos (arreglo estructural):</strong> Identificar y clarificar derechos de propiedad, de uso de recursos y de conservación (Treves et al., 2006).</li>
+                     </ul>
+                 </div>
+             </details>
+
+            <p class="mt-4">En cuanto al factor norma, podemos dividir las intervenciones en dos estrategias, desarrollo y gobernanza. La estrategia dependerá del estado de la norma (presente o no presente), enfoque (conservación o manejo) y su aplicación. La estrategia de desarrollo se centra en la creación de nuevas leyes o en la modificación de las actuales. La estrategia de gobernanza centra sus intervenciones en la ejecución de las normas, cuál es la norma que se está aplicando, el alcance y el nivel de aplicación de las leyes formales e informales, así como el nivel de acuerdo/desacuerdo entre las normas formales e informales.</p>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones enfocadas en la norma social</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Sensibilización y educación ambiental en niños y jóvenes, o en agrupaciones (arreglo cognitivo):</strong> Orientada a reforzar valores colectivos que promuevan la convivencia con la fauna (Pooley et al., 2017).</li>
+                     </ul>
+                 </div>
+             </details>
+
+             <details class="intervention-list">
+                 <summary>Intervenciones enfocadas en la norma formal</summary>
+                 <div class="content">
+                     <ul>
+                         <li><strong>Legislación (arreglo estructural):</strong> Apoya la adopción de legislación local y la cohesión social para la conservación (Treves & Karath, 2003).</li>
+                         <li><strong>Control y vigilancia (arreglo técnico):</strong> Asegura el cumplimiento de leyes y sanciona prácticas ilícitas (incumplimiento de la zonificación, caza furtiva, etc.) (Gross et al., 2022).</li>
+                     </ul>
+                 </div>
+             </details>
+
+        </section>
+
+        <section class="mt-12 text-center">
+             <a href="Chap6.html" class="styled-button-link">
+                 Continuar al Capítulo 6 →
+             </a>
+         </section>
+
+    </main>
+
+     <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+         <p class="footer-attribution">Contenido adaptado de "Comprender y Gestionar la Coexistencia entre la Gente y los Grandes Carnívoros" (2025) por Isaac Goldstein & Robert Márquez.</p>
+         <p class="footer-attribution">Una iniciativa de la Alianza para la Conservación del Oso Andino.</p>
+     </footer>
+
+    <script>
+        const sections_coex_cap5 = document.querySelectorAll('.fade-in-section');
+        const observerOptions_coex_cap5 = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observerCallback_coex_cap5 = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-section');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        const observer_coex_cap5 = new IntersectionObserver(observerCallback_coex_cap5, observerOptions_coex_cap5);
+        sections_coex_cap5.forEach(section => { observer_coex_cap5.observe(section); });
+
+        const interventionAttributeSelect = document.getElementById('intervention-attribute');
+        const interventionTypeSelect = document.getElementById('intervention-type');
+        const interventionScaleSelect = document.getElementById('intervention-scale');
+        const interventionSuggestionOutput = document.getElementById('intervention-suggestion-output');
+
+        function updateInterventionSuggestion() {
+            if(!interventionAttributeSelect || !interventionTypeSelect || !interventionScaleSelect || !interventionSuggestionOutput) return;
+            const attr = interventionAttributeSelect.value;
+            const type = interventionTypeSelect.value;
+            const scale = interventionScaleSelect.value;
+            let examples = "Ejemplos: ";
+
+            if (attr === 'habitat' && type === 'estructural' && scale === 'paisaje') examples += "Áreas protegidas, Zonificación.";
+            else if (attr === 'habitat' && type === 'tecnica' && scale === 'sitio') examples += "Restauración puntual, Modificación vegetación local.";
+            else if (attr === 'seguridad' && type === 'tecnica' && scale === 'sitio') examples += "Cercas eléctricas, Perros guardianes, Manejo de atrayentes.";
+            else if (attr === 'seguridad' && type === 'estructural' && scale === 'localidad') examples += "Programas de compensación condicionados, Seguros locales.";
+            else if (attr === 'valor' && type === 'cognitiva' && scale === 'localidad') examples += "Campañas educativas, Talleres comunitarios, Festivales.";
+            else if (attr === 'valor' && type === 'tecnica' && scale === 'sitio') examples += "Apoyo a ecoturismo, Fondos para adaptación.";
+            else if (attr === 'acuerdo' && type === 'estructural' && scale === 'paisaje') examples += "Legislación nacional, Políticas de equidad.";
+            else if (attr === 'acuerdo' && type === 'cognitiva' && scale === 'localidad') examples += "Mediación de conflictos, Foros de diálogo.";
+            else examples = "Selecciona una combinación para ver ejemplos conceptuales.";
+
+            interventionSuggestionOutput.textContent = examples;
+        }
+
+        if(interventionAttributeSelect && interventionTypeSelect && interventionScaleSelect) {
+            interventionAttributeSelect.addEventListener('change', updateInterventionSuggestion);
+            interventionTypeSelect.addEventListener('change', updateInterventionSuggestion);
+            interventionScaleSelect.addEventListener('change', updateInterventionSuggestion);
+            window.addEventListener('load', updateInterventionSuggestion);
+        }
+
+        const deterrentTypeSelect = document.getElementById('deterrent-type-select');
+        const habituationSlider = document.getElementById('habituation-slider');
+        const deterrentEffectivenessBar = document.getElementById('deterrent-effectiveness-bar');
+        const deterrentOutput = document.getElementById('deterrent-output');
+
+        function updateDeterrentEffectiveness() {
+             if (!deterrentTypeSelect || !habituationSlider || !deterrentEffectivenessBar || !deterrentOutput) return;
+             const type = deterrentTypeSelect.value;
+             const habituation = parseInt(habituationSlider.value); // 0-100
+
+             let baseEffectiveness = 50;
+             if (type === 'passive') baseEffectiveness = 60;
+             else if (type === 'guardian') baseEffectiveness = 85;
+             else if (type === 'fence') baseEffectiveness = 90;
+             else if (type === 'aversive') baseEffectiveness = 75;
+
+             const habituationFactor = (type === 'passive') ? 0.7 : (type === 'aversive' ? 0.4 : 0.2);
+             const effectivenessScore = Math.max(5, Math.min(95, baseEffectiveness - (habituation * habituationFactor)));
+
+             deterrentEffectivenessBar.style.width = `${effectivenessScore}%`;
+             let level = "Media";
+             if (effectivenessScore < 33) level = "Baja";
+             else if (effectivenessScore > 66) level = "Alta";
+             deterrentOutput.textContent = `Eficacia Estimada: ${level}`;
+        }
+         if(deterrentTypeSelect && habituationSlider) {
+            deterrentTypeSelect.addEventListener('change', updateDeterrentEffectiveness);
+            habituationSlider.addEventListener('input', updateDeterrentEffectiveness);
+            window.addEventListener('load', updateDeterrentEffectiveness);
+        }
+
+        const compDamageSlider2 = document.getElementById('comp-damage-slider-2');
+        const compPreventionSlider2 = document.getElementById('comp-prevention-slider-2');
+        const compSustainBar2 = document.getElementById('compensation-sustainability-bar-2');
+        const compOutput2 = document.getElementById('compensation-output-2');
+
+        function updateCompensationOutput2() {
+            if (!compDamageSlider2 || !compPreventionSlider2 || !compSustainBar2 || !compOutput2) return;
+            const damage = parseInt(compDamageSlider2.value);
+            const prevention = parseInt(compPreventionSlider2.value);
+            const sustainabilityScore = Math.max(0, Math.min(100, prevention - (damage * 0.7)));
+            compSustainBar2.style.width = `${sustainabilityScore}%`;
+            let level = "Media";
+            if (sustainabilityScore < 33) level = "Baja";
+            else if (sustainabilityScore > 66) level = "Alta";
+            compOutput2.textContent = `Sostenibilidad: ${level}`;
+        }
+
+        if(compDamageSlider2 && compPreventionSlider2) {
+            compDamageSlider2.addEventListener('input', updateCompensationOutput2);
+            compPreventionSlider2.addEventListener('input', updateCompensationOutput2);
+            window.addEventListener('load', updateCompensationOutput2);
+        }
+
+        const trustTransparencySlider2 = document.getElementById('trust-transparency-slider-2');
+        const trustParticipationSlider2 = document.getElementById('trust-participation-slider-2');
+        const trustEquitySlider2 = document.getElementById('trust-equity-slider-2');
+        const trustLevelBar2 = document.getElementById('trust-level-bar-2');
+        const trustOutput2 = document.getElementById('trust-output-2');
+
+        function updateTrustOutput2() {
+            if (!trustTransparencySlider2 || !trustParticipationSlider2 || !trustEquitySlider2 || !trustLevelBar2 || !trustOutput2) return;
+            const transparency = parseInt(trustTransparencySlider2.value);
+            const participation = parseInt(trustParticipationSlider2.value);
+            const equity = parseInt(trustEquitySlider2.value);
+            const trustScore = Math.max(0, Math.min(100, (transparency * 0.4 + participation * 0.4 + equity * 0.2)));
+            trustLevelBar2.style.width = `${trustScore}%`;
+            let level = "Media";
+            if (trustScore < 33) level = "Baja";
+            else if (trustScore > 66) level = "Alta";
+            trustOutput2.textContent = `Confianza: ${level}`;
+        }
+
+        if (trustTransparencySlider2 && trustParticipationSlider2 && trustEquitySlider2) {
+            trustTransparencySlider2.addEventListener('input', updateTrustOutput2);
+            trustParticipationSlider2.addEventListener('input', updateTrustOutput2);
+            trustEquitySlider2.addEventListener('input', updateTrustOutput2);
+            window.addEventListener('load', updateTrustOutput2);
+        }
+
+    </script>
+
+</body>
+</html>
